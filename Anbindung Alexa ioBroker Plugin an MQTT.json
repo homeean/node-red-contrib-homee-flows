@@ -1,0 +1,219 @@
+[
+    {
+        "id": "9c440b1e.12c1f8",
+        "type": "ioBroker in",
+        "z": "1a89067.3862d7a",
+        "name": "volume",
+        "topic": "alexa2.0.Echo-Devices.yxcvbnmlkjhgfdd.Player.volume",
+        "payloadType": "value",
+        "onlyack": "",
+        "func": "all",
+        "gap": "",
+        "x": 650,
+        "y": 580,
+        "wires": [
+            [
+                "5b6bca69.2e1fc4"
+            ]
+        ]
+    },
+    {
+        "id": "5b6bca69.2e1fc4",
+        "type": "mqtt out",
+        "z": "1a89067.3862d7a",
+        "name": "",
+        "topic": "alexa/kueche_volume",
+        "qos": "",
+        "retain": "",
+        "broker": "2491844f.b702ac",
+        "x": 870,
+        "y": 580,
+        "wires": []
+    },
+    {
+        "id": "4f6fa1fa.75b5f",
+        "type": "mqtt in",
+        "z": "1a89067.3862d7a",
+        "name": "",
+        "topic": "alexa/kueche_volume",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "2491844f.b702ac",
+        "x": 700,
+        "y": 640,
+        "wires": [
+            [
+                "98ec09d0.f075c8"
+            ]
+        ]
+    },
+    {
+        "id": "767602d.cccb37c",
+        "type": "ioBroker out",
+        "z": "1a89067.3862d7a",
+        "name": "volume",
+        "topic": "alexa2.0.Echo-Devices.yxcvbnmlkjhgfdd.Player.volume",
+        "ack": "false",
+        "autoCreate": "false",
+        "x": 1020,
+        "y": 640,
+        "wires": []
+    },
+    {
+        "id": "b2adfcd3.965f68",
+        "type": "ioBroker in",
+        "z": "1a89067.3862d7a",
+        "name": "currentState",
+        "topic": "alexa2.0.Echo-Devices.yxcvbnmlkjhgfdd.Player.currentState",
+        "payloadType": "value",
+        "onlyack": "",
+        "func": "all",
+        "gap": "",
+        "x": 670,
+        "y": 780,
+        "wires": [
+            [
+                "3bb7f694.555c5a"
+            ]
+        ]
+    },
+    {
+        "id": "3bb7f694.555c5a",
+        "type": "mqtt out",
+        "z": "1a89067.3862d7a",
+        "name": "",
+        "topic": "alexa/kueche_state",
+        "qos": "",
+        "retain": "",
+        "broker": "2491844f.b702ac",
+        "x": 860,
+        "y": 780,
+        "wires": []
+    },
+    {
+        "id": "1ea6052c.f71e43",
+        "type": "mqtt in",
+        "z": "1a89067.3862d7a",
+        "name": "",
+        "topic": "alexa/kueche",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "2491844f.b702ac",
+        "x": 670,
+        "y": 700,
+        "wires": [
+            [
+                "6e399f63.ae89e8"
+            ]
+        ]
+    },
+    {
+        "id": "98ec09d0.f075c8",
+        "type": "change",
+        "z": "1a89067.3862d7a",
+        "name": "Number",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "$number(payload)",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 880,
+        "y": 640,
+        "wires": [
+            [
+                "767602d.cccb37c"
+            ]
+        ]
+    },
+    {
+        "id": "109629d8.6da20e",
+        "type": "ioBroker out",
+        "z": "1a89067.3862d7a",
+        "name": "controlPlay",
+        "topic": "alexa2.0.Echo-Devices.yxcvbnmlkjhgfdd.Player.controlPlay",
+        "ack": "false",
+        "autoCreate": "false",
+        "x": 970,
+        "y": 680,
+        "wires": []
+    },
+    {
+        "id": "6e399f63.ae89e8",
+        "type": "switch",
+        "z": "1a89067.3862d7a",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "1",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "0",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 830,
+        "y": 700,
+        "wires": [
+            [
+                "109629d8.6da20e"
+            ],
+            [
+                "3e1f944f.797164"
+            ]
+        ]
+    },
+    {
+        "id": "3e1f944f.797164",
+        "type": "ioBroker out",
+        "z": "1a89067.3862d7a",
+        "name": "controlPause",
+        "topic": "alexa2.0.Echo-Devices.yxcvbnmlkjhgfdd.Player.controlPause",
+        "ack": "false",
+        "autoCreate": "false",
+        "x": 970,
+        "y": 720,
+        "wires": []
+    },
+    {
+        "id": "2491844f.b702ac",
+        "type": "mqtt-broker",
+        "z": "",
+        "name": "",
+        "broker": "10.1.103.120",
+        "port": "1883",
+        "clientid": "Raspberry4",
+        "usetls": false,
+        "compatmode": true,
+        "keepalive": "10",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": ""
+    }
+]

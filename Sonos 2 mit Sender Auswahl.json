@@ -1,0 +1,282 @@
+[
+    {
+        "id": "b01cfe13.ced06",
+        "type": "homeeDevice",
+        "z": "9e8da0d3.50f2",
+        "homee-sim": "3cb0442.da4adbc",
+        "name": "Sonos Wohnen",
+        "nodeId": "11",
+        "profile": "1001",
+        "icon": "nodeicon_speaker",
+        "attributes": "[{\"id\":12,\"node_id\":11,\"instance\":0,\"minimum\":0,\"maximum\":1,\"current_value\":0,\"target_value\":0,\"last_value\":0,\"unit\":\"\",\"step_value\":1,\"editable\":1,\"type\":1,\"state\":1,\"last_changed\":12345555,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":1,\"data\":\"\"},{\"id\":13,\"node_id\":11,\"instance\":0,\"minimum\":0,\"maximum\":100,\"current_value\":0,\"target_value\":0,\"last_value\":0,\"unit\":\"%25\",\"step_value\":1,\"editable\":1,\"type\":2,\"state\":1,\"last_changed\":12345555,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":1,\"data\":\"\"},{\"id\":14,\"node_id\":11,\"instance\":2,\"minimum\":0,\"maximum\":10,\"current_value\":0,\"target_value\":0,\"last_value\":0,\"unit\":\"Sender\",\"step_value\":1,\"editable\":1,\"type\":2,\"state\":1,\"last_changed\":12345555,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":1,\"data\":\"\"}]",
+        "x": 700,
+        "y": 460,
+        "wires": [
+            [
+                "695a042f.47465c"
+            ]
+        ]
+    },
+    {
+        "id": "f482a623.60da08",
+        "type": "http request",
+        "z": "9e8da0d3.50f2",
+        "name": "",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": false,
+        "url": "192.168.178.61:5005/küche/tunein/play/{{payload}}",
+        "tls": "",
+        "proxy": "",
+        "authType": "",
+        "x": 1190,
+        "y": 520,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "1e9c39a6.6c8d46",
+        "type": "function",
+        "z": "9e8da0d3.50f2",
+        "name": "",
+        "func": "var test = msg.payload.targetValue;\nvar test2 = 25224;\nfunction sender(){\n    switch (test){\n        \n        case 0: test2= 25224;break;\n        case 1: test2= 25221;break;\n        case 2: test2= 11067;break;\n        case 3: test2= 25005;break;\n    }\n}\nif (msg.payload.attributeId=== 14 ){sender()\nreturn {payload: test2};}",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1000,
+        "y": 520,
+        "wires": [
+            [
+                "f482a623.60da08"
+            ]
+        ]
+    },
+    {
+        "id": "f3940033.d2d56",
+        "type": "better-sonos-status",
+        "z": "9e8da0d3.50f2",
+        "confignode": "bd15d234.e027b",
+        "name": "",
+        "x": 250,
+        "y": 460,
+        "wires": [
+            [
+                "1d12f63.7196c0a"
+            ]
+        ]
+    },
+    {
+        "id": "437cc4c8.f6734c",
+        "type": "inject",
+        "z": "9e8da0d3.50f2",
+        "name": "",
+        "topic": "",
+        "payload": "state",
+        "payloadType": "str",
+        "repeat": "15",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "5",
+        "x": 110,
+        "y": 460,
+        "wires": [
+            [
+                "f3940033.d2d56"
+            ]
+        ]
+    },
+    {
+        "id": "1d12f63.7196c0a",
+        "type": "function",
+        "z": "9e8da0d3.50f2",
+        "name": "",
+        "func": "var msg1 =\"\";\nif (msg.state){\n    if(msg.state===\"playing\"){msg1 = {\"id\":12,\"value\":1}}\n    if(msg.state===\"stopped\"){ msg1= {\"id\":12,\"value\":0}}\n    }\nnode.send({payload:msg1,value:msg1.value})\nif (msg.volume){node.send({payload:{\"id\":13,\"value\":msg.volume},volume:msg.volume})\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 390,
+        "y": 460,
+        "wires": [
+            [
+                "a9a2dbd6.747f78",
+                "d7a0b0ff.ce8"
+            ]
+        ]
+    },
+    {
+        "id": "a9a2dbd6.747f78",
+        "type": "rbe",
+        "z": "9e8da0d3.50f2",
+        "name": "",
+        "func": "rbe",
+        "gap": "",
+        "start": "",
+        "inout": "out",
+        "property": "value",
+        "x": 510,
+        "y": 480,
+        "wires": [
+            [
+                "b01cfe13.ced06"
+            ]
+        ]
+    },
+    {
+        "id": "d7a0b0ff.ce8",
+        "type": "rbe",
+        "z": "9e8da0d3.50f2",
+        "name": "",
+        "func": "rbe",
+        "gap": "",
+        "start": "",
+        "inout": "out",
+        "property": "volume",
+        "x": 510,
+        "y": 440,
+        "wires": [
+            [
+                "b01cfe13.ced06"
+            ]
+        ]
+    },
+    {
+        "id": "695a042f.47465c",
+        "type": "switch",
+        "z": "9e8da0d3.50f2",
+        "name": "",
+        "property": "payload.attributeId",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "13",
+                "vt": "num"
+            },
+            {
+                "t": "eq",
+                "v": "12",
+                "vt": "num"
+            },
+            {
+                "t": "eq",
+                "v": "14",
+                "vt": "num"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 3,
+        "x": 850,
+        "y": 460,
+        "wires": [
+            [
+                "d46cc6d5.57edf8"
+            ],
+            [
+                "ebd52cad.db8cc"
+            ],
+            [
+                "1e9c39a6.6c8d46"
+            ]
+        ]
+    },
+    {
+        "id": "d46cc6d5.57edf8",
+        "type": "change",
+        "z": "9e8da0d3.50f2",
+        "name": "",
+        "rules": [
+            {
+                "t": "move",
+                "p": "payload.targetValue",
+                "pt": "msg",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1100,
+        "y": 440,
+        "wires": [
+            [
+                "2b0baa2a.39b3b6"
+            ]
+        ]
+    },
+    {
+        "id": "ebd52cad.db8cc",
+        "type": "change",
+        "z": "9e8da0d3.50f2",
+        "name": "",
+        "rules": [
+            {
+                "t": "move",
+                "p": "payload.targetValue",
+                "pt": "msg",
+                "to": "payload",
+                "tot": "msg"
+            },
+            {
+                "t": "change",
+                "p": "payload",
+                "pt": "msg",
+                "from": "1",
+                "fromt": "num",
+                "to": "play",
+                "tot": "str"
+            },
+            {
+                "t": "change",
+                "p": "payload",
+                "pt": "msg",
+                "from": "0",
+                "fromt": "num",
+                "to": "pause",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1040,
+        "y": 480,
+        "wires": [
+            [
+                "2b0baa2a.39b3b6"
+            ]
+        ]
+    },
+    {
+        "id": "2b0baa2a.39b3b6",
+        "type": "better-sonos-control",
+        "z": "9e8da0d3.50f2",
+        "confignode": "bd15d234.e027b",
+        "name": "Küche",
+        "mode": "",
+        "track": "",
+        "volume": "",
+        "volume_value": "",
+        "x": 1270,
+        "y": 480,
+        "wires": []
+    },
+    {
+        "id": "3cb0442.da4adbc",
+        "type": "virtualHomee",
+        "z": "",
+        "name": "1234"
+    },
+    {
+        "id": "bd15d234.e027b",
+        "type": "better-sonos-config",
+        "z": "",
+        "name": "küche",
+        "serialnum": "",
+        "ipaddress": "192.168.178.28"
+    }
+]
