@@ -3,7 +3,7 @@
         "id": "b01cfe13.ced06",
         "type": "homeeDevice",
         "z": "9e8da0d3.50f2",
-        "homee-sim": "3cb0442.da4adbc",
+        "virtual-homee": "3cb0442.da4adbc",
         "name": "Sonos Wohnen",
         "nodeId": "11",
         "profile": "1001",

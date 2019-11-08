@@ -58,7 +58,7 @@
         "id": "e8a64a94.9a6a78",
         "type": "homeeDevice",
         "z": "836c10fc.08628",
-        "homee-sim": "3cb0442.da4adbc",
+        "virtual-homee": "3cb0442.da4adbc",
         "name": "Osram Strip Wohnen ",
         "nodeId": "40",
         "profile": "1002",

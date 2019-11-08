@@ -3,7 +3,7 @@
         "id": "217a6c2c.4cd954",
         "type": "homeeDevice",
         "z": "836c10fc.08628",
-        "homee-sim": "3cb0442.da4adbc",
+        "virtual-homee": "3cb0442.da4adbc",
         "name": "Sonos Küche",
         "nodeId": "10",
         "profile": "1001",
