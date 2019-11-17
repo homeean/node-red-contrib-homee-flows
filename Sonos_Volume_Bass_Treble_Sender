@@ -1,0 +1,515 @@
+[
+    {
+        "id": "b01cfe13.ced06",
+        "type": "homeeDevice",
+        "z": "9e8da0d3.50f2",
+        "virtual-homee": "3cb0442.da4adbc",
+        "name": "Sonos Wohnen",
+        "nodeId": "11",
+        "profile": "1001",
+        "icon": "nodeicon_speaker",
+        "attributes": "[{\"id\":12,\"node_id\":11,\"instance\":0,\"minimum\":0,\"maximum\":1,\"current_value\":0,\"target_value\":0,\"last_value\":0,\"unit\":\"\",\"step_value\":1,\"editable\":1,\"type\":1,\"state\":1,\"last_changed\":12345555,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":1,\"data\":\"\"},{\"id\":13,\"node_id\":11,\"instance\":0,\"minimum\":0,\"maximum\":100,\"current_value\":0,\"target_value\":0,\"last_value\":0,\"unit\":\"%25\",\"step_value\":1,\"editable\":1,\"type\":2,\"state\":1,\"last_changed\":12345555,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":1,\"data\":\"\"},{\"id\":14,\"node_id\":11,\"instance\":2,\"minimum\":1,\"maximum\":5,\"current_value\":0,\"target_value\":0,\"last_value\":0,\"unit\":\"Sender\",\"step_value\":1,\"editable\":1,\"type\":2,\"state\":1,\"last_changed\":12345555,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":1,\"data\":\"\"},{\"id\":420,\"node_id\":11,\"instance\":3,\"minimum\":-10,\"maximum\":10,\"current_value\":0,\"target_value\":0,\"last_value\":0,\"unit\":\"Bass\",\"step_value\":1,\"editable\":1,\"type\":2,\"state\":1,\"last_changed\":12345555,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":1,\"data\":\"\"},{\"id\":421,\"node_id\":11,\"instance\":4,\"minimum\":-10,\"maximum\":10,\"current_value\":0,\"target_value\":0,\"last_value\":0,\"unit\":\"Treble\",\"step_value\":1,\"editable\":1,\"type\":2,\"state\":1,\"last_changed\":12345555,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":1,\"data\":\"\"}]",
+        "x": 660,
+        "y": 220,
+        "wires": [
+            [
+                "695a042f.47465c"
+            ]
+        ]
+    },
+    {
+        "id": "f3940033.d2d56",
+        "type": "better-sonos-status",
+        "z": "9e8da0d3.50f2",
+        "confignode": "842cd375.068ca",
+        "name": "",
+        "x": 210,
+        "y": 220,
+        "wires": [
+            [
+                "1d12f63.7196c0a"
+            ]
+        ]
+    },
+    {
+        "id": "437cc4c8.f6734c",
+        "type": "inject",
+        "z": "9e8da0d3.50f2",
+        "name": "",
+        "topic": "",
+        "payload": "state",
+        "payloadType": "str",
+        "repeat": "15",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "5",
+        "x": 70,
+        "y": 220,
+        "wires": [
+            [
+                "f3940033.d2d56",
+                "8cc49127.0ca8c"
+            ]
+        ]
+    },
+    {
+        "id": "1d12f63.7196c0a",
+        "type": "function",
+        "z": "9e8da0d3.50f2",
+        "name": "",
+        "func": "var msg1 =\"\";\nif (msg.state){\n    if(msg.state===\"transitioning\"){msg1 = {\"id\":12,\"value\":1}}\n    if(msg.state===\"stopped\"){ msg1= {\"id\":12,\"value\":0}}\n    }\nnode.send({payload:msg1,value:msg1.value})\nif (msg.volume){node.send({payload:{\"id\":13,\"value\":msg.volume},volume:msg.volume})\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 350,
+        "y": 220,
+        "wires": [
+            [
+                "a9a2dbd6.747f78",
+                "d7a0b0ff.ce8"
+            ]
+        ]
+    },
+    {
+        "id": "a9a2dbd6.747f78",
+        "type": "rbe",
+        "z": "9e8da0d3.50f2",
+        "name": "",
+        "func": "rbe",
+        "gap": "",
+        "start": "",
+        "inout": "out",
+        "property": "value",
+        "x": 470,
+        "y": 240,
+        "wires": [
+            [
+                "b01cfe13.ced06"
+            ]
+        ]
+    },
+    {
+        "id": "d7a0b0ff.ce8",
+        "type": "rbe",
+        "z": "9e8da0d3.50f2",
+        "name": "",
+        "func": "rbe",
+        "gap": "",
+        "start": "",
+        "inout": "out",
+        "property": "volume",
+        "x": 470,
+        "y": 200,
+        "wires": [
+            [
+                "b01cfe13.ced06"
+            ]
+        ]
+    },
+    {
+        "id": "695a042f.47465c",
+        "type": "switch",
+        "z": "9e8da0d3.50f2",
+        "name": "",
+        "property": "payload.attributeId",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "13",
+                "vt": "num"
+            },
+            {
+                "t": "eq",
+                "v": "12",
+                "vt": "num"
+            },
+            {
+                "t": "eq",
+                "v": "14",
+                "vt": "num"
+            },
+            {
+                "t": "eq",
+                "v": "420",
+                "vt": "num"
+            },
+            {
+                "t": "eq",
+                "v": "421",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 5,
+        "x": 810,
+        "y": 220,
+        "wires": [
+            [
+                "d46cc6d5.57edf8"
+            ],
+            [
+                "ebd52cad.db8cc"
+            ],
+            [
+                "a05f165b.9451b8"
+            ],
+            [
+                "5b7d4fd3.cddd5"
+            ],
+            [
+                "e425035f.b5cdd"
+            ]
+        ]
+    },
+    {
+        "id": "d46cc6d5.57edf8",
+        "type": "change",
+        "z": "9e8da0d3.50f2",
+        "name": "",
+        "rules": [
+            {
+                "t": "move",
+                "p": "payload.targetValue",
+                "pt": "msg",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1060,
+        "y": 200,
+        "wires": [
+            [
+                "2b0baa2a.39b3b6"
+            ]
+        ]
+    },
+    {
+        "id": "ebd52cad.db8cc",
+        "type": "change",
+        "z": "9e8da0d3.50f2",
+        "name": "",
+        "rules": [
+            {
+                "t": "move",
+                "p": "payload.targetValue",
+                "pt": "msg",
+                "to": "payload",
+                "tot": "msg"
+            },
+            {
+                "t": "change",
+                "p": "payload",
+                "pt": "msg",
+                "from": "1",
+                "fromt": "num",
+                "to": "play",
+                "tot": "str"
+            },
+            {
+                "t": "change",
+                "p": "payload",
+                "pt": "msg",
+                "from": "0",
+                "fromt": "num",
+                "to": "pause",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1000,
+        "y": 240,
+        "wires": [
+            [
+                "2b0baa2a.39b3b6"
+            ]
+        ]
+    },
+    {
+        "id": "2b0baa2a.39b3b6",
+        "type": "better-sonos-control",
+        "z": "9e8da0d3.50f2",
+        "confignode": "842cd375.068ca",
+        "name": "Wohnen",
+        "mode": "",
+        "track": "",
+        "volume": "",
+        "volume_value": "",
+        "x": 1240,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "667b6154.a9ecc",
+        "type": "http request",
+        "z": "9e8da0d3.50f2",
+        "name": "sender",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": false,
+        "url": "192.168.178.61:5005/wohnzimmer/tunein/play/{{payload}}",
+        "tls": "",
+        "proxy": "",
+        "authType": "",
+        "x": 1130,
+        "y": 280,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "a05f165b.9451b8",
+        "type": "function",
+        "z": "9e8da0d3.50f2",
+        "name": "sender linein",
+        "func": "var test = msg.payload.targetValue;\nvar test2 = 25224;\nfunction sender(){\n    switch (test){\n        \n        case 1: test2= 25224;break;\n        case 2: test2= 25221;break;\n        case 3: test2= 11067;break;\n        case 4: test2= 25005;break;\n        case 5: node.send([null,{payload:\"linein\"}]);break;\n    }\n}\nif (msg.payload.attributeId=== 14 ){sender();if (msg.payload.targetValue !=5){\nreturn {payload: test2};}}",
+        "outputs": 2,
+        "noerr": 0,
+        "x": 1000,
+        "y": 280,
+        "wires": [
+            [
+                "667b6154.a9ecc"
+            ],
+            [
+                "7a8705b6.44446c"
+            ]
+        ]
+    },
+    {
+        "id": "7a8705b6.44446c",
+        "type": "http request",
+        "z": "9e8da0d3.50f2",
+        "name": "linein",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": false,
+        "url": "192.168.178.61:5005/wohnzimmer/{{payload}}",
+        "tls": "",
+        "proxy": "",
+        "authType": "",
+        "x": 1130,
+        "y": 320,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "20ba1901.061076",
+        "type": "http request",
+        "z": "9e8da0d3.50f2",
+        "name": "Bass",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": false,
+        "url": "http://192.168.178.61:5005/wohnzimmer/bass/{{payload}}",
+        "tls": "",
+        "proxy": "",
+        "authType": "",
+        "x": 1130,
+        "y": 360,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "ae6b60ce.44743",
+        "type": "json",
+        "z": "9e8da0d3.50f2",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 270,
+        "y": 300,
+        "wires": [
+            [
+                "9f7264c0.c30bc8",
+                "56c1b5ab.d453ac"
+            ]
+        ]
+    },
+    {
+        "id": "8cc49127.0ca8c",
+        "type": "http request",
+        "z": "9e8da0d3.50f2",
+        "name": "State ",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": false,
+        "url": "http://192.168.178.61:5005/wohnzimmer/state",
+        "tls": "",
+        "proxy": "",
+        "authType": "",
+        "x": 150,
+        "y": 300,
+        "wires": [
+            [
+                "ae6b60ce.44743"
+            ]
+        ]
+    },
+    {
+        "id": "9f7264c0.c30bc8",
+        "type": "rbe",
+        "z": "9e8da0d3.50f2",
+        "name": "bass",
+        "func": "rbe",
+        "gap": "",
+        "start": "",
+        "inout": "out",
+        "property": "payload.equalizer.bass",
+        "x": 390,
+        "y": 300,
+        "wires": [
+            [
+                "4c79c1ab.363db"
+            ]
+        ]
+    },
+    {
+        "id": "5b7d4fd3.cddd5",
+        "type": "change",
+        "z": "9e8da0d3.50f2",
+        "name": "bass",
+        "rules": [
+            {
+                "t": "move",
+                "p": "payload.targetValue",
+                "pt": "msg",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 990,
+        "y": 320,
+        "wires": [
+            [
+                "20ba1901.061076"
+            ]
+        ]
+    },
+    {
+        "id": "e425035f.b5cdd",
+        "type": "change",
+        "z": "9e8da0d3.50f2",
+        "name": "bass",
+        "rules": [
+            {
+                "t": "move",
+                "p": "payload.targetValue",
+                "pt": "msg",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 990,
+        "y": 380,
+        "wires": [
+            [
+                "e73009fd.2c4018"
+            ]
+        ]
+    },
+    {
+        "id": "e73009fd.2c4018",
+        "type": "http request",
+        "z": "9e8da0d3.50f2",
+        "name": "Bass",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": false,
+        "url": "http://192.168.178.61:5005/wohnzimmer/treble/{{payload}}",
+        "tls": "",
+        "proxy": "",
+        "authType": "",
+        "x": 1130,
+        "y": 400,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "56c1b5ab.d453ac",
+        "type": "rbe",
+        "z": "9e8da0d3.50f2",
+        "name": "treble",
+        "func": "rbe",
+        "gap": "",
+        "start": "",
+        "inout": "out",
+        "property": "payload.equalizer.treble",
+        "x": 390,
+        "y": 340,
+        "wires": [
+            [
+                "b3b299b5.fb7088"
+            ]
+        ]
+    },
+    {
+        "id": "4c79c1ab.363db",
+        "type": "function",
+        "z": "9e8da0d3.50f2",
+        "name": "",
+        "func": "\nreturn {payload: {\"id\":420,\"value\":msg.payload.equalizer.bass}}",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 530,
+        "y": 300,
+        "wires": [
+            [
+                "b01cfe13.ced06"
+            ]
+        ]
+    },
+    {
+        "id": "b3b299b5.fb7088",
+        "type": "function",
+        "z": "9e8da0d3.50f2",
+        "name": "",
+        "func": "\nreturn {payload: {\"id\":421,\"value\":msg.payload.equalizer.treble}}",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 530,
+        "y": 340,
+        "wires": [
+            [
+                "b01cfe13.ced06"
+            ]
+        ]
+    },
+    {
+        "id": "3cb0442.da4adbc",
+        "type": "virtualHomee",
+        "z": "",
+        "name": "1234"
+    },
+    {
+        "id": "842cd375.068ca",
+        "type": "better-sonos-config",
+        "z": "",
+        "name": "wohnen",
+        "serialnum": "",
+        "ipaddress": "192.168.178.77"
+    }
+]
