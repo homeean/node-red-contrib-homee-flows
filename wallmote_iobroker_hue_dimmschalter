@@ -1,0 +1,319 @@
+[
+    {
+        "id": "f39f4ff0.50661",
+        "type": "ioBroker in",
+        "z": "836c10fc.08628",
+        "name": "Scene 2",
+        "topic": "zwave.0.NODE14.CENTRAL_SCENE.Scene_2_1",
+        "payloadType": "value",
+        "onlyack": "",
+        "func": "all",
+        "gap": "",
+        "x": 260,
+        "y": 1120,
+        "wires": [
+            [
+                "92d92931.c2aa38"
+            ]
+        ]
+    },
+    {
+        "id": "2248e612.63098a",
+        "type": "ioBroker in",
+        "z": "836c10fc.08628",
+        "name": "Scene 4",
+        "topic": "zwave.0.NODE14.CENTRAL_SCENE.Scene_4_1",
+        "payloadType": "value",
+        "onlyack": "",
+        "func": "all",
+        "gap": "",
+        "x": 260,
+        "y": 1160,
+        "wires": [
+            [
+                "b61132ad.853ff"
+            ]
+        ]
+    },
+    {
+        "id": "a1d036e0.6e1f88",
+        "type": "ioBroker in",
+        "z": "836c10fc.08628",
+        "name": "Scene 3",
+        "topic": "zwave.0.NODE14.CENTRAL_SCENE.Scene_3_1",
+        "payloadType": "value",
+        "onlyack": "",
+        "func": "all",
+        "gap": "",
+        "x": 260,
+        "y": 1200,
+        "wires": [
+            [
+                "c8f8f3d8.98fb2"
+            ]
+        ]
+    },
+    {
+        "id": "bd7c4c7e.0c3e8",
+        "type": "ioBroker in",
+        "z": "836c10fc.08628",
+        "name": "Battery Level",
+        "topic": "zwave.0.NODE14.BATTERY.Battery_Level_1",
+        "payloadType": "value",
+        "onlyack": "",
+        "func": "all",
+        "gap": "",
+        "x": 250,
+        "y": 1280,
+        "wires": [
+            [
+                "485fba50.0f6934"
+            ]
+        ]
+    },
+    {
+        "id": "78262ec9.9c8e2",
+        "type": "homeeDevice",
+        "z": "836c10fc.08628",
+        "virtual-homee": "",
+        "name": "Wallmote",
+        "nodeId": "199",
+        "profile": "26",
+        "icon": "default",
+        "attributes": "[{\"id\":319,\"node_id\":199,\"instance\":0,\"minimum\":0,\"maximum\":4,\"current_value\":2,\"target_value\":2,\"last_value\":2,\"unit\":\"n%2Fa\",\"step_value\":1,\"editable\":0,\"type\":33,\"state\":1,\"last_changed\":1573065521,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":1,\"data\":\"\"},{\"id\":320,\"node_id\":199,\"instance\":0,\"minimum\":0,\"maximum\":0,\"current_value\":0,\"target_value\":0,\"last_value\":0,\"unit\":\"text\",\"step_value\":1,\"editable\":0,\"type\":45,\"state\":1,\"last_changed\":1573065500,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":1,\"data\":\"Wallmote By Micha\"},{\"id\":321,\"node_id\":199,\"instance\":1,\"minimum\":1,\"maximum\":2,\"current_value\":2,\"target_value\":2,\"last_value\":1,\"unit\":\"n%2Fa\",\"step_value\":1,\"editable\":0,\"type\":40,\"state\":1,\"last_changed\":1573065520,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":1,\"data\":\"\"},{\"id\":322,\"node_id\":199,\"instance\":4,\"minimum\":1,\"maximum\":2,\"current_value\":2,\"target_value\":2,\"last_value\":1,\"unit\":\"n%2Fa\",\"step_value\":1,\"editable\":0,\"type\":40,\"state\":1,\"last_changed\":1573065521,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":1,\"data\":\"\"},{\"id\":323,\"node_id\":199,\"instance\":2,\"minimum\":1,\"maximum\":2,\"current_value\":2,\"target_value\":2,\"last_value\":1,\"unit\":\"n%2Fa\",\"step_value\":1,\"editable\":0,\"type\":40,\"state\":1,\"last_changed\":1573065515,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":1,\"data\":\"\"},{\"id\":324,\"node_id\":199,\"instance\":3,\"minimum\":1,\"maximum\":2,\"current_value\":2,\"target_value\":2,\"last_value\":1,\"unit\":\"n%2Fa\",\"step_value\":1,\"editable\":0,\"type\":40,\"state\":1,\"last_changed\":1573065517,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":1,\"data\":\"\"},{\"id\":325,\"node_id\":199,\"instance\":0,\"minimum\":0,\"maximum\":100,\"current_value\":100,\"target_value\":100,\"last_value\":100,\"unit\":\"%25\",\"step_value\":1,\"editable\":0,\"type\":8,\"state\":1,\"last_changed\":1573065517,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":1,\"data\":\"\"}]",
+        "x": 880,
+        "y": 1180,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "7255c36e.ad310c",
+        "type": "template",
+        "z": "836c10fc.08628",
+        "name": "",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "{\"id\":321,\"value\":{{payload}}}",
+        "output": "json",
+        "x": 680,
+        "y": 1120,
+        "wires": [
+            [
+                "78262ec9.9c8e2"
+            ]
+        ]
+    },
+    {
+        "id": "92d92931.c2aa38",
+        "type": "change",
+        "z": "836c10fc.08628",
+        "name": "wallmote oben links",
+        "rules": [
+            {
+                "t": "change",
+                "p": "payload",
+                "pt": "msg",
+                "from": "0",
+                "fromt": "str",
+                "to": "2",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 470,
+        "y": 1120,
+        "wires": [
+            [
+                "7255c36e.ad310c"
+            ]
+        ]
+    },
+    {
+        "id": "b61132ad.853ff",
+        "type": "change",
+        "z": "836c10fc.08628",
+        "name": "wallmote rechts oben",
+        "rules": [
+            {
+                "t": "change",
+                "p": "payload",
+                "pt": "msg",
+                "from": "0",
+                "fromt": "str",
+                "to": "2",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 480,
+        "y": 1160,
+        "wires": [
+            [
+                "102f1a48.1d88e6"
+            ]
+        ]
+    },
+    {
+        "id": "c8f8f3d8.98fb2",
+        "type": "change",
+        "z": "836c10fc.08628",
+        "name": "wallmote unten links",
+        "rules": [
+            {
+                "t": "change",
+                "p": "payload",
+                "pt": "msg",
+                "from": "0",
+                "fromt": "str",
+                "to": "2",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 480,
+        "y": 1200,
+        "wires": [
+            [
+                "a937e106.a4b5e"
+            ]
+        ]
+    },
+    {
+        "id": "3a3e18af.c523d8",
+        "type": "change",
+        "z": "836c10fc.08628",
+        "name": "wallmote untenrechts",
+        "rules": [
+            {
+                "t": "change",
+                "p": "payload",
+                "pt": "msg",
+                "from": "0",
+                "fromt": "str",
+                "to": "2",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 480,
+        "y": 1240,
+        "wires": [
+            [
+                "c6c388ff.ef9aa8"
+            ]
+        ]
+    },
+    {
+        "id": "102f1a48.1d88e6",
+        "type": "template",
+        "z": "836c10fc.08628",
+        "name": "",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "{\"id\":323,\"value\":{{payload}}}",
+        "output": "json",
+        "x": 680,
+        "y": 1160,
+        "wires": [
+            [
+                "78262ec9.9c8e2"
+            ]
+        ]
+    },
+    {
+        "id": "a937e106.a4b5e",
+        "type": "template",
+        "z": "836c10fc.08628",
+        "name": "",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "{\"id\":324,\"value\":{{payload}}}",
+        "output": "json",
+        "x": 680,
+        "y": 1200,
+        "wires": [
+            [
+                "78262ec9.9c8e2"
+            ]
+        ]
+    },
+    {
+        "id": "c6c388ff.ef9aa8",
+        "type": "template",
+        "z": "836c10fc.08628",
+        "name": "",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "{\"id\":322,\"value\":{{payload}}}",
+        "output": "json",
+        "x": 680,
+        "y": 1240,
+        "wires": [
+            [
+                "78262ec9.9c8e2"
+            ]
+        ]
+    },
+    {
+        "id": "485fba50.0f6934",
+        "type": "template",
+        "z": "836c10fc.08628",
+        "name": "",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "{\"id\":325,\"value\":{{payload}}}",
+        "output": "json",
+        "x": 680,
+        "y": 1280,
+        "wires": [
+            [
+                "78262ec9.9c8e2"
+            ]
+        ]
+    },
+    {
+        "id": "8938a2c3.96ac6",
+        "type": "ioBroker in",
+        "z": "836c10fc.08628",
+        "name": "Scene 1",
+        "topic": "zwave.0.NODE14.CENTRAL_SCENE.Scene_1_1",
+        "payloadType": "value",
+        "onlyack": "",
+        "func": "all",
+        "gap": "",
+        "x": 260,
+        "y": 1240,
+        "wires": [
+            [
+                "3a3e18af.c523d8"
+            ]
+        ]
+    }
+]
