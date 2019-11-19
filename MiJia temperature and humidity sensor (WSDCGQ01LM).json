@@ -1,0 +1,114 @@
+[
+    {
+        "id": "ccb39720.a31e58",
+        "type": "homeeDevice",
+        "z": "ac65d55a.b6bd58",
+        "virtual-homee": "32ba51d8.cf3206",
+        "name": "MiJia temperature & humidity sensor (WSDCGQ01LM)",
+        "nodeId": "400",
+        "profile": "3014",
+        "icon": "nodeicon_cositherm",
+        "attributes": "[{\"id\":400,\"node_id\":400,\"instance\":0,\"minimum\":0,\"maximum\":50,\"current_value\":23.6,\"target_value\":23.6,\"last_value\":23.799,\"unit\":\"%C2%B0C\",\"step_value\":0.5,\"editable\":0,\"type\":5,\"state\":1,\"last_changed\":1572966224,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":4,\"data\":\"\"},{\"id\":401,\"node_id\":400,\"instance\":0,\"minimum\":0,\"maximum\":100,\"current_value\":49,\"target_value\":49,\"last_value\":48,\"unit\":\"%25\",\"step_value\":1,\"editable\":0,\"type\":7,\"state\":1,\"last_changed\":1572966224,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":4,\"data\":\"\"},{\"id\":402,\"node_id\":400,\"instance\":0,\"minimum\":0,\"maximum\":100,\"current_value\":0,\"target_value\":0,\"last_value\":0,\"unit\":\"%25\",\"step_value\":1,\"editable\":0,\"type\":8,\"state\":1,\"last_changed\":1572966224,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":4,\"data\":\"\"},{\"id\":403,\"node_id\":400,\"instance\":0,\"minimum\":0,\"maximum\":4,\"current_value\":3,\"target_value\":3,\"last_value\":3,\"unit\":\"n%2Fa\",\"step_value\":1,\"editable\":0,\"type\":33,\"state\":1,\"last_changed\":1572966224,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":4,\"data\":\"\"}]",
+        "x": 780,
+        "y": 220,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "a72ee37f.5efb4",
+        "type": "function",
+        "z": "ac65d55a.b6bd58",
+        "name": "Filter Sensor",
+        "func": "node.send({payload:{\"id\":400,\"value\":msg.payload.temperature}})\nnode.send({payload:{\"id\":401,\"value\":msg.payload.humidity}})\nnode.send({payload:{\"id\":402,\"value\":msg.payload.battery}})\nnode.send({payload:{\"id\":403,\"value\":msg.payload.linkquality}})",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 410,
+        "y": 220,
+        "wires": [
+            [
+                "ccb39720.a31e58",
+                "14b4e332.06845d"
+            ]
+        ]
+    },
+    {
+        "id": "f980bab6.01fe78",
+        "type": "json",
+        "z": "ac65d55a.b6bd58",
+        "name": "",
+        "property": "payload",
+        "action": "obj",
+        "pretty": false,
+        "x": 410,
+        "y": 180,
+        "wires": [
+            [
+                "a72ee37f.5efb4"
+            ]
+        ]
+    },
+    {
+        "id": "14b4e332.06845d",
+        "type": "debug",
+        "z": "ac65d55a.b6bd58",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 650,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "ddc3f434.15bc38",
+        "type": "mqtt in",
+        "z": "ac65d55a.b6bd58",
+        "name": "MiJia temperature & humidity sensor (WSDCGQ01LM)",
+        "topic": "zigbee2mqtt/mija_temp_humidity",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "e819e61a.c3b6b8",
+        "x": 130,
+        "y": 180,
+        "wires": [
+            [
+                "f980bab6.01fe78"
+            ]
+        ]
+    },
+    {
+        "id": "32ba51d8.cf3206",
+        "type": "virtualHomee",
+        "z": "",
+        "name": "00404F496ED9"
+    },
+    {
+        "id": "e819e61a.c3b6b8",
+        "type": "mqtt-broker",
+        "z": "",
+        "name": "Zigbee2MQTT",
+        "broker": "zigbee2mqtt.local",
+        "port": "1883",
+        "tls": "",
+        "clientid": "",
+        "usetls": true,
+        "compatmode": false,
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": ""
+    }
+]
