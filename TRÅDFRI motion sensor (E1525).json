@@ -1,0 +1,152 @@
+[
+    {
+        "id": "8981f070.edd6d",
+        "type": "mqtt in",
+        "z": "ac65d55a.b6bd58",
+        "name": "TRÅDFRI motion sensor (E1525)",
+        "topic": "zigbee2mqtt/0x90fd9ffffe89a0b8",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "e819e61a.c3b6b8",
+        "x": 170,
+        "y": 40,
+        "wires": [
+            [
+                "f9a26eac.7e6ee"
+            ]
+        ]
+    },
+    {
+        "id": "f9a26eac.7e6ee",
+        "type": "json",
+        "z": "ac65d55a.b6bd58",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 410,
+        "y": 40,
+        "wires": [
+            [
+                "e12d40b5.dda29"
+            ]
+        ]
+    },
+    {
+        "id": "e12d40b5.dda29",
+        "type": "change",
+        "z": "ac65d55a.b6bd58",
+        "name": "",
+        "rules": [
+            {
+                "t": "change",
+                "p": "payload.occupancy",
+                "pt": "msg",
+                "from": "true",
+                "fromt": "bool",
+                "to": "1",
+                "tot": "num"
+            },
+            {
+                "t": "change",
+                "p": "payload.occupancy",
+                "pt": "msg",
+                "from": "false",
+                "fromt": "bool",
+                "to": "0",
+                "tot": "num"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 420,
+        "y": 80,
+        "wires": [
+            [
+                "42501420.0326bc"
+            ]
+        ]
+    },
+    {
+        "id": "42501420.0326bc",
+        "type": "function",
+        "z": "ac65d55a.b6bd58",
+        "name": "Filter Sensor",
+        "func": "var ill = msg.payload.illuminance\nvar occ = msg.payload.occupancy\n\n// node.send({payload:{\"id\":420,\"value\":msg.payload.illuminance}})\nnode.send({payload:{\"id\":421,\"value\":msg.payload.occupancy}})\nnode.send({payload:{\"id\":422,\"value\":msg.payload.battery}})\nnode.send({payload:{\"id\":423,\"value\":msg.payload.linkquality}})",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 410,
+        "y": 120,
+        "wires": [
+            [
+                "cd4d5402.33ace8",
+                "b450e719.32f508"
+            ]
+        ]
+    },
+    {
+        "id": "cd4d5402.33ace8",
+        "type": "homeeDevice",
+        "z": "ac65d55a.b6bd58",
+        "virtual-homee": "32ba51d8.cf3206",
+        "name": "TRÅDFRI motion sensor (E1525)",
+        "nodeId": "420",
+        "profile": "4011",
+        "icon": "nodeicon_motiondetector",
+        "attributes": "[{\"id\":421,\"node_id\":420,\"instance\":0,\"minimum\":0,\"maximum\":1,\"current_value\":1,\"target_value\":1,\"last_value\":0,\"unit\":\"n%2Fa\",\"step_value\":1,\"editable\":0,\"type\":25,\"state\":1,\"last_changed\":1572977478,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":1,\"data\":\"\"},{\"id\":422,\"node_id\":420,\"instance\":0,\"minimum\":0,\"maximum\":100,\"current_value\":0,\"target_value\":0,\"last_value\":0,\"unit\":\"%25\",\"step_value\":1,\"editable\":0,\"type\":8,\"state\":1,\"last_changed\":1572966224,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":4,\"data\":\"\"},{\"id\":423,\"node_id\":420,\"instance\":0,\"minimum\":0,\"maximum\":4,\"current_value\":3,\"target_value\":3,\"last_value\":3,\"unit\":\"n%2Fa\",\"step_value\":1,\"editable\":0,\"type\":33,\"state\":1,\"last_changed\":1572966224,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":4,\"data\":\"\"}]",
+        "x": 710,
+        "y": 120,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "b450e719.32f508",
+        "type": "debug",
+        "z": "ac65d55a.b6bd58",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 650,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "e819e61a.c3b6b8",
+        "type": "mqtt-broker",
+        "z": "",
+        "name": "Zigbee2MQTT",
+        "broker": "Zigbee2MQTT.local",
+        "port": "1883",
+        "tls": "",
+        "clientid": "",
+        "usetls": true,
+        "compatmode": false,
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": ""
+    },
+    {
+        "id": "32ba51d8.cf3206",
+        "type": "virtualHomee",
+        "z": "",
+        "name": "00404F"
+    }
+]
