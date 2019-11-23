@@ -9,7 +9,7 @@
         "profile": "2002",
         "icon": "default",
         "attributes": "[{\"id\":2052,\"node_id\":2050,\"instance\":0,\"minimum\":0,\"maximum\":100,\"current_value\":100,\"target_value\":100,\"last_value\":100,\"unit\":\"%25\",\"step_value\":1,\"editable\":1,\"type\":15,\"state\":1,\"last_changed\":1573237874,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":1,\"data\":\"\"},{\"id\":2054,\"node_id\":2050,\"instance\":0,\"minimum\":0,\"maximum\":4,\"current_value\":1,\"target_value\":1,\"last_value\":0,\"unit\":\"n%2Fa\",\"step_value\":1,\"editable\":1,\"type\":135,\"state\":1,\"last_changed\":1573237874,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":1,\"data\":\"\"}]",
-        "x": 450,
+        "x": 550,
         "y": 180,
         "wires": [
             [
@@ -25,7 +25,7 @@
         "topic": "velux.0.home.modules02.target_position",
         "ack": "false",
         "autoCreate": "false",
-        "x": 860,
+        "x": 960,
         "y": 180,
         "wires": []
     },
@@ -37,7 +37,7 @@
         "func": "var attri =msg.payload.attributeId;\nvar tava = msg.payload.targetValue;\nif (attri === 2054 && tava ===0){node.send({payload:100})}\nif (attri === 2054 && tava ===1){node.send({payload:0})}\nif (attri === 2052 && tava <= 80){node.send({payload:parseFloat((JSON.stringify(tava -100)).replace(\"-\",\"\"))})}\nif (attri === 2052 && tava >=80){node.send({payload:parseFloat((JSON.stringify(tava -100)).replace(\"-\",\"\"))})}",
         "outputs": 1,
         "noerr": 0,
-        "x": 650,
+        "x": 750,
         "y": 180,
         "wires": [
             [
@@ -53,13 +53,13 @@
         "topic": "velux.0.home.modules02.current_position",
         "payloadType": "object",
         "onlyack": "",
-        "func": "deadband",
+        "func": "all",
         "gap": "",
         "x": 80,
         "y": 180,
         "wires": [
             [
-                "cea65340.ba3a6"
+                "7e678f7e.86dba"
             ]
         ]
     },
@@ -71,7 +71,7 @@
         "func": "var val = parseFloat((JSON.stringify(msg.payload.val -100)).replace(\"-\",\"\"));\nnode.send({payload:{\"id\":2052 , \"value\": val}})\nif (val >=90){node.send({payload:{\"id\":2054 , \"value\": 1}})}\nif (val <= 90){node.send({payload:{\"id\":2054 , \"value\": 0}})}",
         "outputs": 1,
         "noerr": 0,
-        "x": 250,
+        "x": 390,
         "y": 180,
         "wires": [
             [
@@ -90,14 +90,22 @@
         "wires": []
     },
     {
-        "id": "bd2e09b6.17bf48",
-        "type": "comment",
+        "id": "7e678f7e.86dba",
+        "type": "rbe",
         "z": "d174baed.50e358",
-        "name": "Installationsanweisung für den Velux Adapter",
-        "info": "Für diese Funktion ist es Notwendig die Velux Beta app zu installieren.\nBitte installiert ioBroker falls es noch nicht passiert ist.\ndann sollte über das Web Interface der iobroker.velux Adapter installiert werden.\nDiese geht auch über SSH. Dazu in den Ordner /opt/iobroker gehen und folgenden Befehl eingeben\n\nsudo npm install https://github.com/TA2k/ioBroker.velux/tarball/master --production --save --prefix \"/opt/iobroker\"\n[ioBroker Forum](https://forum.iobroker.net/topic/26400/test-adapter-velux-v0-0-x)\n",
-        "x": 400,
-        "y": 120,
-        "wires": []
+        "name": "",
+        "func": "rbe",
+        "gap": "",
+        "start": "",
+        "inout": "out",
+        "property": "payload.val",
+        "x": 250,
+        "y": 180,
+        "wires": [
+            [
+                "cea65340.ba3a6"
+            ]
+        ]
     },
     {
         "id": "3cb0442.da4adbc",
