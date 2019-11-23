@@ -1,0 +1,290 @@
+[
+    {
+        "id": "3f6275b8.82e34a",
+        "type": "homeeDevice",
+        "z": "836c10fc.08628",
+        "virtual-homee": "3cb0442.da4adbc",
+        "name": "PoppSirene",
+        "nodeId": "108",
+        "profile": "4027",
+        "icon": "default",
+        "attributes": "[{\"id\":416,\"node_id\":108,\"instance\":0,\"minimum\":0,\"maximum\":1,\"current_value\":0,\"target_value\":0,\"last_value\":0,\"unit\":\"\",\"step_value\":1,\"editable\":1,\"type\":13,\"state\":1,\"last_changed\":1574494369,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":1,\"data\":\"\",\"options\":{\"automations\":[\"toggle\"]},\"node\":\"[Circular ~.node]\"},{\"id\":644,\"node_id\":108,\"instance\":0,\"minimum\":0,\"maximum\":0,\"current_value\":0,\"target_value\":0,\"last_value\":0,\"unit\":\"text\",\"step_value\":1,\"editable\":0,\"type\":45,\"state\":1,\"last_changed\":1566496369,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":1,\"data\":\"Sirene By Micha\"},{\"id\":645,\"node_id\":108,\"instance\":1,\"minimum\":0,\"maximum\":1,\"current_value\":0,\"target_value\":0,\"last_value\":0,\"unit\":\"\",\"step_value\":1,\"editable\":1,\"type\":13,\"state\":1,\"last_changed\":12345555,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":1,\"data\":\"Sirene/Flash Modus\"},{\"id\":646,\"node_id\":108,\"instance\":0,\"minimum\":-20,\"maximum\":50,\"current_value\":0,\"target_value\":0,\"last_value\":0,\"unit\":\"°C\",\"step_value\":1,\"editable\":0,\"type\":5,\"state\":1,\"last_changed\":12345555,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":1,\"data\":\"Temp\"}]",
+        "x": 490,
+        "y": 1500,
+        "wires": [
+            [
+                "8090b29.4f25d5"
+            ]
+        ]
+    },
+    {
+        "id": "71a5adf4.4acef4",
+        "type": "mqtt in",
+        "z": "836c10fc.08628",
+        "name": "Status",
+        "topic": "/poppsirene/status",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "a42796a4.c826d8",
+        "x": 50,
+        "y": 1440,
+        "wires": [
+            [
+                "1b6f33d1.a5b95c"
+            ]
+        ]
+    },
+    {
+        "id": "a8e5ce6e.ba07",
+        "type": "mqtt out",
+        "z": "836c10fc.08628",
+        "name": "Rückmeldung",
+        "topic": "/poppsirene/rückmeldung",
+        "qos": "",
+        "retain": "",
+        "broker": "a42796a4.c826d8",
+        "x": 820,
+        "y": 1440,
+        "wires": []
+    },
+    {
+        "id": "486b4282.fd122c",
+        "type": "mqtt in",
+        "z": "836c10fc.08628",
+        "name": "Status config",
+        "topic": "/poppsirene/config/status",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "a42796a4.c826d8",
+        "x": 60,
+        "y": 1500,
+        "wires": [
+            [
+                "cd9ab9e6.cda148"
+            ]
+        ]
+    },
+    {
+        "id": "4273af25.79ec7",
+        "type": "mqtt out",
+        "z": "836c10fc.08628",
+        "name": "Rückmeldung config",
+        "topic": "/poppsirene/config/rückmeldung",
+        "qos": "",
+        "retain": "",
+        "broker": "a42796a4.c826d8",
+        "x": 840,
+        "y": 1560,
+        "wires": []
+    },
+    {
+        "id": "2dfc1fca.89dd4",
+        "type": "comment",
+        "z": "836c10fc.08628",
+        "name": "0 Sirene und Flash , 1 Flash , 2 Sirene ",
+        "info": "",
+        "x": 150,
+        "y": 1400,
+        "wires": []
+    },
+    {
+        "id": "8090b29.4f25d5",
+        "type": "function",
+        "z": "836c10fc.08628",
+        "name": "Filter Attriute",
+        "func": "var attri = msg.payload.attributeId;\nvar value = msg.payload.targetValue;\nif(attri === 645 && value === 0){node.send([null,{payload:1}])}\nif(attri === 645 && value === 1){node.send([null,{payload:2}])}\nif(attri === 416 && value === 1 ){node.send([{payload:true},null])}\nif(attri === 416 && value === 0 ){node.send([{payload:false},null])}",
+        "outputs": 2,
+        "noerr": 0,
+        "x": 650,
+        "y": 1500,
+        "wires": [
+            [
+                "a8e5ce6e.ba07"
+            ],
+            [
+                "4273af25.79ec7"
+            ]
+        ]
+    },
+    {
+        "id": "1b6f33d1.a5b95c",
+        "type": "change",
+        "z": "836c10fc.08628",
+        "name": "sw",
+        "rules": [
+            {
+                "t": "change",
+                "p": "payload",
+                "pt": "msg",
+                "from": "true",
+                "fromt": "bool",
+                "to": "1",
+                "tot": "num"
+            },
+            {
+                "t": "change",
+                "p": "payload",
+                "pt": "msg",
+                "from": "false",
+                "fromt": "bool",
+                "to": "0",
+                "tot": "num"
+            },
+            {
+                "t": "set",
+                "p": "id",
+                "pt": "msg",
+                "to": "416",
+                "tot": "num"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 210,
+        "y": 1440,
+        "wires": [
+            [
+                "faeaba95.72b488"
+            ]
+        ]
+    },
+    {
+        "id": "cd9ab9e6.cda148",
+        "type": "change",
+        "z": "836c10fc.08628",
+        "name": "sw",
+        "rules": [
+            {
+                "t": "change",
+                "p": "payload",
+                "pt": "msg",
+                "from": "1",
+                "fromt": "str",
+                "to": "0",
+                "tot": "num"
+            },
+            {
+                "t": "change",
+                "p": "payload",
+                "pt": "msg",
+                "from": "2",
+                "fromt": "str",
+                "to": "1",
+                "tot": "num"
+            },
+            {
+                "t": "set",
+                "p": "id",
+                "pt": "msg",
+                "to": "645",
+                "tot": "num"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 210,
+        "y": 1500,
+        "wires": [
+            [
+                "faeaba95.72b488"
+            ]
+        ]
+    },
+    {
+        "id": "faeaba95.72b488",
+        "type": "template",
+        "z": "836c10fc.08628",
+        "name": "ausf",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "{\"id\":{{id}},\"value\":{{payload}}}",
+        "output": "json",
+        "x": 330,
+        "y": 1500,
+        "wires": [
+            [
+                "3f6275b8.82e34a"
+            ]
+        ]
+    },
+    {
+        "id": "2f4926b3.08848a",
+        "type": "mqtt in",
+        "z": "836c10fc.08628",
+        "name": "AirTemp",
+        "topic": "/poppsirene/temp",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "a42796a4.c826d8",
+        "x": 60,
+        "y": 1560,
+        "wires": [
+            [
+                "7d222ca2.4a1784"
+            ]
+        ]
+    },
+    {
+        "id": "7d222ca2.4a1784",
+        "type": "change",
+        "z": "836c10fc.08628",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "id",
+                "pt": "msg",
+                "to": "646",
+                "tot": "num"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 210,
+        "y": 1560,
+        "wires": [
+            [
+                "faeaba95.72b488"
+            ]
+        ]
+    },
+    {
+        "id": "3cb0442.da4adbc",
+        "type": "virtualHomee",
+        "z": "",
+        "name": "1234"
+    },
+    {
+        "id": "a42796a4.c826d8",
+        "type": "mqtt-broker",
+        "z": "",
+        "name": "",
+        "broker": "192.168.178.61",
+        "port": "1883",
+        "clientid": "",
+        "usetls": false,
+        "compatmode": true,
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": ""
+    }
+]
