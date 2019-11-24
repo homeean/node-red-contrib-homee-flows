@@ -1,0 +1,117 @@
+  [
+  {
+        "id": "710c560.0d7a5ac",
+        "type": "template",
+        "z": "4678ddf1.941734",
+        "name": "",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "{{payload.targetValue}}",
+        "output": "str",
+        "x": 480,
+        "y": 500,
+        "wires": [
+            [
+                "4ccf92f9.952334"
+            ]
+        ]
+    },
+    {
+        "id": "95499695.b5ad28",
+        "type": "function",
+        "z": "4678ddf1.941734",
+        "name": "Funktion on off",
+        "func": "if (msg.payload === true)\n       return {payload:{\"id\":70,\"value\":1}};\nif (msg.payload === false)\n        return {payload:{\"id\":70,\"value\":0}};",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 260,
+        "y": 500,
+        "wires": [
+            [
+                "ddb2b849.c302e8"
+            ]
+        ]
+    },
+    {
+        "id": "9c31d025.a97db",
+        "type": "ioBroker in",
+        "z": "4678ddf1.941734",
+        "name": "RäumeSaugen",
+        "topic": "node-red.0.javascript.0.Roborock.Zone7",
+        "payloadType": "value",
+        "onlyack": "",
+        "func": "all",
+        "gap": "",
+        "x": 160,
+        "y": 560,
+        "wires": [
+            [
+                "95499695.b5ad28"
+            ]
+        ]
+    },
+    {
+        "id": "4ccf92f9.952334",
+        "type": "function",
+        "z": "4678ddf1.941734",
+        "name": "Rückkanal on off",
+        "func": "if (msg.payload === \"1\")\n       return {payload:\"true\"};\nif (msg.payload === \"0\")\n       return {payload:\"false\"};",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 650,
+        "y": 500,
+        "wires": [
+            [
+                "80c00398.03323"
+            ]
+        ]
+    },
+    {
+        "id": "ddb2b849.c302e8",
+        "type": "homeeDevice",
+        "z": "4678ddf1.941734",
+        "virtual-homee": "9a7aa3a3.d44e1",
+        "name": "vSauger70",
+        "nodeId": "70",
+        "profile": "10",
+        "icon": "nodeicon_plug",
+        "attributes": "[{\"id\":70,\"node_id\":70,\"instance\":0,\"minimum\":0,\"maximum\":1,\"current_value\":0,\"target_value\":0,\"last_value\":0,\"unit\":\"\",\"step_value\":1,\"editable\":1,\"type\":1,\"state\":1,\"last_changed\":12345555,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":1,\"data\":\"\"}]",
+        "x": 370,
+        "y": 560,
+        "wires": [
+            [
+                "710c560.0d7a5ac"
+            ]
+        ]
+    },
+    {
+        "id": "b329afab.5edf1",
+        "type": "comment",
+        "z": "4678ddf1.941734",
+        "name": "70",
+        "info": "",
+        "x": 390,
+        "y": 620,
+        "wires": []
+    },
+    {
+        "id": "80c00398.03323",
+        "type": "ioBroker out",
+        "z": "4678ddf1.941734",
+        "name": "Sauger starten",
+        "topic": "mihome-vacuum.0.control.start",
+        "ack": "false",
+        "autoCreate": "true",
+        "x": 660,
+        "y": 560,
+        "wires": []
+    },
+    {
+        "id": "9a7aa3a3.d44e1",
+        "type": "virtualHomee",
+        "z": "",
+        "name": "virtualHomee"
+    }
+]
