@@ -1,0 +1,197 @@
+[
+    {
+        "id": "a480c28d.61ba2",
+        "type": "homeeDevice",
+        "z": "ac65d55a.b6bd58",
+        "virtual-homee": "32ba51d8.cf3206",
+        "name": "TRÅDFRI control outlet (E1603/E1702)",
+        "nodeId": "480",
+        "profile": "16",
+        "icon": "nodeicon_bulb",
+        "attributes": "[{\"id\":480,\"node_id\":480,\"instance\":0,\"minimum\":0,\"maximum\":4,\"current_value\":0,\"last_value\":0,\"target_value\":3,\"unit\":\"n%2Fa\",\"step_value\":1,\"editable\":0,\"type\":33,\"state\":1,\"last_changed\":1572944008,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":1,\"data\":\"\"},{\"id\":481,\"node_id\":480,\"instance\":0,\"minimum\":0,\"maximum\":1,\"current_value\":0,\"target_value\":0,\"last_value\":0,\"unit\":\"n%2Fa\",\"step_value\":1,\"editable\":1,\"type\":1,\"state\":1,\"last_changed\":1572944008,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":1,\"data\":\"\"}]",
+        "x": 730,
+        "y": 1040,
+        "wires": [
+            [
+                "a6a2e6cf.bf1fc8",
+                "3b1765f.a17cd1a"
+            ]
+        ]
+    },
+    {
+        "id": "a6a2e6cf.bf1fc8",
+        "type": "change",
+        "z": "ac65d55a.b6bd58",
+        "name": "",
+        "rules": [
+            {
+                "t": "delete",
+                "p": "payload.attributeid",
+                "pt": "msg"
+            },
+            {
+                "t": "change",
+                "p": "payload.targetValue",
+                "pt": "msg",
+                "from": "0",
+                "fromt": "num",
+                "to": "OFF",
+                "tot": "str"
+            },
+            {
+                "t": "change",
+                "p": "payload.targetValue",
+                "pt": "msg",
+                "from": "1",
+                "fromt": "num",
+                "to": "ON",
+                "tot": "str"
+            },
+            {
+                "t": "move",
+                "p": "payload.targetValue",
+                "pt": "msg",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 420,
+        "y": 1080,
+        "wires": [
+            [
+                "3b1765f.a17cd1a",
+                "f999eede.2a02a8"
+            ]
+        ]
+    },
+    {
+        "id": "5e637fae.388778",
+        "type": "function",
+        "z": "ac65d55a.b6bd58",
+        "name": "Filter ON OFF",
+        "func": "var status = 0\nif (msg.payload.state === \"ON\"){status =1}\nnode.send({payload:{\"id\":481,\"value\":status}})\nnode.send({payload:{\"id\":480,\"value\":(msg.payload.linkquality/25)}})",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 400,
+        "y": 1040,
+        "wires": [
+            [
+                "a480c28d.61ba2"
+            ]
+        ]
+    },
+    {
+        "id": "a41ab572.68209",
+        "type": "mqtt in",
+        "z": "ac65d55a.b6bd58",
+        "name": "TRÅDFRI control outlet (E1603/E1702)",
+        "topic": "zigbee2mqtt/device_id",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "e819e61a.c3b6b8",
+        "x": 190,
+        "y": 1000,
+        "wires": [
+            [
+                "84100ad5.835c48"
+            ]
+        ]
+    },
+    {
+        "id": "f999eede.2a02a8",
+        "type": "mqtt out",
+        "z": "ac65d55a.b6bd58",
+        "name": "TRÅDFRI control outlet (E1603/E1702)",
+        "topic": "zigbee2mqtt/device_id/set",
+        "qos": "2",
+        "retain": "",
+        "broker": "e819e61a.c3b6b8",
+        "x": 730,
+        "y": 1080,
+        "wires": []
+    },
+    {
+        "id": "84100ad5.835c48",
+        "type": "json",
+        "z": "ac65d55a.b6bd58",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 410,
+        "y": 1000,
+        "wires": [
+            [
+                "5e637fae.388778",
+                "6c476a50.c9a754"
+            ]
+        ]
+    },
+    {
+        "id": "6c476a50.c9a754",
+        "type": "debug",
+        "z": "ac65d55a.b6bd58",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": true,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "x": 660,
+        "y": 1000,
+        "wires": []
+    },
+    {
+        "id": "3b1765f.a17cd1a",
+        "type": "debug",
+        "z": "ac65d55a.b6bd58",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": true,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "x": 660,
+        "y": 1120,
+        "wires": []
+    },
+    {
+        "id": "32ba51d8.cf3206",
+        "type": "virtualHomee",
+        "z": "",
+        "name": "00404F"
+    },
+    {
+        "id": "e819e61a.c3b6b8",
+        "type": "mqtt-broker",
+        "z": "",
+        "name": "Zigbee2MQTT",
+        "broker": "localhost",
+        "port": "1883",
+        "tls": "",
+        "clientid": "",
+        "usetls": true,
+        "compatmode": false,
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": ""
+    }
+]
