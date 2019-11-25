@@ -1,1 +1,163 @@
-[{"id":"d8d1f48f.988448","type":"mqtt in","z":"fd6d95c1.d70ae8","name":"","topic":"zigbee2mqtt/Windfang","qos":"2","datatype":"auto","broker":"cf9c9b0.7cb3068","x":220,"y":3280,"wires":[["ac01ae95.bcec1","ffef92d5.f3592"]]},{"id":"ac01ae95.bcec1","type":"json","z":"fd6d95c1.d70ae8","name":"","property":"payload","action":"","pretty":false,"x":450,"y":3280,"wires":[["ca4093b9.3af47"]]},{"id":"bac3ace2.d86c2","type":"function","z":"fd6d95c1.d70ae8","name":"Filter Sensor","func":"var con = msg.payload.contact\n\nnode.send({payload:{\"id\":431,\"value\":msg.payload.contact}})","outputs":1,"noerr":0,"x":810,"y":3280,"wires":[["6ef44a0e.d86434"]]},{"id":"ca4093b9.3af47","type":"change","z":"fd6d95c1.d70ae8","name":"","rules":[{"t":"change","p":"payload.contact","pt":"msg","from":"true","fromt":"bool","to":"1","tot":"num"},{"t":"change","p":"payload.contact","pt":"msg","from":"false","fromt":"bool","to":"0","tot":"num"}],"action":"","property":"","from":"","to":"","reg":false,"x":620,"y":3280,"wires":[["bac3ace2.d86c2"]]},{"id":"6ef44a0e.d86434","type":"homeeDevice","z":"fd6d95c1.d70ae8","virtual-homee":"236538fb.027108","name":"Windfang","nodeId":"430","profile":"2001","icon":"default","attributes":"[{\"id\":430,\"node_id\":430,\"instance\":0,\"minimum\":0,\"maximum\":4,\"current_value\":0,\"target_value\":0,\"last_value\":0,\"unit\":\"n%2Fa\",\"step_value\":1,\"editable\":0,\"type\":33,\"state\":1,\"last_changed\":1572873723,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":1,\"data\":\"\"},{\"id\":431,\"node_id\":430,\"instance\":0,\"minimum\":0,\"maximum\":2,\"current_value\":1,\"target_value\":1,\"last_value\":0,\"unit\":\"n%2Fa\",\"step_value\":1,\"editable\":0,\"type\":10,\"state\":1,\"last_changed\":1572873723,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":1,\"data\":\"\"}]","x":980,"y":3280,"wires":[[]]},{"id":"ffef92d5.f3592","type":"door-sensor","z":"fd6d95c1.d70ae8","name":"","openTimeout":0,"lowBatteryLevel":30,"x":610,"y":3220,"wires":[[],[],[],[]]},{"id":"cf9c9b0.7cb3068","type":"mqtt-broker","z":"","name":"","broker":"192.168.1.27","port":"1883","clientid":"","usetls":false,"compatmode":true,"keepalive":"60","cleansession":true,"birthTopic":"","birthQos":"0","birthRetain":"false","birthPayload":"","closeTopic":"","closeQos":"0","closeRetain":"false","closePayload":"","willTopic":"","willQos":"0","willRetain":"false","willPayload":""},{"id":"236538fb.027108","type":"virtualHomee","z":"","name":"12345QWERT"}]
+[
+  {
+    "id": "d8d1f48f.988448",
+    "type": "mqtt in",
+    "z": "fd6d95c1.d70ae8",
+    "name": "",
+    "topic": "zigbee2mqtt/Windfang",
+    "qos": "2",
+    "datatype": "auto",
+    "broker": "cf9c9b0.7cb3068",
+    "x": 220,
+    "y": 3280,
+    "wires": [
+      [
+        "ac01ae95.bcec1",
+        "ffef92d5.f3592"
+      ]
+    ]
+  },
+  {
+    "id": "ac01ae95.bcec1",
+    "type": "json",
+    "z": "fd6d95c1.d70ae8",
+    "name": "",
+    "property": "payload",
+    "action": "",
+    "pretty": false,
+    "x": 450,
+    "y": 3280,
+    "wires": [
+      [
+        "ca4093b9.3af47"
+      ]
+    ]
+  },
+  {
+    "id": "bac3ace2.d86c2",
+    "type": "function",
+    "z": "fd6d95c1.d70ae8",
+    "name": "Filter Sensor",
+    "func": "var con = msg.payload.contact\n\nnode.send({payload:{\"id\":431,\"value\":msg.payload.contact}})",
+    "outputs": 1,
+    "noerr": 0,
+    "x": 810,
+    "y": 3280,
+    "wires": [
+      [
+        "6ef44a0e.d86434"
+      ]
+    ]
+  },
+  {
+    "id": "ca4093b9.3af47",
+    "type": "change",
+    "z": "fd6d95c1.d70ae8",
+    "name": "",
+    "rules": [
+      {
+        "t": "change",
+        "p": "payload.contact",
+        "pt": "msg",
+        "from": "true",
+        "fromt": "bool",
+        "to": "1",
+        "tot": "num"
+      },
+      {
+        "t": "change",
+        "p": "payload.contact",
+        "pt": "msg",
+        "from": "false",
+        "fromt": "bool",
+        "to": "0",
+        "tot": "num"
+      }
+    ],
+    "action": "",
+    "property": "",
+    "from": "",
+    "to": "",
+    "reg": false,
+    "x": 620,
+    "y": 3280,
+    "wires": [
+      [
+        "bac3ace2.d86c2"
+      ]
+    ]
+  },
+  {
+    "id": "6ef44a0e.d86434",
+    "type": "homeeDevice",
+    "z": "fd6d95c1.d70ae8",
+    "virtual-homee": "236538fb.027108",
+    "name": "Windfang",
+    "nodeId": "430",
+    "profile": "2001",
+    "icon": "default",
+    "attributes": "[{\"id\":430,\"node_id\":430,\"instance\":0,\"minimum\":0,\"maximum\":4,\"current_value\":0,\"target_value\":0,\"last_value\":0,\"unit\":\"n%2Fa\",\"step_value\":1,\"editable\":0,\"type\":33,\"state\":1,\"last_changed\":1572873723,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":1,\"data\":\"\"},{\"id\":431,\"node_id\":430,\"instance\":0,\"minimum\":0,\"maximum\":2,\"current_value\":1,\"target_value\":1,\"last_value\":0,\"unit\":\"n%2Fa\",\"step_value\":1,\"editable\":0,\"type\":10,\"state\":1,\"last_changed\":1572873723,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":1,\"data\":\"\"}]",
+    "x": 980,
+    "y": 3280,
+    "wires": [
+      [
+
+      ]
+    ]
+  },
+  {
+    "id": "ffef92d5.f3592",
+    "type": "door-sensor",
+    "z": "fd6d95c1.d70ae8",
+    "name": "",
+    "openTimeout": 0,
+    "lowBatteryLevel": 30,
+    "x": 610,
+    "y": 3220,
+    "wires": [
+      [
+
+      ],
+      [
+
+      ],
+      [
+
+      ],
+      [
+
+      ]
+    ]
+  },
+  {
+    "id": "cf9c9b0.7cb3068",
+    "type": "mqtt-broker",
+    "z": "",
+    "name": "",
+    "broker": "192.168.1.27",
+    "port": "1883",
+    "clientid": "",
+    "usetls": false,
+    "compatmode": true,
+    "keepalive": "60",
+    "cleansession": true,
+    "birthTopic": "",
+    "birthQos": "0",
+    "birthRetain": "false",
+    "birthPayload": "",
+    "closeTopic": "",
+    "closeQos": "0",
+    "closeRetain": "false",
+    "closePayload": "",
+    "willTopic": "",
+    "willQos": "0",
+    "willRetain": "false",
+    "willPayload": ""
+  },
+  {
+    "id": "236538fb.027108",
+    "type": "virtualHomee",
+    "z": "",
+    "name": "12345QWERT"
+  }
+]
