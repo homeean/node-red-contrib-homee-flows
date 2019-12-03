@@ -1,0 +1,301 @@
+[
+    {
+        "id": "7e9636e.2178dc8",
+        "type": "homeeDevice",
+        "z": "61e925e7.1b2ebc",
+        "virtual-homee": "b4c6192c.0b6aa8",
+        "name": "coolcam Sirene",
+        "nodeId": "107",
+        "profile": "4027",
+        "icon": "default",
+        "attributes": "[{\"id\":1070,\"node_id\":107,\"instance\":0,\"minimum\":0,\"maximum\":1,\"current_value\":0,\"target_value\":0,\"last_value\":0,\"unit\":\"\",\"step_value\":1,\"editable\":1,\"type\":13,\"state\":1,\"last_changed\":1574494369,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":1,\"data\":\"\",\"options\":{\"automations\":[\"toggle\"]},\"node\":\"[Circular ~.node]\"},{\"id\":1071,\"node_id\":107,\"instance\":0,\"minimum\":0,\"maximum\":10,\"current_value\":0,\"target_value\":0,\"last_value\":0,\"unit\":\"Sound\",\"step_value\":1,\"editable\":1,\"type\":2,\"state\":1,\"last_changed\":12345555,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":1,\"data\":\"Sound\"},{\"id\":1072,\"node_id\":107,\"instance\":0,\"minimum\":0,\"maximum\":100,\"current_value\":100,\"target_value\":100,\"last_value\":100,\"unit\":\"%25\",\"step_value\":1,\"editable\":0,\"type\":8,\"state\":1,\"last_changed\":1573065517,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":1,\"data\":\"\"},{\"id\":1073,\"node_id\":107,\"instance\":1,\"minimum\":0,\"maximum\":2,\"current_value\":0,\"target_value\":0,\"last_value\":0,\"unit\":\"Volume\",\"step_value\":1,\"editable\":1,\"type\":2,\"state\":1,\"last_changed\":12345555,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":1,\"data\":\"Volume\"}]",
+        "x": 660,
+        "y": 1040,
+        "wires": [
+            [
+                "eb1b0541.8d6698"
+            ]
+        ]
+    },
+    {
+        "id": "eb1b0541.8d6698",
+        "type": "function",
+        "z": "61e925e7.1b2ebc",
+        "name": "Filter Attriute",
+        "func": "var attri = msg.payload.attributeId;\nvar value = msg.payload.targetValue;\nif(attri === 1071){node.send([null,{payload:value}])}\nif(attri === 1070 && value === 1 ){node.send([{payload:true},null])}\nif(attri === 1070 && value === 0 ){node.send([{payload:false},null])}\nif(attri === 1073){node.send([null,null,{payload:value}])}",
+        "outputs": 3,
+        "noerr": 0,
+        "x": 870,
+        "y": 1040,
+        "wires": [
+            [
+                "6f71f015.0e70c"
+            ],
+            [
+                "af6409d.eb2e0f8"
+            ],
+            [
+                "4e07a784.c23c98"
+            ]
+        ]
+    },
+    {
+        "id": "85cf1ad2.f44658",
+        "type": "change",
+        "z": "61e925e7.1b2ebc",
+        "name": "sw",
+        "rules": [
+            {
+                "t": "change",
+                "p": "payload",
+                "pt": "msg",
+                "from": "true",
+                "fromt": "bool",
+                "to": "1",
+                "tot": "num"
+            },
+            {
+                "t": "change",
+                "p": "payload",
+                "pt": "msg",
+                "from": "false",
+                "fromt": "bool",
+                "to": "0",
+                "tot": "num"
+            },
+            {
+                "t": "set",
+                "p": "id",
+                "pt": "msg",
+                "to": "1070",
+                "tot": "num"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 330,
+        "y": 1000,
+        "wires": [
+            [
+                "5baba698.005b78"
+            ]
+        ]
+    },
+    {
+        "id": "95cab7f6.a77398",
+        "type": "change",
+        "z": "61e925e7.1b2ebc",
+        "name": "sw",
+        "rules": [
+            {
+                "t": "set",
+                "p": "id",
+                "pt": "msg",
+                "to": "1071",
+                "tot": "num"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 330,
+        "y": 1040,
+        "wires": [
+            [
+                "5baba698.005b78"
+            ]
+        ]
+    },
+    {
+        "id": "5baba698.005b78",
+        "type": "template",
+        "z": "61e925e7.1b2ebc",
+        "name": "ausf",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "{\"id\":{{id}},\"value\":{{payload}}}",
+        "output": "json",
+        "x": 490,
+        "y": 1040,
+        "wires": [
+            [
+                "7e9636e.2178dc8"
+            ]
+        ]
+    },
+    {
+        "id": "d07a9768.939dc8",
+        "type": "change",
+        "z": "61e925e7.1b2ebc",
+        "name": "sw",
+        "rules": [
+            {
+                "t": "set",
+                "p": "id",
+                "pt": "msg",
+                "to": "1072",
+                "tot": "num"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 330,
+        "y": 1080,
+        "wires": [
+            [
+                "5baba698.005b78"
+            ]
+        ]
+    },
+    {
+        "id": "d56a7cb2.133cc",
+        "type": "ioBroker in",
+        "z": "61e925e7.1b2ebc",
+        "name": "Switch",
+        "topic": "zwave.0.NODE7.SWITCH_BINARY.Switch_1",
+        "payloadType": "value",
+        "onlyack": "",
+        "func": "all",
+        "gap": "",
+        "x": 90,
+        "y": 1000,
+        "wires": [
+            [
+                "85cf1ad2.f44658"
+            ]
+        ]
+    },
+    {
+        "id": "ea25d25.ace4d3",
+        "type": "ioBroker in",
+        "z": "61e925e7.1b2ebc",
+        "name": "Alarm Music Index",
+        "topic": "zwave.0.NODE7.CONFIGURATION.Alarm_Music_Index",
+        "payloadType": "value",
+        "onlyack": "",
+        "func": "all",
+        "gap": "",
+        "x": 130,
+        "y": 1040,
+        "wires": [
+            [
+                "95cab7f6.a77398"
+            ]
+        ]
+    },
+    {
+        "id": "b7274949.58aaf8",
+        "type": "ioBroker in",
+        "z": "61e925e7.1b2ebc",
+        "name": "Battery Level",
+        "topic": "zwave.0.NODE7.BATTERY.Battery_Level_1",
+        "payloadType": "value",
+        "onlyack": "",
+        "func": "all",
+        "gap": "",
+        "x": 110,
+        "y": 1080,
+        "wires": [
+            [
+                "d07a9768.939dc8"
+            ]
+        ]
+    },
+    {
+        "id": "6f71f015.0e70c",
+        "type": "ioBroker out",
+        "z": "61e925e7.1b2ebc",
+        "name": "Switch",
+        "topic": "zwave.0.NODE7.SWITCH_BINARY.Switch_1",
+        "ack": "false",
+        "autoCreate": "false",
+        "x": 1090,
+        "y": 1000,
+        "wires": []
+    },
+    {
+        "id": "af6409d.eb2e0f8",
+        "type": "ioBroker out",
+        "z": "61e925e7.1b2ebc",
+        "name": "Alarm Music Index",
+        "topic": "zwave.0.NODE7.CONFIGURATION.Alarm_Music_Index",
+        "ack": "false",
+        "autoCreate": "false",
+        "x": 1130,
+        "y": 1060,
+        "wires": []
+    },
+    {
+        "id": "51aea6e1.becb08",
+        "type": "ioBroker in",
+        "z": "61e925e7.1b2ebc",
+        "name": "Alarm Music Volume",
+        "topic": "zwave.0.NODE7.CONFIGURATION.Alarm_Music_Volume",
+        "payloadType": "value",
+        "onlyack": "",
+        "func": "all",
+        "gap": "",
+        "x": 130,
+        "y": 1120,
+        "wires": [
+            [
+                "92ac6c90.9d3f4"
+            ]
+        ]
+    },
+    {
+        "id": "92ac6c90.9d3f4",
+        "type": "change",
+        "z": "61e925e7.1b2ebc",
+        "name": "sw",
+        "rules": [
+            {
+                "t": "set",
+                "p": "id",
+                "pt": "msg",
+                "to": "1073",
+                "tot": "num"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 330,
+        "y": 1120,
+        "wires": [
+            [
+                "5baba698.005b78"
+            ]
+        ]
+    },
+    {
+        "id": "4e07a784.c23c98",
+        "type": "ioBroker out",
+        "z": "61e925e7.1b2ebc",
+        "name": "Alarm Music Volume",
+        "topic": "zwave.0.NODE7.CONFIGURATION.Alarm_Music_Volume",
+        "ack": "false",
+        "autoCreate": "false",
+        "x": 1140,
+        "y": 1120,
+        "wires": []
+    },
+    {
+        "id": "b4c6192c.0b6aa8",
+        "type": "virtualHomee",
+        "z": "",
+        "name": "12345"
+    }
+]
