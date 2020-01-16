@@ -1,0 +1,520 @@
+[
+    {
+        "id": "68a7ba32.f966e4",
+        "type": "debug",
+        "z": "6e773581.af229c",
+        "name": "Info Nanoleafs",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "x": 900,
+        "y": 480,
+        "wires": []
+    },
+    {
+        "id": "e87511fb.0aa9c",
+        "type": "comment",
+        "z": "6e773581.af229c",
+        "name": "ID 110 Attribute 110-112",
+        "info": "an/aus 110\ndimmwert 111\nSzene (1-5) 112",
+        "x": 350,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "47e00813.f17118",
+        "type": "homeeDevice",
+        "z": "6e773581.af229c",
+        "virtual-homee": "77676c9d.6688c4",
+        "name": "Nanoleaf",
+        "nodeId": "110",
+        "profile": "1001",
+        "icon": "default",
+        "attributes": "[{\"id\":110,\"node_id\":110,\"instance\":0,\"minimum\":0,\"maximum\":1,\"current_value\":0,\"target_value\":0,\"last_value\":0,\"unit\":\"\",\"step_value\":1,\"editable\":1,\"type\":1,\"state\":1,\"last_changed\":12345555,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":1,\"data\":\"\"},{\"id\":111,\"node_id\":110,\"instance\":0,\"minimum\":0,\"maximum\":100,\"current_value\":0,\"target_value\":0,\"last_value\":0,\"unit\":\"%25\",\"step_value\":1,\"editable\":1,\"type\":2,\"state\":1,\"last_changed\":12345555,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":1,\"data\":\"\"},{\"id\":112,\"node_id\":110,\"instance\":2,\"minimum\":1,\"maximum\":5,\"current_value\":0,\"target_value\":0,\"last_value\":0,\"unit\":\"Effekt\",\"step_value\":1,\"editable\":1,\"type\":2,\"state\":1,\"last_changed\":12345555,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":1,\"data\":\"\"}]",
+        "x": 300,
+        "y": 200,
+        "wires": [
+            [
+                "16897f5c.889881"
+            ]
+        ]
+    },
+    {
+        "id": "c607a02e.b7b7b",
+        "type": "power",
+        "z": "6e773581.af229c",
+        "name": "",
+        "installation": "c004761e.1b81d8",
+        "x": 1150,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "9647dbbd.de0dd8",
+        "type": "brightness",
+        "z": "6e773581.af229c",
+        "name": "",
+        "installation": "c004761e.1b81d8",
+        "x": 1130,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "b92f5581.1246c8",
+        "type": "inject",
+        "z": "6e773581.af229c",
+        "name": "Abfrage 30 Sek.",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "30",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "x": 190,
+        "y": 420,
+        "wires": [
+            [
+                "21d41f25.85adc"
+            ]
+        ]
+    },
+    {
+        "id": "d2a2cba5.fed9d8",
+        "type": "effect",
+        "z": "6e773581.af229c",
+        "name": "",
+        "installation": "c004761e.1b81d8",
+        "x": 1150,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "f3be79c0.b69778",
+        "type": "change",
+        "z": "6e773581.af229c",
+        "name": "Dimmwert setzen",
+        "rules": [
+            {
+                "t": "move",
+                "p": "payload.targetValue",
+                "pt": "msg",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 690,
+        "y": 200,
+        "wires": [
+            [
+                "9647dbbd.de0dd8"
+            ]
+        ]
+    },
+    {
+        "id": "16897f5c.889881",
+        "type": "switch",
+        "z": "6e773581.af229c",
+        "name": "Switch IDs",
+        "property": "payload.attributeId",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "110",
+                "vt": "num"
+            },
+            {
+                "t": "eq",
+                "v": "111",
+                "vt": "num"
+            },
+            {
+                "t": "eq",
+                "v": "112",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 3,
+        "x": 470,
+        "y": 200,
+        "wires": [
+            [
+                "647f4ded.4d0d24"
+            ],
+            [
+                "f3be79c0.b69778"
+            ],
+            [
+                "9fdf8b24.0572c8"
+            ]
+        ]
+    },
+    {
+        "id": "eadabdbf.4dcf3",
+        "type": "change",
+        "z": "6e773581.af229c",
+        "name": "an / aus",
+        "rules": [
+            {
+                "t": "change",
+                "p": "payload",
+                "pt": "msg",
+                "from": "0",
+                "fromt": "str",
+                "to": "OFF",
+                "tot": "str"
+            },
+            {
+                "t": "change",
+                "p": "payload",
+                "pt": "msg",
+                "from": "1",
+                "fromt": "str",
+                "to": "ON",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 960,
+        "y": 140,
+        "wires": [
+            [
+                "c607a02e.b7b7b"
+            ]
+        ]
+    },
+    {
+        "id": "647f4ded.4d0d24",
+        "type": "change",
+        "z": "6e773581.af229c",
+        "name": "",
+        "rules": [
+            {
+                "t": "move",
+                "p": "payload.targetValue",
+                "pt": "msg",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 740,
+        "y": 140,
+        "wires": [
+            [
+                "eadabdbf.4dcf3"
+            ]
+        ]
+    },
+    {
+        "id": "8bda138f.31e79",
+        "type": "rbe",
+        "z": "6e773581.af229c",
+        "name": "",
+        "func": "rbe",
+        "gap": "",
+        "start": "",
+        "inout": "out",
+        "property": "payload",
+        "x": 690,
+        "y": 460,
+        "wires": [
+            [
+                "47e00813.f17118",
+                "68a7ba32.f966e4"
+            ]
+        ]
+    },
+    {
+        "id": "21d41f25.85adc",
+        "type": "information",
+        "z": "6e773581.af229c",
+        "name": "",
+        "installation": "c004761e.1b81d8",
+        "x": 170,
+        "y": 480,
+        "wires": [
+            [
+                "90707394.af0b9",
+                "21373a7f.25c906"
+            ]
+        ]
+    },
+    {
+        "id": "21373a7f.25c906",
+        "type": "change",
+        "z": "6e773581.af229c",
+        "name": "Status",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.state.on.value",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 370,
+        "y": 460,
+        "wires": [
+            [
+                "e17a196a.439718"
+            ]
+        ]
+    },
+    {
+        "id": "e17a196a.439718",
+        "type": "function",
+        "z": "6e773581.af229c",
+        "name": "an / aus",
+        "func": "var msg1 =\"\"\nif(msg.payload===false){msg1 = {\"id\":110,\"value\":0}}\nif(msg.payload===true){msg1= {\"id\":110,\"value\":1}}\n\nnode.send({payload:msg1,value:msg1.value})",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 520,
+        "y": 460,
+        "wires": [
+            [
+                "8bda138f.31e79"
+            ]
+        ]
+    },
+    {
+        "id": "4e91504a.8ce4d",
+        "type": "rbe",
+        "z": "6e773581.af229c",
+        "name": "",
+        "func": "rbe",
+        "gap": "",
+        "start": "",
+        "inout": "out",
+        "property": "payload",
+        "x": 690,
+        "y": 500,
+        "wires": [
+            [
+                "68a7ba32.f966e4",
+                "47e00813.f17118"
+            ]
+        ]
+    },
+    {
+        "id": "90707394.af0b9",
+        "type": "change",
+        "z": "6e773581.af229c",
+        "name": "Dimmwert",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.state.brightness.value",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 390,
+        "y": 500,
+        "wires": [
+            [
+                "12f25c0.9ba33a4"
+            ]
+        ]
+    },
+    {
+        "id": "12f25c0.9ba33a4",
+        "type": "function",
+        "z": "6e773581.af229c",
+        "name": "Dimmwert",
+        "func": "node.send({payload:{\"id\":111,\"value\":msg.payload}})",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 550,
+        "y": 500,
+        "wires": [
+            [
+                "4e91504a.8ce4d"
+            ]
+        ]
+    },
+    {
+        "id": "9fdf8b24.0572c8",
+        "type": "switch",
+        "z": "6e773581.af229c",
+        "name": "",
+        "property": "payload.targetValue",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "1",
+                "vt": "num"
+            },
+            {
+                "t": "eq",
+                "v": "2",
+                "vt": "num"
+            },
+            {
+                "t": "eq",
+                "v": "3",
+                "vt": "num"
+            },
+            {
+                "t": "eq",
+                "v": "4",
+                "vt": "num"
+            },
+            {
+                "t": "eq",
+                "v": "5",
+                "vt": "num"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 5,
+        "x": 650,
+        "y": 320,
+        "wires": [
+            [
+                "7fad41f9.74079"
+            ],
+            [
+                "7c966e05.5f54b"
+            ],
+            [
+                "a6b2e131.dd722"
+            ],
+            [
+                "50892bc4.258804"
+            ],
+            [
+                "74a96df1.311594"
+            ]
+        ]
+    },
+    {
+        "id": "a6b2e131.dd722",
+        "type": "function",
+        "z": "6e773581.af229c",
+        "name": "Nemo (Statisch)",
+        "func": "msg.payload=\"Nemo\"\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 900,
+        "y": 320,
+        "wires": [
+            [
+                "d2a2cba5.fed9d8"
+            ]
+        ]
+    },
+    {
+        "id": "7c966e05.5f54b",
+        "type": "function",
+        "z": "6e773581.af229c",
+        "name": "Fireworks (Musk)",
+        "func": "msg.payload=\"Fireworks\"\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 910,
+        "y": 280,
+        "wires": [
+            [
+                "d2a2cba5.fed9d8"
+            ]
+        ]
+    },
+    {
+        "id": "50892bc4.258804",
+        "type": "function",
+        "z": "6e773581.af229c",
+        "name": "Color Burst (Musk)",
+        "func": "msg.payload=\"Color Burst\"\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 910,
+        "y": 360,
+        "wires": [
+            [
+                "d2a2cba5.fed9d8"
+            ]
+        ]
+    },
+    {
+        "id": "7fad41f9.74079",
+        "type": "function",
+        "z": "6e773581.af229c",
+        "name": "Bedtime (Statisch)",
+        "func": "msg.payload=\"Bedtime\"\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 910,
+        "y": 240,
+        "wires": [
+            [
+                "d2a2cba5.fed9d8"
+            ]
+        ]
+    },
+    {
+        "id": "74a96df1.311594",
+        "type": "function",
+        "z": "6e773581.af229c",
+        "name": "Meteor Shower (Statisch)",
+        "func": "msg.payload=\"Meteor Shower\"\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 930,
+        "y": 400,
+        "wires": [
+            [
+                "d2a2cba5.fed9d8"
+            ]
+        ]
+    },
+    {
+        "id": "77676c9d.6688c4",
+        "type": "virtualHomee",
+        "z": "",
+        "name": "R2D2"
+    },
+    {
+        "id": "c004761e.1b81d8",
+        "type": "installation",
+        "z": "",
+        "name": "Nanoleafs",
+        "host": "192.168.178.203",
+        "base": "/api/v1/",
+        "port": "16021",
+        "accessToken": "HmMHhMGQ6TP5BXtUwWFU5cmqVjWSIPHz"
+    }
+]
