@@ -1,0 +1,870 @@
+[
+    {
+        "id": "a625f290.b1566",
+        "type": "ioBroker in",
+        "z": "b9271604.b07bf8",
+        "name": "Rotate angle",
+        "topic": "zigbee.0.00158d0002a6f6bc.rotate_angle",
+        "payloadType": "value",
+        "onlyack": "",
+        "func": "all",
+        "gap": "",
+        "x": 330,
+        "y": 1540,
+        "wires": [
+            [
+                "939d6d82.e98eb"
+            ]
+        ]
+    },
+    {
+        "id": "5daba1e0.a2917",
+        "type": "function",
+        "z": "b9271604.b07bf8",
+        "name": "Lux Berechnung",
+        "func": "var dim = flow.get(\"dim2\")||0;\nvar lux = msg.payload;\n\nif (msg.payload >0){if(dim <100){dim = dim+(lux/5)}}\nif (msg.payload <0){if(dim >0){dim = dim+(lux/5)}}\n\nflow.set(\"dim2\",dim);\n//return {payload:dim}\nnode.send({payload:{\"id\":171,\"value\":dim}})",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 960,
+        "y": 1540,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "939d6d82.e98eb",
+        "type": "json",
+        "z": "b9271604.b07bf8",
+        "name": "",
+        "property": "payload",
+        "action": "obj",
+        "pretty": false,
+        "x": 510,
+        "y": 1540,
+        "wires": [
+            [
+                "5daba1e0.a2917"
+            ]
+        ]
+    },
+    {
+        "id": "a8b1a0ed.d1804",
+        "type": "function",
+        "z": "b9271604.b07bf8",
+        "name": "Status Toggle 1 / 0",
+        "func": "// initialise the counter to 0 if it doesn't exist already\nvar count = context.get('count')||0;\ncount += 1;\n// store the value back\ncontext.set('count',count);\n// make it part of the outgoing msg object\nmsg.count = count;\n//define function isOdd 1 === isOdd\nfunction isOdd(num) { return num % 2;}\n/*if count is odd send 1,\nelse send 0 */\nif(isOdd((count+1)/2) ===1){\nmsg.payload = 1;\nreturn msg;\n} else if (isOdd((count+1)/2) ===0){\nmsg.payload = 0;\nreturn msg;\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 550,
+        "y": 1880,
+        "wires": [
+            [
+                "b7165bf8.6799a8",
+                "64d14614.47f1f8"
+            ]
+        ]
+    },
+    {
+        "id": "b7165bf8.6799a8",
+        "type": "change",
+        "z": "b9271604.b07bf8",
+        "name": "",
+        "rules": [
+            {
+                "t": "change",
+                "p": "payload",
+                "pt": "msg",
+                "from": "1",
+                "fromt": "num",
+                "to": "100",
+                "tot": "num"
+            },
+            {
+                "t": "change",
+                "p": "payload",
+                "pt": "msg",
+                "from": "0",
+                "fromt": "num",
+                "to": "30",
+                "tot": "num"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 760,
+        "y": 1840,
+        "wires": [
+            [
+                "bf1c24b2.0f3d28"
+            ]
+        ]
+    },
+    {
+        "id": "c41e85b7.aec428",
+        "type": "ioBroker in",
+        "z": "b9271604.b07bf8",
+        "name": "Tapped twice event",
+        "topic": "zigbee.0.00158d0002a6f6bc.tap",
+        "payloadType": "value",
+        "onlyack": "",
+        "func": "all",
+        "gap": "",
+        "x": 350,
+        "y": 1880,
+        "wires": [
+            [
+                "a8b1a0ed.d1804"
+            ]
+        ]
+    },
+    {
+        "id": "bf1c24b2.0f3d28",
+        "type": "function",
+        "z": "b9271604.b07bf8",
+        "name": "30 / 100 %",
+        "func": "node.send({payload:{\"id\":171,\"value\":msg.payload}})\n",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 950,
+        "y": 1840,
+        "wires": [
+            [
+                "11fc23eb.1b8ddc"
+            ]
+        ]
+    },
+    {
+        "id": "e6568139.f393b",
+        "type": "change",
+        "z": "b9271604.b07bf8",
+        "name": "true - Dimmen",
+        "rules": [
+            {
+                "t": "change",
+                "p": "payload",
+                "pt": "msg",
+                "from": "true",
+                "fromt": "str",
+                "to": "{\"id\":171,\"value\":30}",
+                "tot": "json"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 760,
+        "y": 1940,
+        "wires": [
+            [
+                "11fc23eb.1b8ddc"
+            ]
+        ]
+    },
+    {
+        "id": "57cc5ad0.b8ac34",
+        "type": "ioBroker in",
+        "z": "b9271604.b07bf8",
+        "name": "Shake event",
+        "topic": "zigbee.0.00158d0002a6f6bc.shake",
+        "payloadType": "value",
+        "onlyack": "",
+        "func": "all",
+        "gap": "",
+        "x": 330,
+        "y": 1960,
+        "wires": [
+            [
+                "c68959a0.d7c368"
+            ]
+        ]
+    },
+    {
+        "id": "fa00f4a3.328538",
+        "type": "change",
+        "z": "b9271604.b07bf8",
+        "name": "true - Farbe",
+        "rules": [
+            {
+                "t": "change",
+                "p": "payload",
+                "pt": "msg",
+                "from": "true",
+                "fromt": "str",
+                "to": "{\"id\":172,\"value\":2702}",
+                "tot": "json"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 750,
+        "y": 1980,
+        "wires": [
+            [
+                "11fc23eb.1b8ddc"
+            ]
+        ]
+    },
+    {
+        "id": "c68959a0.d7c368",
+        "type": "switch",
+        "z": "b9271604.b07bf8",
+        "name": "Filter",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "true",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 510,
+        "y": 1960,
+        "wires": [
+            [
+                "e6568139.f393b",
+                "fa00f4a3.328538"
+            ]
+        ]
+    },
+    {
+        "id": "91432397.31843",
+        "type": "ioBroker in",
+        "z": "b9271604.b07bf8",
+        "name": "Battery percent",
+        "topic": "zigbee.0.00158d0002a6f6bc.battery",
+        "payloadType": "value",
+        "onlyack": "",
+        "func": "all",
+        "gap": "",
+        "x": 340,
+        "y": 2160,
+        "wires": [
+            [
+                "8f155046.61a53"
+            ]
+        ]
+    },
+    {
+        "id": "8f155046.61a53",
+        "type": "json",
+        "z": "b9271604.b07bf8",
+        "name": "",
+        "property": "payload",
+        "action": "obj",
+        "pretty": false,
+        "x": 510,
+        "y": 2160,
+        "wires": [
+            [
+                "ffff75d8.841068"
+            ]
+        ]
+    },
+    {
+        "id": "15cd2d28.194443",
+        "type": "function",
+        "z": "b9271604.b07bf8",
+        "name": "Batterieladung",
+        "func": "var batt = msg.payload;\nmsg.payload = \"Nur noch \" +batt +\" %\"\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 960,
+        "y": 2160,
+        "wires": [
+            [
+                "c1ccf1b0.4ab5d"
+            ]
+        ]
+    },
+    {
+        "id": "c1ccf1b0.4ab5d",
+        "type": "pushbullet",
+        "z": "b9271604.b07bf8",
+        "config": "84810521.d941f",
+        "pushtype": "note",
+        "title": "Batteriestatus Cube",
+        "chan": "",
+        "name": "",
+        "x": 1500,
+        "y": 2160,
+        "wires": []
+    },
+    {
+        "id": "ffff75d8.841068",
+        "type": "switch",
+        "z": "b9271604.b07bf8",
+        "name": "Filter <= 15%",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "lte",
+                "v": "15",
+                "vt": "num"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 760,
+        "y": 2160,
+        "wires": [
+            [
+                "15cd2d28.194443"
+            ]
+        ]
+    },
+    {
+        "id": "1eeeb22c.e3b1de",
+        "type": "change",
+        "z": "b9271604.b07bf8",
+        "name": "Farbe +1000K",
+        "rules": [
+            {
+                "t": "change",
+                "p": "payload",
+                "pt": "msg",
+                "from": "true",
+                "fromt": "str",
+                "to": "+1000",
+                "tot": "str"
+            },
+            {
+                "t": "change",
+                "p": "payload",
+                "pt": "msg",
+                "from": "false",
+                "fromt": "str",
+                "to": "0",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 760,
+        "y": 2040,
+        "wires": [
+            [
+                "6457f49c.1c1a4c"
+            ]
+        ]
+    },
+    {
+        "id": "37796b56.7c5e54",
+        "type": "change",
+        "z": "b9271604.b07bf8",
+        "name": "Farbe -1000K",
+        "rules": [
+            {
+                "t": "change",
+                "p": "payload",
+                "pt": "msg",
+                "from": "true",
+                "fromt": "str",
+                "to": "-1000",
+                "tot": "str"
+            },
+            {
+                "t": "change",
+                "p": "payload",
+                "pt": "msg",
+                "from": "false",
+                "fromt": "str",
+                "to": "0",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 760,
+        "y": 2100,
+        "wires": [
+            [
+                "6457f49c.1c1a4c"
+            ]
+        ]
+    },
+    {
+        "id": "6457f49c.1c1a4c",
+        "type": "function",
+        "z": "b9271604.b07bf8",
+        "name": "Farbwert",
+        "func": "var farb = flow.get(\"farb2\")||2702;\nif (msg.payload ===\"+1000\"){if(farb <6535){farb = farb+1000}}\nif (msg.payload ===\"-1000\"){if(farb >2702){farb = farb-1000}}\nif (farb>6535){farb = 6535}\nif (farb<2702){farb = 2702}\nflow.set(\"farb2\",farb);\nnode.send({payload:{\"id\":172,\"value\":farb}})",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 940,
+        "y": 2080,
+        "wires": [
+            [
+                "11fc23eb.1b8ddc"
+            ]
+        ]
+    },
+    {
+        "id": "3aedb179.8ff31e",
+        "type": "switch",
+        "z": "b9271604.b07bf8",
+        "name": "Filter",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "true",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 510,
+        "y": 2040,
+        "wires": [
+            [
+                "1eeeb22c.e3b1de"
+            ]
+        ]
+    },
+    {
+        "id": "6d375f79.37a4c",
+        "type": "ioBroker in",
+        "z": "b9271604.b07bf8",
+        "name": "Flip 90°",
+        "topic": "zigbee.0.00158d0002a6f6bc.flip90",
+        "payloadType": "value",
+        "onlyack": "",
+        "func": "all",
+        "gap": "",
+        "x": 310,
+        "y": 2040,
+        "wires": [
+            [
+                "3aedb179.8ff31e"
+            ]
+        ]
+    },
+    {
+        "id": "ac958df6.f1fa7",
+        "type": "ioBroker in",
+        "z": "b9271604.b07bf8",
+        "name": "Flip 180°",
+        "topic": "zigbee.0.00158d0002a6f6bc.flip180",
+        "payloadType": "value",
+        "onlyack": "",
+        "func": "all",
+        "gap": "",
+        "x": 320,
+        "y": 2100,
+        "wires": [
+            [
+                "a5bcf8c8.96d878"
+            ]
+        ]
+    },
+    {
+        "id": "a5bcf8c8.96d878",
+        "type": "switch",
+        "z": "b9271604.b07bf8",
+        "name": "Filter",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "true",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 510,
+        "y": 2100,
+        "wires": [
+            [
+                "37796b56.7c5e54"
+            ]
+        ]
+    },
+    {
+        "id": "11fc23eb.1b8ddc",
+        "type": "homeeDevice",
+        "z": "b9271604.b07bf8",
+        "virtual-homee": "77676c9d.6688c4",
+        "name": "Cube",
+        "nodeId": "170",
+        "profile": "1001",
+        "icon": "nodeicon_remote",
+        "attributes": "[{\"id\":170,\"node_id\":170,\"instance\":0,\"minimum\":0,\"maximum\":1,\"current_value\":0,\"target_value\":0,\"last_value\":0,\"unit\":\"\",\"step_value\":1,\"editable\":1,\"type\":1,\"state\":1,\"last_changed\":12345555,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":1,\"data\":\"\"},{\"id\":171,\"node_id\":170,\"instance\":0,\"minimum\":0,\"maximum\":100,\"current_value\":0,\"target_value\":0,\"last_value\":0,\"unit\":\"%25\",\"step_value\":1,\"editable\":1,\"type\":2,\"state\":1,\"last_changed\":12345555,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":1,\"data\":\"\"},{\"id\":172,\"node_id\":170,\"instance\":2,\"minimum\":2702,\"maximum\":6535,\"current_value\":2702,\"target_value\":2702,\"last_value\":2702,\"unit\":\" K\",\"step_value\":1,\"editable\":1,\"type\":2,\"state\":1,\"last_changed\":12345555,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":1,\"data\":\"\"}]",
+        "x": 1450,
+        "y": 1880,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "3eb2481d.018198",
+        "type": "comment",
+        "z": "b9271604.b07bf8",
+        "name": "ID 170 Attribute 170-172",
+        "info": "",
+        "x": 1510,
+        "y": 1840,
+        "wires": []
+    },
+    {
+        "id": "64d14614.47f1f8",
+        "type": "change",
+        "z": "b9271604.b07bf8",
+        "name": "",
+        "rules": [
+            {
+                "t": "change",
+                "p": "payload",
+                "pt": "msg",
+                "from": "1",
+                "fromt": "num",
+                "to": "6535",
+                "tot": "num"
+            },
+            {
+                "t": "change",
+                "p": "payload",
+                "pt": "msg",
+                "from": "0",
+                "fromt": "num",
+                "to": "2702",
+                "tot": "num"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 760,
+        "y": 1880,
+        "wires": [
+            [
+                "47553b97.d5d784"
+            ]
+        ]
+    },
+    {
+        "id": "47553b97.d5d784",
+        "type": "function",
+        "z": "b9271604.b07bf8",
+        "name": "2702 / 6535 K",
+        "func": "node.send({payload:{\"id\":172,\"value\":msg.payload}})",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 960,
+        "y": 1880,
+        "wires": [
+            [
+                "11fc23eb.1b8ddc"
+            ]
+        ]
+    },
+    {
+        "id": "8cc7f7db.543788",
+        "type": "comment",
+        "z": "b9271604.b07bf8",
+        "name": "Sofa Rückkanal",
+        "info": "id: 267 an/aus\nid: 268 Dimmwert\nnode_id: 38",
+        "x": 340,
+        "y": 1740,
+        "wires": []
+    },
+    {
+        "id": "2a554459.231aec",
+        "type": "link in",
+        "z": "b9271604.b07bf8",
+        "name": "",
+        "links": [
+            "7d8f247d.14f62c"
+        ],
+        "x": 275,
+        "y": 1780,
+        "wires": [
+            [
+                "478177f9.16a458",
+                "762f5c9f.cf1eb4"
+            ]
+        ]
+    },
+    {
+        "id": "762f5c9f.cf1eb4",
+        "type": "function",
+        "z": "b9271604.b07bf8",
+        "name": "current_value in Flow Variable",
+        "func": "if(!msg.payload.attribute){return}\nvar attribute = msg.payload.attribute ;\nif (attribute.id === 267){flow.set(\"Variable\",attribute.current_value)}\nif (attribute.id === 268){flow.set(\"cube_out\",attribute.current_value)}\nreturn;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1010,
+        "y": 1760,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "478177f9.16a458",
+        "type": "function",
+        "z": "b9271604.b07bf8",
+        "name": "current_value an hih ",
+        "func": "if(!msg.payload.attribute){return}\nvar attribute = msg.payload.attribute;\nif (attribute.id === 267){\n    return {payload:{\"id\":170,\"value\":attribute.current_value}}}\nif (attribute.id === 268){\n    return {payload:{\"id\":171,\"value\":attribute.current_value}}}",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 980,
+        "y": 1800,
+        "wires": [
+            [
+                "11fc23eb.1b8ddc"
+            ]
+        ]
+    },
+    {
+        "id": "3508ac0.74f7e54",
+        "type": "comment",
+        "z": "b9271604.b07bf8",
+        "name": "Leselicht / Wohnzimmerlicht",
+        "info": "",
+        "x": 380,
+        "y": 1840,
+        "wires": []
+    },
+    {
+        "id": "dca91a4d.052258",
+        "type": "switch",
+        "z": "b9271604.b07bf8",
+        "name": "Filter",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "true",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 510,
+        "y": 1600,
+        "wires": [
+            [
+                "47cca619.cbf148"
+            ]
+        ]
+    },
+    {
+        "id": "47cca619.cbf148",
+        "type": "change",
+        "z": "b9271604.b07bf8",
+        "name": "Dimmwert +20%",
+        "rules": [
+            {
+                "t": "change",
+                "p": "payload",
+                "pt": "msg",
+                "from": "true",
+                "fromt": "str",
+                "to": "+20",
+                "tot": "str"
+            },
+            {
+                "t": "change",
+                "p": "payload",
+                "pt": "msg",
+                "from": "false",
+                "fromt": "str",
+                "to": "0",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 710,
+        "y": 1600,
+        "wires": [
+            [
+                "7f6ba3c8.9d38cc"
+            ]
+        ]
+    },
+    {
+        "id": "7f6ba3c8.9d38cc",
+        "type": "function",
+        "z": "b9271604.b07bf8",
+        "name": "Dimmwert Berechnung",
+        "func": "//if ( msg.payload.id === 171){flow.set(\"cube_out\",msg.payload.value)}\nvar dim = flow.get(\"cube_out\")||0;\n\nif (msg.payload ===\"+20\"){if(dim <100){dim = dim+20}}\nif (msg.payload ===\"-20\"){if(dim >0){dim = dim-20}}\n\n//flow.set(\"cube_out\",dim);\nnode.send({payload:{\"id\":171,\"value\":dim}})",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 990,
+        "y": 1620,
+        "wires": [
+            [
+                "aeb50b84.9c0c88",
+                "11fc23eb.1b8ddc"
+            ]
+        ]
+    },
+    {
+        "id": "aeb50b84.9c0c88",
+        "type": "debug",
+        "z": "b9271604.b07bf8",
+        "name": "Dimmwert",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "x": 1470,
+        "y": 1620,
+        "wires": []
+    },
+    {
+        "id": "362b56a0.46a60a",
+        "type": "switch",
+        "z": "b9271604.b07bf8",
+        "name": "Filter",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "true",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 510,
+        "y": 1660,
+        "wires": [
+            [
+                "48532b2b.5f5a04"
+            ]
+        ]
+    },
+    {
+        "id": "48532b2b.5f5a04",
+        "type": "change",
+        "z": "b9271604.b07bf8",
+        "name": "Dimmwert -20%",
+        "rules": [
+            {
+                "t": "change",
+                "p": "payload",
+                "pt": "msg",
+                "from": "true",
+                "fromt": "str",
+                "to": "-20",
+                "tot": "str"
+            },
+            {
+                "t": "change",
+                "p": "payload",
+                "pt": "msg",
+                "from": "false",
+                "fromt": "str",
+                "to": "0",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 700,
+        "y": 1660,
+        "wires": [
+            [
+                "7f6ba3c8.9d38cc"
+            ]
+        ]
+    },
+    {
+        "id": "a7545b3e.656448",
+        "type": "ioBroker in",
+        "z": "b9271604.b07bf8",
+        "name": "Rotate right event",
+        "topic": "zigbee.0.00158d0002a6f6bc.rotate_right",
+        "payloadType": "value",
+        "onlyack": "",
+        "func": "all",
+        "gap": "",
+        "x": 350,
+        "y": 1600,
+        "wires": [
+            [
+                "dca91a4d.052258"
+            ]
+        ]
+    },
+    {
+        "id": "d1c69e55.af20c",
+        "type": "ioBroker in",
+        "z": "b9271604.b07bf8",
+        "name": "Rotate left event",
+        "topic": "zigbee.0.00158d0002a6f6bc.rotate_left",
+        "payloadType": "value",
+        "onlyack": "",
+        "func": "all",
+        "gap": "",
+        "x": 340,
+        "y": 1660,
+        "wires": [
+            [
+                "362b56a0.46a60a"
+            ]
+        ]
+    },
+    {
+        "id": "2db3d289.90a62e",
+        "type": "comment",
+        "z": "b9271604.b07bf8",
+        "name": "ungenutzt",
+        "info": "",
+        "x": 940,
+        "y": 1500,
+        "wires": []
+    },
+    {
+        "id": "84810521.d941f",
+        "type": "pushbullet-config",
+        "z": "",
+        "name": "Gordon Handy"
+    },
+    {
+        "id": "77676c9d.6688c4",
+        "type": "virtualHomee",
+        "z": "",
+        "name": "R2D2"
+    }
+]
