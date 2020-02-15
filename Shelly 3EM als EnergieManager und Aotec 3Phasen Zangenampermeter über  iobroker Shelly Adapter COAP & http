@@ -1,0 +1,1069 @@
+[
+    {
+        "id": "64d7173d.275ef8",
+        "type": "inject",
+        "z": "68a5d10a.89ed88",
+        "name": "282=Netzbezug",
+        "topic": "",
+        "payload": "{ \"id\": 282, \"value\":0}",
+        "payloadType": "json",
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "x": 140,
+        "y": 120,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "b124ebe7.c4f89",
+        "type": "comment",
+        "z": "68a5d10a.89ed88",
+        "name": "Shelly 3EM als EnergyManager -> Attribute D",
+        "info": "282=Netzbezug\n283=Einspeisung\n284=Verbrauch\n285=Entladung\n286=Ladung\n287=Ladezustand\n288=Produktion",
+        "x": 450,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "ea76a0b7.3f6908",
+        "type": "inject",
+        "z": "68a5d10a.89ed88",
+        "name": "283=Einspeisung",
+        "topic": "",
+        "payload": "{ \"id\": 283, \"value\": 0 }",
+        "payloadType": "json",
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "x": 150,
+        "y": 160,
+        "wires": [
+            [
+                "dd550ca8.f3ac98"
+            ]
+        ]
+    },
+    {
+        "id": "45e86e1a.93e3c8",
+        "type": "inject",
+        "z": "68a5d10a.89ed88",
+        "name": "284=Verbrauch",
+        "topic": "",
+        "payload": "{ \"id\": 284, \"value\": 0 }",
+        "payloadType": "json",
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "x": 140,
+        "y": 200,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "85fd6902.e579",
+        "type": "inject",
+        "z": "68a5d10a.89ed88",
+        "name": "285=Entladung",
+        "topic": "",
+        "payload": "{ \"id\": 285, \"value\": 0 }",
+        "payloadType": "json",
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "x": 140,
+        "y": 240,
+        "wires": [
+            [
+                "dd550ca8.f3ac98"
+            ]
+        ]
+    },
+    {
+        "id": "37e7de07.351ec2",
+        "type": "inject",
+        "z": "68a5d10a.89ed88",
+        "name": "286= Ladung",
+        "topic": "",
+        "payload": "{ \"id\": 286, \"value\":0 }",
+        "payloadType": "json",
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "x": 140,
+        "y": 280,
+        "wires": [
+            [
+                "dd550ca8.f3ac98"
+            ]
+        ]
+    },
+    {
+        "id": "f305e131.5b0d7",
+        "type": "inject",
+        "z": "68a5d10a.89ed88",
+        "name": "287=Ladezustand",
+        "topic": "",
+        "payload": "{ \"id\": 287, \"value\":0 }",
+        "payloadType": "json",
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "x": 150,
+        "y": 320,
+        "wires": [
+            [
+                "dd550ca8.f3ac98"
+            ]
+        ]
+    },
+    {
+        "id": "85187aea.69675",
+        "type": "inject",
+        "z": "68a5d10a.89ed88",
+        "name": "288=Produktion",
+        "topic": "",
+        "payload": "{ \"id\": 288, \"value\":0 }",
+        "payloadType": "json",
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "x": 140,
+        "y": 360,
+        "wires": [
+            [
+                "dd550ca8.f3ac98"
+            ]
+        ]
+    },
+    {
+        "id": "dd550ca8.f3ac98",
+        "type": "homeeDevice",
+        "z": "68a5d10a.89ed88",
+        "virtual-homee": "",
+        "name": "Energy Meter",
+        "nodeId": "280",
+        "profile": "38",
+        "icon": "default",
+        "attributes": "[{\"id\":280,\"node_id\":280,\"instance\":0,\"minimum\":0,\"maximum\":10000,\"current_value\":0,\"target_value\":0,\"last_value\":0,\"unit\":\"text\",\"step_value\":1,\"editable\":0,\"type\":84,\"state\":1,\"last_changed\":1572785482,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":1,\"data\":\"HM0000432\"},{\"id\":281,\"node_id\":280,\"instance\":0,\"minimum\":0,\"maximum\":10000,\"current_value\":0,\"target_value\":0,\"last_value\":0,\"unit\":\"text\",\"step_value\":1,\"editable\":0,\"type\":45,\"state\":1,\"last_changed\":1572785482,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":1,\"data\":\"11.4.11\"},{\"id\":282,\"node_id\":280,\"instance\":0,\"minimum\":0,\"maximum\":50000,\"current_value\":1700,\"target_value\":1700,\"last_value\":0,\"unit\":\"W\",\"step_value\":100,\"editable\":0,\"type\":264,\"state\":1,\"last_changed\":1572785482,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":4,\"data\":\"\"},{\"id\":283,\"node_id\":280,\"instance\":0,\"minimum\":0,\"maximum\":50000,\"current_value\":2500,\"target_value\":2500,\"last_value\":0,\"unit\":\"W\",\"step_value\":100,\"editable\":0,\"type\":265,\"state\":1,\"last_changed\":1572785482,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":4,\"data\":\"\"},{\"id\":284,\"node_id\":280,\"instance\":0,\"minimum\":-50000,\"maximum\":50000,\"current_value\":258,\"target_value\":258,\"last_value\":0,\"unit\":\"W\",\"step_value\":100,\"editable\":0,\"type\":267,\"state\":1,\"last_changed\":1572785482,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":4,\"data\":\"\"},{\"id\":285,\"node_id\":280,\"instance\":0,\"minimum\":0,\"maximum\":50000,\"current_value\":200,\"target_value\":200,\"last_value\":0,\"unit\":\"W\",\"step_value\":100,\"editable\":0,\"type\":268,\"state\":1,\"last_changed\":1572785482,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":4,\"data\":\"\"},{\"id\":286,\"node_id\":280,\"instance\":0,\"minimum\":0,\"maximum\":50000,\"current_value\":980,\"target_value\":980,\"last_value\":0,\"unit\":\"W\",\"step_value\":100,\"editable\":0,\"type\":269,\"state\":1,\"last_changed\":1572785482,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":4,\"data\":\"\"},{\"id\":287,\"node_id\":280,\"instance\":0,\"minimum\":0,\"maximum\":100,\"current_value\":37,\"target_value\":37,\"last_value\":0,\"unit\":\"%25\",\"step_value\":1,\"editable\":0,\"type\":273,\"state\":1,\"last_changed\":1572785482,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":4,\"data\":\"\"},{\"id\":288,\"node_id\":280,\"instance\":0,\"minimum\":-50000,\"maximum\":50000,\"current_value\":1180,\"target_value\":1180,\"last_value\":1240,\"unit\":\"W\",\"step_value\":100,\"editable\":0,\"type\":266,\"state\":1,\"last_changed\":1572785663,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":4,\"data\":\"\"},{\"id\":289,\"node_id\":280,\"instance\":0,\"minimum\":0,\"maximum\":9999999,\"current_value\":0,\"target_value\":0,\"last_value\":0,\"unit\":\"kWh\",\"step_value\":1,\"editable\":0,\"type\":274,\"state\":6,\"last_changed\":1572785482,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":4,\"data\":\"\"},{\"id\":290,\"node_id\":280,\"instance\":0,\"minimum\":0,\"maximum\":9999999,\"current_value\":0,\"target_value\":0,\"last_value\":0,\"unit\":\"kWh\",\"step_value\":1,\"editable\":0,\"type\":275,\"state\":6,\"last_changed\":1572785482,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":4,\"data\":\"\"},{\"id\":291,\"node_id\":280,\"instance\":0,\"minimum\":0,\"maximum\":9999999,\"current_value\":0,\"target_value\":0,\"last_value\":0,\"unit\":\"kWh\",\"step_value\":1,\"editable\":0,\"type\":276,\"state\":6,\"last_changed\":1572785482,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":4,\"data\":\"\"},{\"id\":292,\"node_id\":280,\"instance\":0,\"minimum\":0,\"maximum\":9999999,\"current_value\":0,\"target_value\":0,\"last_value\":0,\"unit\":\"kWh\",\"step_value\":1,\"editable\":0,\"type\":277,\"state\":6,\"last_changed\":1572785482,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":4,\"data\":\"\"},{\"id\":293,\"node_id\":280,\"instance\":0,\"minimum\":0,\"maximum\":9999999,\"current_value\":0,\"target_value\":0,\"last_value\":0,\"unit\":\"kWh\",\"step_value\":1,\"editable\":0,\"type\":278,\"state\":6,\"last_changed\":1572785482,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":4,\"data\":\"\"},{\"id\":294,\"node_id\":280,\"instance\":0,\"minimum\":0,\"maximum\":9999999,\"current_value\":0,\"target_value\":0,\"last_value\":0,\"unit\":\"kWh\",\"step_value\":1,\"editable\":0,\"type\":279,\"state\":6,\"last_changed\":1572785482,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":4,\"data\":\"\"}]",
+        "x": 670,
+        "y": 240,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "63c1e36.1eb0c9c",
+        "type": "template",
+        "z": "68a5d10a.89ed88",
+        "name": "Verbrauch G [W]",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "{\"id\":284,\"value\":{{payload}}}",
+        "output": "json",
+        "x": 440,
+        "y": 140,
+        "wires": [
+            [
+                "dd550ca8.f3ac98"
+            ]
+        ]
+    },
+    {
+        "id": "900260a6.827b58",
+        "type": "template",
+        "z": "68a5d10a.89ed88",
+        "name": "Verbrauch G [W]",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "{\"id\":282,\"value\":{{payload}}}",
+        "output": "json",
+        "x": 440,
+        "y": 340,
+        "wires": [
+            [
+                "dd550ca8.f3ac98"
+            ]
+        ]
+    },
+    {
+        "id": "f5ccee05.bc02f8",
+        "type": "homeeDevice",
+        "z": "68a5d10a.89ed88",
+        "virtual-homee": "",
+        "name": "energy",
+        "nodeId": "3000",
+        "profile": "32",
+        "icon": "default",
+        "attributes": "[{\"id\":3000,\"node_id\":3000,\"instance\":0,\"minimum\":0,\"maximum\":600000,\"current_value\":1088.525,\"target_value\":1088.525,\"last_value\":1088.51,\"unit\":\"kWh\",\"step_value\":1,\"editable\":0,\"type\":240,\"state\":1,\"last_changed\":1578766730,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":1,\"data\":\"\",\"node\":\"[Circular ~.node]\"},{\"id\":3001,\"node_id\":3000,\"instance\":0,\"minimum\":0,\"maximum\":0,\"current_value\":0,\"target_value\":0,\"last_value\":0,\"unit\":\"text\",\"step_value\":1,\"editable\":0,\"type\":44,\"state\":1,\"last_changed\":1570717016,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":1,\"data\":\"4.54\"},{\"id\":3002,\"node_id\":3000,\"instance\":0,\"minimum\":0,\"maximum\":0,\"current_value\":0,\"target_value\":0,\"last_value\":0,\"unit\":\"text\",\"step_value\":1,\"editable\":0,\"type\":45,\"state\":1,\"last_changed\":1570717016,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":1,\"data\":\"1.04\"},{\"id\":3003,\"node_id\":3000,\"instance\":1,\"minimum\":0,\"maximum\":200000,\"current_value\":159.958,\"target_value\":159.958,\"last_value\":159.957,\"unit\":\"kWh\",\"step_value\":1,\"editable\":0,\"type\":4,\"state\":1,\"last_changed\":1578766731,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":1,\"data\":\"\",\"node\":\"[Circular ~.node]\"},{\"id\":3004,\"node_id\":3000,\"instance\":2,\"minimum\":0,\"maximum\":200000,\"current_value\":560.021,\"target_value\":560.021,\"last_value\":560.013,\"unit\":\"kWh\",\"step_value\":1,\"editable\":0,\"type\":4,\"state\":1,\"last_changed\":1578766731,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":1,\"data\":\"\",\"node\":\"[Circular ~.node]\"},{\"id\":3005,\"node_id\":3000,\"instance\":3,\"minimum\":0,\"maximum\":200000,\"current_value\":368.544,\"target_value\":368.544,\"last_value\":368.54,\"unit\":\"kWh\",\"step_value\":1,\"editable\":0,\"type\":4,\"state\":1,\"last_changed\":1578766731,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":1,\"data\":\"\",\"node\":\"[Circular ~.node]\"},{\"id\":3006,\"node_id\":3000,\"instance\":0,\"minimum\":0,\"maximum\":80000,\"current_value\":427.364,\"target_value\":427.364,\"last_value\":387.537,\"unit\":\"W\",\"step_value\":1,\"editable\":0,\"type\":239,\"state\":1,\"last_changed\":1578766255,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":1,\"data\":\"\",\"node\":\"[Circular ~.node]\"},{\"id\":3007,\"node_id\":3000,\"instance\":0,\"minimum\":0,\"maximum\":420,\"current_value\":231.005,\"target_value\":231.005,\"last_value\":232.5,\"unit\":\"V\",\"step_value\":1,\"editable\":0,\"type\":51,\"state\":1,\"last_changed\":1578766730,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":1,\"data\":\"\",\"node\":\"[Circular ~.node]\"},{\"id\":3008,\"node_id\":3000,\"instance\":0,\"minimum\":0,\"maximum\":200,\"current_value\":2.118,\"target_value\":2.118,\"last_value\":2.118,\"unit\":\"A\",\"step_value\":1,\"editable\":0,\"type\":272,\"state\":1,\"last_changed\":1578766730,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":1,\"data\":\"\",\"node\":\"[Circular ~.node]\"},{\"id\":3009,\"node_id\":3000,\"instance\":1,\"minimum\":0,\"maximum\":30000,\"current_value\":86.252,\"target_value\":86.252,\"last_value\":74.684,\"unit\":\"W\",\"step_value\":1,\"editable\":0,\"type\":3,\"state\":1,\"last_changed\":1578766725,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":1,\"data\":\"\",\"node\":\"[Circular ~.node]\"},{\"id\":3010,\"node_id\":3000,\"instance\":1,\"minimum\":0,\"maximum\":420,\"current_value\":231.005,\"target_value\":231.005,\"last_value\":232.621,\"unit\":\"V\",\"step_value\":1,\"editable\":0,\"type\":195,\"state\":1,\"last_changed\":1578766730,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":1,\"data\":\"\",\"node\":\"[Circular ~.node]\"},{\"id\":3011,\"node_id\":3000,\"instance\":1,\"minimum\":0,\"maximum\":70,\"current_value\":0.379,\"target_value\":0.379,\"last_value\":0.371,\"unit\":\"A\",\"step_value\":1,\"editable\":0,\"type\":193,\"state\":1,\"last_changed\":1578766731,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":1,\"data\":\"\",\"node\":\"[Circular ~.node]\"},{\"id\":3012,\"node_id\":3000,\"instance\":2,\"minimum\":0,\"maximum\":30000,\"current_value\":281.264,\"target_value\":281.264,\"last_value\":255.311,\"unit\":\"W\",\"step_value\":1,\"editable\":0,\"type\":3,\"state\":1,\"last_changed\":1578766765,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":1,\"data\":\"\",\"node\":\"[Circular ~.node]\"},{\"id\":3013,\"node_id\":3000,\"instance\":2,\"minimum\":0,\"maximum\":420,\"current_value\":232.322,\"target_value\":232.322,\"last_value\":234.169,\"unit\":\"V\",\"step_value\":1,\"editable\":0,\"type\":195,\"state\":1,\"last_changed\":1578766730,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":1,\"data\":\"\",\"node\":\"[Circular ~.node]\"},{\"id\":3014,\"node_id\":3000,\"instance\":2,\"minimum\":0,\"maximum\":70,\"current_value\":1.212,\"target_value\":1.212,\"last_value\":1.156,\"unit\":\"A\",\"step_value\":1,\"editable\":0,\"type\":193,\"state\":1,\"last_changed\":1578766765,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":1,\"data\":\"\",\"node\":\"[Circular ~.node]\"},{\"id\":3015,\"node_id\":3000,\"instance\":3,\"minimum\":0,\"maximum\":30000,\"current_value\":80.419,\"target_value\":80.419,\"last_value\":1786.607,\"unit\":\"W\",\"step_value\":1,\"editable\":0,\"type\":3,\"state\":1,\"last_changed\":1578764310,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":1,\"data\":\"\",\"node\":\"[Circular ~.node]\"},{\"id\":3016,\"node_id\":3000,\"instance\":3,\"minimum\":0,\"maximum\":420,\"current_value\":234.442,\"target_value\":234.442,\"last_value\":232.764,\"unit\":\"V\",\"step_value\":1,\"editable\":0,\"type\":195,\"state\":1,\"last_changed\":1578766730,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":1,\"data\":\"\",\"node\":\"[Circular ~.node]\"},{\"id\":3017,\"node_id\":3000,\"instance\":3,\"minimum\":0,\"maximum\":70,\"current_value\":0.583,\"target_value\":0.583,\"last_value\":0.579,\"unit\":\"A\",\"step_value\":1,\"editable\":0,\"type\":193,\"state\":1,\"last_changed\":1578766731,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":1,\"data\":\"\",\"node\":\"[Circular ~.node]\"}]",
+        "x": 1750,
+        "y": 400,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "4ff5979.1510ae8",
+        "type": "comment",
+        "z": "68a5d10a.89ed88",
+        "name": "Shelly 3EM als Aotec Zangenparameter  -> IDs",
+        "info": "3000 - Summierter Gesamtverbrauch kwh\n3003 - Summierter Verbrauch 1 kwh\n3004 - Summierter Verbrauch 2 kwh\n3005 - Summierter Verbrauch 3 kwh\n3006 - Aktueller Gesamtverbrauch W\n3007 - Gesamtspannung V\n3008 - Gesamtstromstärke A\n3009 - Aktueller Verbrauch 1 W\n3010 - Spannung 1 V\n3011 - Stromstärke 1 A\n3012 - Aktueller Verbrauch 2 W\n3013 - Spannung 2 V\n3014 - Stromstärke 2 A\n3015 - Aktueller Verbrauch 3 W\n3016 - Spannung 3 V\n3017 - Stromstärke 3 A",
+        "x": 1390,
+        "y": 20,
+        "wires": []
+    },
+    {
+        "id": "9473312b.5aa4",
+        "type": "template",
+        "z": "68a5d10a.89ed88",
+        "name": "Spannung 1 [V]",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "{\"id\":3010,\"value\":{{payload}}}",
+        "output": "json",
+        "x": 1200,
+        "y": 320,
+        "wires": [
+            [
+                "f5ccee05.bc02f8"
+            ]
+        ]
+    },
+    {
+        "id": "2a7b1837.fa0d",
+        "type": "template",
+        "z": "68a5d10a.89ed88",
+        "name": "Verbrauch 1 [W]",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "{\"id\":3009,\"value\":{{payload}}}",
+        "output": "json",
+        "x": 1200,
+        "y": 360,
+        "wires": [
+            [
+                "f5ccee05.bc02f8"
+            ]
+        ]
+    },
+    {
+        "id": "7a04a7c4.20df2",
+        "type": "template",
+        "z": "68a5d10a.89ed88",
+        "name": "Verbrauch 2 [W]",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "{\"id\":3012,\"value\":{{payload}}}",
+        "output": "json",
+        "x": 1200,
+        "y": 480,
+        "wires": [
+            [
+                "f5ccee05.bc02f8"
+            ]
+        ]
+    },
+    {
+        "id": "5afd0775.be3e18",
+        "type": "template",
+        "z": "68a5d10a.89ed88",
+        "name": "Spannung 2 [V]",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "{\"id\":3013,\"value\":{{payload}}}",
+        "output": "json",
+        "x": 1200,
+        "y": 440,
+        "wires": [
+            [
+                "f5ccee05.bc02f8"
+            ]
+        ]
+    },
+    {
+        "id": "431cb72.bed81c8",
+        "type": "template",
+        "z": "68a5d10a.89ed88",
+        "name": "Verbrauch 3 [W]",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "{\"id\":3015,\"value\":{{payload}}}",
+        "output": "json",
+        "x": 1200,
+        "y": 600,
+        "wires": [
+            [
+                "f5ccee05.bc02f8"
+            ]
+        ]
+    },
+    {
+        "id": "3c61d10e.8e7ed6",
+        "type": "template",
+        "z": "68a5d10a.89ed88",
+        "name": "Spannung 3 [V]",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "{\"id\":3016,\"value\":{{payload}}}",
+        "output": "json",
+        "x": 1200,
+        "y": 560,
+        "wires": [
+            [
+                "f5ccee05.bc02f8"
+            ]
+        ]
+    },
+    {
+        "id": "e8dba5f3.11c45",
+        "type": "template",
+        "z": "68a5d10a.89ed88",
+        "name": "Spannung Gesamt [Volt]",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "{\"id\":3007,\"value\":{{payload}}}",
+        "output": "json",
+        "x": 1710,
+        "y": 740,
+        "wires": [
+            [
+                "f5ccee05.bc02f8"
+            ]
+        ]
+    },
+    {
+        "id": "f199c84f.17841",
+        "type": "template",
+        "z": "68a5d10a.89ed88",
+        "name": "Verbrauch Gesamt [Watt]",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "{\"id\":3006,\"value\":{{payload}}}",
+        "output": "json",
+        "x": 1230,
+        "y": 240,
+        "wires": [
+            [
+                "f5ccee05.bc02f8"
+            ]
+        ]
+    },
+    {
+        "id": "129eb6e7.4c5da1",
+        "type": "template",
+        "z": "68a5d10a.89ed88",
+        "name": "Stromstärke 3 [A]",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "{\"id\":3017,\"value\":{{payload}}}",
+        "output": "json",
+        "x": 1210,
+        "y": 640,
+        "wires": [
+            [
+                "f5ccee05.bc02f8"
+            ]
+        ]
+    },
+    {
+        "id": "176085ea.539bba",
+        "type": "template",
+        "z": "68a5d10a.89ed88",
+        "name": "Stromstärke 2 [A]",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "{\"id\":3014,\"value\":{{payload}}}",
+        "output": "json",
+        "x": 1210,
+        "y": 520,
+        "wires": [
+            [
+                "f5ccee05.bc02f8"
+            ]
+        ]
+    },
+    {
+        "id": "72c150b2.74bb78",
+        "type": "template",
+        "z": "68a5d10a.89ed88",
+        "name": "Stromstärke 1 [A]",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "{\"id\":3011,\"value\":{{payload}}}",
+        "output": "json",
+        "x": 1210,
+        "y": 400,
+        "wires": [
+            [
+                "f5ccee05.bc02f8"
+            ]
+        ]
+    },
+    {
+        "id": "9021d660.0e4ec8",
+        "type": "template",
+        "z": "68a5d10a.89ed88",
+        "name": "Stromstärke Gesamt [Ampere]",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "{\"id\":3008,\"value\":{{payload}}}",
+        "output": "json",
+        "x": 1730,
+        "y": 880,
+        "wires": [
+            [
+                "f5ccee05.bc02f8"
+            ]
+        ]
+    },
+    {
+        "id": "7d31899a.ba6bc",
+        "type": "template",
+        "z": "68a5d10a.89ed88",
+        "name": "Summiert 1 [kWh]",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "{\"id\":3003,\"value\":{{payload}}}",
+        "output": "json",
+        "x": 1210,
+        "y": 120,
+        "wires": [
+            [
+                "f5ccee05.bc02f8"
+            ]
+        ]
+    },
+    {
+        "id": "eef0b890.9ca6d",
+        "type": "template",
+        "z": "68a5d10a.89ed88",
+        "name": "Summiert 2 [kWh]",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "{\"id\":3004,\"value\":{{payload}}}",
+        "output": "json",
+        "x": 1210,
+        "y": 160,
+        "wires": [
+            [
+                "f5ccee05.bc02f8"
+            ]
+        ]
+    },
+    {
+        "id": "2fae3170.ecc986",
+        "type": "template",
+        "z": "68a5d10a.89ed88",
+        "name": "Summiert 3 [kWh]",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "{\"id\":3005,\"value\":{{payload}}}",
+        "output": "json",
+        "x": 1210,
+        "y": 200,
+        "wires": [
+            [
+                "f5ccee05.bc02f8"
+            ]
+        ]
+    },
+    {
+        "id": "bb68c068.478308",
+        "type": "ioBroker get",
+        "z": "68a5d10a.89ed88",
+        "name": "Comsumed Power ",
+        "topic": "shelly.0.SHEM-3##1.Total.ConsumedPower",
+        "attrname": "payload",
+        "payloadType": "value",
+        "x": 990,
+        "y": 80,
+        "wires": [
+            [
+                "3ae37369.a51d8c"
+            ]
+        ]
+    },
+    {
+        "id": "b92dd4fd.9c6588",
+        "type": "ioBroker get",
+        "z": "68a5d10a.89ed88",
+        "name": "Total Power L1",
+        "topic": "shelly.0.SHEM-3##1.Emeter0.Total",
+        "attrname": "payload",
+        "payloadType": "value",
+        "x": 980,
+        "y": 120,
+        "wires": [
+            [
+                "7d31899a.ba6bc"
+            ]
+        ]
+    },
+    {
+        "id": "cf8b3580.bf4f7",
+        "type": "ioBroker get",
+        "z": "68a5d10a.89ed88",
+        "name": "Total Power L2",
+        "topic": "shelly.0.SHEM-3##1.Emeter1.Total",
+        "attrname": "payload",
+        "payloadType": "value",
+        "x": 980,
+        "y": 160,
+        "wires": [
+            [
+                "eef0b890.9ca6d"
+            ]
+        ]
+    },
+    {
+        "id": "82a0bb5c.8168d8",
+        "type": "ioBroker get",
+        "z": "68a5d10a.89ed88",
+        "name": "Total Power L3",
+        "topic": "shelly.0.SHEM-3##1.Emeter2.Total",
+        "attrname": "payload",
+        "payloadType": "value",
+        "x": 980,
+        "y": 200,
+        "wires": [
+            [
+                "2fae3170.ecc986"
+            ]
+        ]
+    },
+    {
+        "id": "ba985ff6.112e68",
+        "type": "ioBroker get",
+        "z": "68a5d10a.89ed88",
+        "name": "Actual Power",
+        "topic": "shelly.0.SHEM-3##1.Total.InstantPower",
+        "attrname": "payload",
+        "payloadType": "value",
+        "x": 970,
+        "y": 240,
+        "wires": [
+            [
+                "f199c84f.17841",
+                "63c1e36.1eb0c9c",
+                "900260a6.827b58"
+            ]
+        ]
+    },
+    {
+        "id": "dfdad937.290628",
+        "type": "ioBroker get",
+        "z": "68a5d10a.89ed88",
+        "name": "Voltage L1",
+        "topic": "shelly.0.SHEM-3##1.Emeter0.Voltage",
+        "attrname": "payload",
+        "payloadType": "value",
+        "x": 970,
+        "y": 320,
+        "wires": [
+            [
+                "9473312b.5aa4",
+                "3c16ca74.9c30e6"
+            ]
+        ]
+    },
+    {
+        "id": "a4c78b7f.04ce2",
+        "type": "ioBroker get",
+        "z": "68a5d10a.89ed88",
+        "name": "Voltage L2",
+        "topic": "shelly.0.SHEM-3##1.Emeter1.Voltage",
+        "attrname": "payload",
+        "payloadType": "value",
+        "x": 970,
+        "y": 440,
+        "wires": [
+            [
+                "5afd0775.be3e18",
+                "eb74e5a2.f61d68"
+            ]
+        ]
+    },
+    {
+        "id": "9e70522f.3a69c8",
+        "type": "ioBroker get",
+        "z": "68a5d10a.89ed88",
+        "name": "Voltage L3",
+        "topic": "shelly.0.SHEM-3##1.Emeter2.Voltage",
+        "attrname": "payload",
+        "payloadType": "value",
+        "x": 970,
+        "y": 560,
+        "wires": [
+            [
+                "3c61d10e.8e7ed6",
+                "e7374c78.d0013"
+            ]
+        ]
+    },
+    {
+        "id": "e748f67e.9325f8",
+        "type": "ioBroker get",
+        "z": "68a5d10a.89ed88",
+        "name": "Power L1",
+        "topic": "shelly.0.SHEM-3##1.Emeter0.Power",
+        "attrname": "payload",
+        "payloadType": "value",
+        "x": 960,
+        "y": 360,
+        "wires": [
+            [
+                "2a7b1837.fa0d"
+            ]
+        ]
+    },
+    {
+        "id": "8a33c2d7.4a46b",
+        "type": "ioBroker get",
+        "z": "68a5d10a.89ed88",
+        "name": "Power L2",
+        "topic": "shelly.0.SHEM-3##1.Emeter1.Power",
+        "attrname": "payload",
+        "payloadType": "value",
+        "x": 960,
+        "y": 480,
+        "wires": [
+            [
+                "7a04a7c4.20df2"
+            ]
+        ]
+    },
+    {
+        "id": "d87d48af.875ed",
+        "type": "ioBroker get",
+        "z": "68a5d10a.89ed88",
+        "name": "Power L3",
+        "topic": "shelly.0.SHEM-3##1.Emeter2.Power",
+        "attrname": "payload",
+        "payloadType": "value",
+        "x": 960,
+        "y": 600,
+        "wires": [
+            [
+                "431cb72.bed81c8"
+            ]
+        ]
+    },
+    {
+        "id": "d0ca5c97.e53558",
+        "type": "ioBroker get",
+        "z": "68a5d10a.89ed88",
+        "name": "Current L1",
+        "topic": "shelly.0.SHEM-3##1.Emeter0.Current",
+        "attrname": "payload",
+        "payloadType": "value",
+        "x": 970,
+        "y": 400,
+        "wires": [
+            [
+                "72c150b2.74bb78",
+                "cb22e11a.46cb88"
+            ]
+        ]
+    },
+    {
+        "id": "178ef370.2e22ed",
+        "type": "ioBroker get",
+        "z": "68a5d10a.89ed88",
+        "name": "Current L2",
+        "topic": "shelly.0.SHEM-3##1.Emeter1.Current",
+        "attrname": "payload",
+        "payloadType": "value",
+        "x": 970,
+        "y": 520,
+        "wires": [
+            [
+                "176085ea.539bba",
+                "eaebdbd8.a98c48"
+            ]
+        ]
+    },
+    {
+        "id": "e38226a2.f7a758",
+        "type": "ioBroker get",
+        "z": "68a5d10a.89ed88",
+        "name": "Current L3",
+        "topic": "shelly.0.SHEM-3##1.Emeter2.Current",
+        "attrname": "payload",
+        "payloadType": "value",
+        "x": 970,
+        "y": 640,
+        "wires": [
+            [
+                "129eb6e7.4c5da1",
+                "37c08558.b531e2"
+            ]
+        ]
+    },
+    {
+        "id": "3c16ca74.9c30e6",
+        "type": "change",
+        "z": "68a5d10a.89ed88",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "U1",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1200,
+        "y": 700,
+        "wires": [
+            [
+                "7a736bbe.8f3764"
+            ]
+        ]
+    },
+    {
+        "id": "eb74e5a2.f61d68",
+        "type": "change",
+        "z": "68a5d10a.89ed88",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "U2",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1200,
+        "y": 740,
+        "wires": [
+            [
+                "7a736bbe.8f3764"
+            ]
+        ]
+    },
+    {
+        "id": "e7374c78.d0013",
+        "type": "change",
+        "z": "68a5d10a.89ed88",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "U3",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1200,
+        "y": 780,
+        "wires": [
+            [
+                "7a736bbe.8f3764"
+            ]
+        ]
+    },
+    {
+        "id": "7a736bbe.8f3764",
+        "type": "function",
+        "z": "68a5d10a.89ed88",
+        "name": "",
+        "func": "var U1 =flow.get(\"U1\")||0;\nvar U2 = flow.get(\"U2\")||0;\nvar U3 = flow.get(\"U3\")||0;\nreturn {payload: (parseFloat(U1)+parseFloat(U2)+parseFloat(U3))/3}",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1350,
+        "y": 740,
+        "wires": [
+            [
+                "d0c3c0be.fff19"
+            ]
+        ]
+    },
+    {
+        "id": "d0c3c0be.fff19",
+        "type": "delay",
+        "z": "68a5d10a.89ed88",
+        "name": "1msg/2s",
+        "pauseType": "rate",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "2",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 1500,
+        "y": 740,
+        "wires": [
+            [
+                "e8dba5f3.11c45"
+            ]
+        ]
+    },
+    {
+        "id": "31b05f0f.f81c",
+        "type": "function",
+        "z": "68a5d10a.89ed88",
+        "name": "",
+        "func": "var I1 =flow.get(\"I1\")||0;\nvar I2 = flow.get(\"I2\")||0;\nvar I3 = flow.get(\"I3\")||0;\nreturn {payload: parseFloat(I1)+parseFloat(I2)+parseFloat(I3)}",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1350,
+        "y": 880,
+        "wires": [
+            [
+                "e0c0b8de.608e1"
+            ]
+        ]
+    },
+    {
+        "id": "cb22e11a.46cb88",
+        "type": "change",
+        "z": "68a5d10a.89ed88",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "I1",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1190,
+        "y": 840,
+        "wires": [
+            [
+                "31b05f0f.f81c"
+            ]
+        ]
+    },
+    {
+        "id": "eaebdbd8.a98c48",
+        "type": "change",
+        "z": "68a5d10a.89ed88",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "I2",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1190,
+        "y": 880,
+        "wires": [
+            [
+                "31b05f0f.f81c"
+            ]
+        ]
+    },
+    {
+        "id": "37c08558.b531e2",
+        "type": "change",
+        "z": "68a5d10a.89ed88",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "I3",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1190,
+        "y": 920,
+        "wires": [
+            [
+                "31b05f0f.f81c"
+            ]
+        ]
+    },
+    {
+        "id": "e0c0b8de.608e1",
+        "type": "delay",
+        "z": "68a5d10a.89ed88",
+        "name": "1msg/2s",
+        "pauseType": "rate",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "2",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 1480,
+        "y": 880,
+        "wires": [
+            [
+                "9021d660.0e4ec8"
+            ]
+        ]
+    },
+    {
+        "id": "a4f2d6f3.291148",
+        "type": "inject",
+        "z": "68a5d10a.89ed88",
+        "name": "Abruf Werte alle 10sek",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "20",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 750,
+        "y": 420,
+        "wires": [
+            [
+                "bb68c068.478308",
+                "b92dd4fd.9c6588",
+                "cf8b3580.bf4f7",
+                "82a0bb5c.8168d8",
+                "ba985ff6.112e68",
+                "dfdad937.290628",
+                "e748f67e.9325f8",
+                "d0ca5c97.e53558",
+                "a4c78b7f.04ce2",
+                "8a33c2d7.4a46b",
+                "178ef370.2e22ed",
+                "9e70522f.3a69c8",
+                "d87d48af.875ed",
+                "e38226a2.f7a758"
+            ]
+        ]
+    },
+    {
+        "id": "d20b2f5b.8af0e8",
+        "type": "template",
+        "z": "68a5d10a.89ed88",
+        "name": "Summiert G [kWh]",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "{\"id\":3000,\"value\":{{payload}}}",
+        "output": "json",
+        "x": 1730,
+        "y": 80,
+        "wires": [
+            [
+                "f5ccee05.bc02f8"
+            ]
+        ]
+    },
+    {
+        "id": "3ae37369.a51d8c",
+        "type": "json",
+        "z": "68a5d10a.89ed88",
+        "name": "String in Number",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 1210,
+        "y": 80,
+        "wires": [
+            [
+                "65e00ed6.443f"
+            ]
+        ]
+    },
+    {
+        "id": "65e00ed6.443f",
+        "type": "function",
+        "z": "68a5d10a.89ed88",
+        "name": "Zählerstand + Gesamtverbrauch",
+        "func": "var gesamt = (msg.payload)+35178.9;\nreturn {payload: gesamt}\n",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1470,
+        "y": 80,
+        "wires": [
+            [
+                "d20b2f5b.8af0e8"
+            ]
+        ]
+    }
+]
