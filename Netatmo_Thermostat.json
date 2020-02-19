@@ -1,0 +1,362 @@
+[
+    {
+        "id": "706af0c2.ca62a",
+        "type": "tab",
+        "label": "Netatmo Thermostat",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "fde54712.7d3238",
+        "type": "homeeDevice",
+        "z": "706af0c2.ca62a",
+        "virtual-homee": "",
+        "name": "Thermostat",
+        "nodeId": "10",
+        "profile": "3006",
+        "icon": "nodeicon_heatingsystem",
+        "attributes": "[{\"id\":100,\"node_id\":10,\"instance\":0,\"minimum\":0,\"maximum\":200,\"current_value\":0,\"target_value\":0,\"last_value\":0,\"unit\":\"\",\"step_value\":1,\"editable\":0,\"type\":44,\"state\":1,\"last_changed\":1543522914,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":1,\"data\":\"0\"},{\"id\":102,\"node_id\":10,\"instance\":0,\"minimum\":0,\"maximum\":100,\"current_value\":95,\"target_value\":95,\"last_value\":95,\"unit\":\"%25\",\"step_value\":1,\"editable\":0,\"type\":8,\"state\":1,\"last_changed\":1573711842,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":1,\"data\":\"\"},{\"id\":103,\"node_id\":10,\"instance\":0,\"minimum\":-50,\"maximum\":125,\"current_value\":21.2,\"target_value\":21.2,\"last_value\":21.17,\"unit\":\"%C2%B0C\",\"step_value\":1,\"editable\":0,\"type\":5,\"state\":1,\"last_changed\":1573711842,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":1,\"data\":\"\"},{\"id\":104,\"node_id\":10,\"instance\":0,\"minimum\":7,\"maximum\":28,\"current_value\":21,\"target_value\":21,\"last_value\":21,\"unit\":\"%C2%B0C\",\"step_value\":0.5,\"editable\":1,\"type\":6,\"state\":1,\"last_changed\":1573711842,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":1,\"data\":\"\"},{\"id\":105,\"node_id\":10,\"instance\":0,\"minimum\":0,\"maximum\":4,\"current_value\":4,\"target_value\":4,\"last_value\":3,\"unit\":\"n%Fa\",\"step_value\":1,\"editable\":0,\"type\":33,\"state\":1,\"last_changed\":1581697259,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":4,\"data\":\"\"},{\"id\":106,\"node_id\":10,\"instance\":0,\"minimum\":7,\"maximum\":28,\"current_value\":17,\"target_value\":17,\"last_value\":17,\"unit\":\"%C2%B0C\",\"step_value\":0.5,\"editable\":0,\"type\":149,\"state\":1,\"last_changed\":1581697259,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":1,\"data\":\"\"}]",
+        "x": 850,
+        "y": 380,
+        "wires": [
+            [
+                "bb94edcd.a99fc"
+            ]
+        ]
+    },
+    {
+        "id": "55c8b5ae.eb5f6c",
+        "type": "function",
+        "z": "706af0c2.ca62a",
+        "name": "Solltemperatur",
+        "func": "node.send({\n    payload: {\n              \"id\": 103,\n              \"value\": msg.payload.home.rooms[0].therm_measured_temperature\n             }\n          });",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 600,
+        "y": 260,
+        "wires": [
+            [
+                "fde54712.7d3238"
+            ]
+        ]
+    },
+    {
+        "id": "a7a5b81d.6d7dd8",
+        "type": "homestatus",
+        "z": "706af0c2.ca62a",
+        "name": "Thermostat Status",
+        "auth": "2beec2ad.b79efe",
+        "home_id": "HOME_ID",
+        "device_types": "NATherm1",
+        "x": 390,
+        "y": 320,
+        "wires": [
+            [
+                "55c8b5ae.eb5f6c",
+                "1cadd71.192be29",
+                "e8bc2adc.0ad0e8",
+                "da50ac4f.c66e9",
+                "19762658.1bfcda",
+                "b348af48.421e3"
+            ]
+        ]
+    },
+    {
+        "id": "b1866ddd.5a1ac",
+        "type": "inject",
+        "z": "706af0c2.ca62a",
+        "name": "Temperaturmessung Intervall",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "60",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 130,
+        "y": 320,
+        "wires": [
+            [
+                "a7a5b81d.6d7dd8",
+                "3e5d7466.e73e7c"
+            ]
+        ]
+    },
+    {
+        "id": "aec0ad72.18266",
+        "type": "comment",
+        "z": "706af0c2.ca62a",
+        "name": "Messung",
+        "info": "Alle 5 Minuten Übertragung der aktuellen Meßwerte",
+        "x": 140,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "1cadd71.192be29",
+        "type": "function",
+        "z": "706af0c2.ca62a",
+        "name": "Isttemperatur",
+        "func": "node.send({\n    payload: {\n              \"id\": 104,\n              \"value\": msg.payload.home.rooms[0].therm_setpoint_temperature\n             }\n          });",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 590,
+        "y": 320,
+        "wires": [
+            [
+                "fde54712.7d3238"
+            ]
+        ]
+    },
+    {
+        "id": "e8bc2adc.0ad0e8",
+        "type": "function",
+        "z": "706af0c2.ca62a",
+        "name": "Battery Level",
+        "func": "var batlevel_netatmo;\nbatlevel_netatmo = msg.payload.home.modules[1].battery_level;\nif (batlevel_netatmo <= 2500)\n    {\n    batlevel_netatmo = 2500\n    }\nif (batlevel_netatmo >= 5000)\n    {\n    batlevel_netatmo = 5000\n    }\nvar batlevel_homee = 0;\nbatlevel_homee = ((batlevel_netatmo - 2500) * 100) / 2000;\n    node.send({\n        payload: {\n                \"id\": 102,\n                  \"value\": Math.round(batlevel_homee)\n                 }\n              });",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 590,
+        "y": 380,
+        "wires": [
+            [
+                "fde54712.7d3238"
+            ]
+        ]
+    },
+    {
+        "id": "da50ac4f.c66e9",
+        "type": "function",
+        "z": "706af0c2.ca62a",
+        "name": "Verbindungsqualität",
+        "func": "if (msg.payload.home.modules[1].rf_strength <= 60)\n    {\n    node.send({\n        payload: {\n                \"id\": 105,\n                  \"value\": 4\n                 }\n              });\n    }\nelse if (msg.payload.home.modules[1].rf_strength <= 85)\n    {\n    node.send({\n        payload: {\n                \"id\": 105,\n                  \"value\": 3\n                 }\n              });\n    }\nelse if (msg.payload.home.modules[1].rf_strength <= 100)\n    {\n    node.send({\n        payload: {\n                \"id\": 105,\n                  \"value\": 2\n                 }\n              });\n    }\nelse if (msg.payload.home.modules[1].rf_strength <= 110)\n    {\n    node.send({\n        payload: {\n                \"id\": 105,\n                  \"value\": 1\n                 }\n              });\n}\nelse if (msg.payload.home.modules[1].rf_strength <= 130)\n    {\n    node.send({\n        payload: {\n                \"id\": 105,\n                  \"value\": 0\n                 }\n              });\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 610,
+        "y": 480,
+        "wires": [
+            [
+                "fde54712.7d3238"
+            ]
+        ]
+    },
+    {
+        "id": "19762658.1bfcda",
+        "type": "function",
+        "z": "706af0c2.ca62a",
+        "name": "Firmware Version",
+        "func": "node.send({\n    payload: {\n              \"id\": 100,\n              \"value\": msg.payload.home.modules[1].firmware_revision\n             }\n          });",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 610,
+        "y": 580,
+        "wires": [
+            [
+                "fde54712.7d3238"
+            ]
+        ]
+    },
+    {
+        "id": "71286483.04a78c",
+        "type": "setroomthermpoint",
+        "z": "706af0c2.ca62a",
+        "name": "Set Room Temp",
+        "auth": "2beec2ad.b79efe",
+        "home_id": "592591df743c363a778b484e",
+        "room_id": "855178587",
+        "mode": "manual",
+        "temp": "25",
+        "endtime": "",
+        "x": 1040,
+        "y": 440,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "bb94edcd.a99fc",
+        "type": "function",
+        "z": "706af0c2.ca62a",
+        "name": "Übergabe soll",
+        "func": "if (msg.payload.attributeId === 104){\n    var temp = msg.payload.targetValue;\nnode.send({\n    payload: {\n              temp\n             }\n          })\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1040,
+        "y": 380,
+        "wires": [
+            [
+                "71286483.04a78c"
+            ]
+        ]
+    },
+    {
+        "id": "3e5d7466.e73e7c",
+        "type": "homesdata",
+        "z": "706af0c2.ca62a",
+        "name": "Thermostat Data",
+        "auth": "2beec2ad.b79efe",
+        "home_id": "592591df743c363a778b484e",
+        "gateway_types": "NAPlug",
+        "x": 390,
+        "y": 160,
+        "wires": [
+            [
+                "d8e11c6.66664e"
+            ]
+        ]
+    },
+    {
+        "id": "d8e11c6.66664e",
+        "type": "function",
+        "z": "706af0c2.ca62a",
+        "name": "Spartemperatur",
+        "func": "node.send({\n    payload: {\n              \"id\": 106,\n              \"value\": msg.payload.homes[0].therm_schedules[0].away_temp\n             }\n          });",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 600,
+        "y": 160,
+        "wires": [
+            [
+                "fde54712.7d3238"
+            ]
+        ]
+    },
+    {
+        "id": "e04885f5.072858",
+        "type": "comment",
+        "z": "706af0c2.ca62a",
+        "name": "Battery Levels",
+        "info": "/* Battery range: 4500 ... 3000 */\n4100;/*full*/\n3600;/*high*/\n3300;/*medium*/\n3000;/*low*/\n/* below 3000: very low */",
+        "x": 590,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "e50d392e.af1d28",
+        "type": "comment",
+        "z": "706af0c2.ca62a",
+        "name": "Signal Levels",
+        "info": "130 /* bad signal => 1 */\n115 /* bad middle quality signal => 2 */\n90  /* middle quality signal => 3 */\n75  /* middle good signal => 4 */\n60  /* good signal => 5 */",
+        "x": 590,
+        "y": 520,
+        "wires": []
+    },
+    {
+        "id": "4b51eacc.ed0344",
+        "type": "homeeDevice",
+        "z": "706af0c2.ca62a",
+        "virtual-homee": "",
+        "name": "Heizplan",
+        "nodeId": "20",
+        "profile": "10",
+        "icon": "nodeicon_radiator",
+        "attributes": "[{\"id\":200,\"node_id\":20,\"instance\":0,\"minimum\":0,\"maximum\":1,\"current_value\":1,\"target_value\":1,\"last_value\":1,\"unit\":\"\",\"step_value\":1,\"editable\":1,\"type\":1,\"state\":1,\"last_changed\":1543522914,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":1,\"data\":\"\"}]",
+        "x": 840,
+        "y": 680,
+        "wires": [
+            [
+                "2be26a08.de0496"
+            ]
+        ]
+    },
+    {
+        "id": "2be26a08.de0496",
+        "type": "function",
+        "z": "706af0c2.ca62a",
+        "name": "Übergabe Therm Mode",
+        "func": "var schedule = \"schedule\";\nif (msg.payload.attributeId === 200 && msg.payload.targetValue === 1){\n    schedule = \"schedule\";\nnode.send({\n    payload: {\n              mode: schedule\n             }\n          })\n}\nif (msg.payload.attributeId === 200 && msg.payload.targetValue === 0){\n    schedule = \"away\";\nnode.send({\n    payload: {\n              mode: schedule\n             }\n          })\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1070,
+        "y": 680,
+        "wires": [
+            [
+                "4dd8e82.b05d818"
+            ]
+        ]
+    },
+    {
+        "id": "4dd8e82.b05d818",
+        "type": "setthermmode",
+        "z": "706af0c2.ca62a",
+        "name": "Set Therm Mode",
+        "auth": "2beec2ad.b79efe",
+        "home_id": "592591df743c363a778b484e",
+        "mode": "schedule",
+        "endtime": "180",
+        "x": 1050,
+        "y": 740,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "b348af48.421e3",
+        "type": "function",
+        "z": "706af0c2.ca62a",
+        "name": "Therm Mode",
+        "func": "if (msg.payload.home.rooms[0].therm_setpoint_mode === \"away\")\n{\nnode.send({\n    payload: {\n              \"id\": 200,\n              \"value\": 0\n             }\n          });\n}          \nif (msg.payload.home.rooms[0].therm_setpoint_mode === \"schedule\")\n{\nnode.send({\n    payload: {\n              \"id\": 200,\n              \"value\": 1\n             }\n          });\n}   ",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 590,
+        "y": 680,
+        "wires": [
+            [
+                "4b51eacc.ed0344"
+            ]
+        ]
+    },
+    {
+        "id": "142f48e4.a32247",
+        "type": "function",
+        "z": "706af0c2.ca62a",
+        "name": "Battery Level",
+        "func": "if (msg.payload.home.modules[1].battery_level <= 6000)\n    {\n    node.send({\n        payload: {\n                \"id\": 102,\n                  \"value\": 100\n                 }\n              });\n    }\nelse if (msg.payload.home.modules[1].battery_level <= 3600)\n    {\n    node.send({\n        payload: {\n                \"id\": 102,\n                  \"value\": 70\n                 }\n              });\n    }\nelse if (msg.payload.home.modules[1].battery_level <= 3300)\n    {\n    node.send({\n        payload: {\n                \"id\": 102,\n                  \"value\": 40\n                 }\n              });\n    }\nelse if (msg.payload.home.modules[1].battery_level <= 3000)\n    {\n    node.send({\n        payload: {\n                \"id\": 102,\n                  \"value\": 20\n                 }\n              });\n}\nelse if (msg.payload.home.modules[1].battery_level <= 2800)\n    {\n    node.send({\n        payload: {\n                \"id\": 102,\n                  \"value\": 5\n                 }\n              });\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 730,
+        "y": 100,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "4eee2394.e7e2fc",
+        "type": "comment",
+        "z": "706af0c2.ca62a",
+        "name": "Node 10",
+        "info": "",
+        "x": 850,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "a982aa63.91ecb8",
+        "type": "comment",
+        "z": "706af0c2.ca62a",
+        "name": "Node 20",
+        "info": "",
+        "x": 840,
+        "y": 640,
+        "wires": []
+    },
+    {
+        "id": "6e8af5bc.f9df3c",
+        "type": "comment",
+        "z": "706af0c2.ca62a",
+        "name": "tested with node-red-contrib-homee@0.3.0-beta.7",
+        "info": "",
+        "x": 250,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "2beec2ad.b79efe",
+        "type": "netatmoconfig",
+        "z": "",
+        "client_id": "CLIENT_ID",
+        "client_secret": "CLIENT_SECRET",
+        "username": "USERNAME",
+        "password": "PASSWORD"
+    }
+]
