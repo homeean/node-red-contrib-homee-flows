@@ -1,0 +1,129 @@
+[
+    {
+        "id": "c66b8cec.fdaa8",
+        "type": "function",
+        "z": "76b6d694.226ff8",
+        "name": "Abfrage Fenster",
+        "func": "if ((msg.payload.homeegram && msg.payload.homeegram.id === 29 && msg.payload.homeegram.state === 2)||msg.payload === true){\nconst attributes = global.get('homee.attributes');\nvar test = attributes.filter(attribute => ((attribute.type === 10)||(attribute.type === 14)) && ((attribute.current_value ===1)||(attribute.current_value === 2)) )//.map(a => a.current_value).reduce((a,c) => a+c);\ntest.forEach(function(id){node.send ({payload: [id.node_id,id.current_value]})});\nvar test2 = attributes.filter(attribute => (attribute.type === 10)||(attribute.type === 14)).map(a => a.current_value).reduce((a,c) => a+c);\nif (test2===0){return{payload:false}}\nreturn }\nreturn \n",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 160,
+        "y": 100,
+        "wires": [
+            [
+                "b120798.7769f88"
+            ]
+        ]
+    },
+    {
+        "id": "b120798.7769f88",
+        "type": "function",
+        "z": "76b6d694.226ff8",
+        "name": "Namen und Status abrufen",
+        "func": "if(msg.payload ===false){return{payload:[\"Alle Fenster\",\"geschlossen\"]}}\nif(msg.payload[0] === 28){return}\nswitch (msg.payload[1]){\n    case 0 : variable = \"geschlossen\";\n    break;\n    case 1 : variable = \"geöffnet \";\n    break;\n    case 2 : variable = \"gekippt\";\n    break\n}\nconst attributes = global.get('homee.nodes');\nvar test = attributes.filter(attribute => attribute.id === msg.payload[0] ).map(a => a.name)\ntest.forEach(function(id){test = id })\nmsg.payload = \" \"+decodeURIComponent(test) +\" ist \"+ variable+\" \";\nreturn msg",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 400,
+        "y": 100,
+        "wires": [
+            [
+                "7d4a2960.ea3f18"
+            ]
+        ]
+    },
+    {
+        "id": "7d4a2960.ea3f18",
+        "type": "join",
+        "z": "76b6d694.226ff8",
+        "name": "",
+        "mode": "custom",
+        "build": "string",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "und",
+        "joinerType": "str",
+        "accumulate": false,
+        "timeout": "1",
+        "count": "",
+        "reduceRight": false,
+        "reduceExp": "",
+        "reduceInit": "",
+        "reduceInitType": "",
+        "reduceFixup": "",
+        "x": 590,
+        "y": 100,
+        "wires": [
+            [
+                "c4bbdb66.02e168"
+            ]
+        ]
+    },
+    {
+        "id": "c4bbdb66.02e168",
+        "type": "template",
+        "z": "76b6d694.226ff8",
+        "name": "",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "put:/homeegrams/29/actions/37?message={{payload}}",
+        "output": "str",
+        "x": 740,
+        "y": 100,
+        "wires": [
+            [
+                "10f47fb6.4557"
+            ]
+        ]
+    },
+    {
+        "id": "736cb8af.30cdf8",
+        "type": "inject",
+        "z": "76b6d694.226ff8",
+        "name": "",
+        "topic": "",
+        "payload": "true",
+        "payloadType": "bool",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 110,
+        "y": 220,
+        "wires": [
+            [
+                "c66b8cec.fdaa8"
+            ]
+        ]
+    },
+    {
+        "id": "2473ee6e.423162",
+        "type": "link in",
+        "z": "76b6d694.226ff8",
+        "name": "",
+        "links": [
+            "2d175cfc.54ee54"
+        ],
+        "x": 35,
+        "y": 100,
+        "wires": [
+            [
+                "c66b8cec.fdaa8"
+            ]
+        ]
+    },
+    {
+        "id": "10f47fb6.4557",
+        "type": "link out",
+        "z": "76b6d694.226ff8",
+        "name": "",
+        "links": [
+            "e204158a.3c9808"
+        ],
+        "x": 875,
+        "y": 100,
+        "wires": []
+    }
+]
