@@ -1,0 +1,324 @@
+[
+    {
+        "id": "fc0e9704.8faa2",
+        "type": "homeeDevice",
+        "z": "b6b0940f.bee21",
+        "virtual-homee": "",
+        "name": "Energy Meter",
+        "nodeId": "280",
+        "profile": "38",
+        "icon": "default",
+        "attributes": "[{\"id\":280,\"node_id\":280,\"instance\":0,\"minimum\":0,\"maximum\":10000,\"current_value\":0,\"target_value\":0,\"last_value\":0,\"unit\":\"text\",\"step_value\":1,\"editable\":0,\"type\":84,\"state\":1,\"last_changed\":1572785482,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":1,\"data\":\"HM0000432\"},{\"id\":281,\"node_id\":280,\"instance\":0,\"minimum\":0,\"maximum\":10000,\"current_value\":0,\"target_value\":0,\"last_value\":0,\"unit\":\"text\",\"step_value\":1,\"editable\":0,\"type\":45,\"state\":1,\"last_changed\":1572785482,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":1,\"data\":\"11.4.11\"},{\"id\":282,\"node_id\":280,\"instance\":0,\"minimum\":0,\"maximum\":50000,\"current_value\":0,\"target_value\":0,\"last_value\":0,\"unit\":\"W\",\"step_value\":100,\"editable\":0,\"type\":264,\"state\":1,\"last_changed\":1572785482,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":4,\"data\":\"\"},{\"id\":283,\"node_id\":280,\"instance\":0,\"minimum\":0,\"maximum\":10000,\"current_value\":0,\"target_value\":0,\"last_value\":0,\"unit\":\"W\",\"step_value\":100,\"editable\":0,\"type\":265,\"state\":1,\"last_changed\":1572785482,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":4,\"data\":\"\"},{\"id\":284,\"node_id\":280,\"instance\":0,\"minimum\":-50000,\"maximum\":50000,\"current_value\":0,\"target_value\":0,\"last_value\":0,\"unit\":\"W\",\"step_value\":100,\"editable\":0,\"type\":267,\"state\":1,\"last_changed\":1572785482,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":4,\"data\":\"\"},{\"id\":285,\"node_id\":280,\"instance\":0,\"minimum\":0,\"maximum\":3500,\"current_value\":0,\"target_value\":0,\"last_value\":0,\"unit\":\"W\",\"step_value\":100,\"editable\":0,\"type\":268,\"state\":1,\"last_changed\":1572785482,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":4,\"data\":\"\"},{\"id\":286,\"node_id\":280,\"instance\":0,\"minimum\":0,\"maximum\":3500,\"current_value\":0,\"target_value\":0,\"last_value\":0,\"unit\":\"W\",\"step_value\":100,\"editable\":0,\"type\":269,\"state\":1,\"last_changed\":1572785482,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":4,\"data\":\"\"},{\"id\":287,\"node_id\":280,\"instance\":0,\"minimum\":0,\"maximum\":100,\"current_value\":0,\"target_value\":100,\"last_value\":0,\"unit\":\"%25\",\"step_value\":1,\"editable\":0,\"type\":273,\"state\":1,\"last_changed\":1572785482,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":4,\"data\":\"\"},{\"id\":288,\"node_id\":280,\"instance\":0,\"minimum\":-50000,\"maximum\":7500,\"current_value\":0,\"target_value\":0,\"last_value\":0,\"unit\":\"W\",\"step_value\":100,\"editable\":0,\"type\":266,\"state\":1,\"last_changed\":1572785663,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":4,\"data\":\"\"},{\"id\":289,\"node_id\":280,\"instance\":0,\"minimum\":0,\"maximum\":9999999,\"current_value\":0,\"target_value\":0,\"last_value\":0,\"unit\":\"kWh\",\"step_value\":1,\"editable\":0,\"type\":274,\"state\":6,\"last_changed\":1572785482,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":4,\"data\":\"\"},{\"id\":290,\"node_id\":280,\"instance\":0,\"minimum\":0,\"maximum\":9999999,\"current_value\":0,\"target_value\":0,\"last_value\":0,\"unit\":\"kWh\",\"step_value\":1,\"editable\":0,\"type\":275,\"state\":6,\"last_changed\":1572785482,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":4,\"data\":\"\"},{\"id\":291,\"node_id\":280,\"instance\":0,\"minimum\":0,\"maximum\":9999999,\"current_value\":0,\"target_value\":0,\"last_value\":0,\"unit\":\"kWh\",\"step_value\":1,\"editable\":0,\"type\":276,\"state\":6,\"last_changed\":1572785482,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":4,\"data\":\"\"},{\"id\":292,\"node_id\":280,\"instance\":0,\"minimum\":0,\"maximum\":9999999,\"current_value\":0,\"target_value\":0,\"last_value\":0,\"unit\":\"kWh\",\"step_value\":1,\"editable\":0,\"type\":277,\"state\":6,\"last_changed\":1572785482,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":4,\"data\":\"\"},{\"id\":293,\"node_id\":280,\"instance\":0,\"minimum\":0,\"maximum\":9999999,\"current_value\":0,\"target_value\":0,\"last_value\":0,\"unit\":\"kWh\",\"step_value\":1,\"editable\":0,\"type\":278,\"state\":6,\"last_changed\":1572785482,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":4,\"data\":\"\"},{\"id\":294,\"node_id\":280,\"instance\":0,\"minimum\":0,\"maximum\":9999999,\"current_value\":0,\"target_value\":0,\"last_value\":0,\"unit\":\"kWh\",\"step_value\":1,\"editable\":0,\"type\":279,\"state\":6,\"last_changed\":1572785482,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":4,\"data\":\"\"}]",
+        "x": 1240,
+        "y": 380,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "352621d.ceb7f5e",
+        "type": "comment",
+        "z": "b6b0940f.bee21",
+        "name": "Zustände -> Attribute.ID",
+        "info": "282=Netzbezug\n283=Einspeisung\n284=Verbrauch\n285=Entladung\n286=Ladung\n287=Ladezustand\n288=Produktion",
+        "x": 1240,
+        "y": 540,
+        "wires": []
+    },
+    {
+        "id": "8b002189.381e18",
+        "type": "http request",
+        "z": "b6b0940f.bee21",
+        "name": "",
+        "method": "GET",
+        "ret": "obj",
+        "url": "http://192.168.0.200:8080/api/v1/status",
+        "tls": "",
+        "x": 530,
+        "y": 380,
+        "wires": [
+            [
+                "95a2cf9e.3b1a8",
+                "5d4721b.0a79fe",
+                "a171b039.98713",
+                "d0a154b1.704aa",
+                "14226486.398e83",
+                "dca1b52c.65ed18",
+                "89c94735.27a0a",
+                "49bed66d.a01378"
+            ]
+        ]
+    },
+    {
+        "id": "96afb158.510388",
+        "type": "inject",
+        "z": "b6b0940f.bee21",
+        "name": "Fetch battery data",
+        "topic": "",
+        "payload": "true",
+        "payloadType": "bool",
+        "repeat": "20",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 310,
+        "y": 380,
+        "wires": [
+            [
+                "8b002189.381e18"
+            ]
+        ]
+    },
+    {
+        "id": "49bed66d.a01378",
+        "type": "debug",
+        "z": "b6b0940f.bee21",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 790,
+        "y": 540,
+        "wires": []
+    },
+    {
+        "id": "95a2cf9e.3b1a8",
+        "type": "function",
+        "z": "b6b0940f.bee21",
+        "name": "Consumption",
+        "func": "var tmp = {\n    \"id\": 284,\n    \"value\": msg.payload.Consumption_W\n};\n\nmsg[\"payload\"] = tmp;\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 790,
+        "y": 340,
+        "wires": [
+            [
+                "c155f133.6c147"
+            ]
+        ]
+    },
+    {
+        "id": "5d4721b.0a79fe",
+        "type": "function",
+        "z": "b6b0940f.bee21",
+        "name": "Production",
+        "func": "var tmp = {\n    \"id\": 288,\n    \"value\": msg.payload.Production_W\n};\n\nmsg[\"payload\"] = tmp;\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 790,
+        "y": 500,
+        "wires": [
+            [
+                "37327fdd.c0ca88"
+            ]
+        ]
+    },
+    {
+        "id": "a171b039.98713",
+        "type": "function",
+        "z": "b6b0940f.bee21",
+        "name": "GridFeedIn",
+        "func": "var tmp = {\n    \"id\": 283,\n    \"value\": msg.payload.GridFeedIn_W > 0 ? msg.payload.GridFeedIn_W : 0\n};\n\nmsg[\"payload\"] = tmp;\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 790,
+        "y": 300,
+        "wires": [
+            [
+                "4243bdfc.78fa8c"
+            ]
+        ]
+    },
+    {
+        "id": "d0a154b1.704aa",
+        "type": "function",
+        "z": "b6b0940f.bee21",
+        "name": "GridConsumption",
+        "func": "var tmp = {\n    \"id\": 282,\n    \"value\": msg.payload.GridFeedIn_W < 0 ? (msg.payload.GridFeedIn_W * -1) : 0\n};\n\nmsg[\"payload\"] = tmp;\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 810,
+        "y": 260,
+        "wires": [
+            [
+                "dcb1ff88.6e462"
+            ]
+        ]
+    },
+    {
+        "id": "14226486.398e83",
+        "type": "function",
+        "z": "b6b0940f.bee21",
+        "name": "BatteryDischarging",
+        "func": "var tmp = {\n    \"id\": 285,\n    \"value\": msg.payload.BatteryDischarging ? msg.payload.Pac_total_W : 0\n};\n\nmsg[\"payload\"] = tmp;\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 810,
+        "y": 380,
+        "wires": [
+            [
+                "718c121a.f36e34"
+            ]
+        ]
+    },
+    {
+        "id": "dca1b52c.65ed18",
+        "type": "function",
+        "z": "b6b0940f.bee21",
+        "name": "BatteryCharging",
+        "func": "var tmp = {\n    \"id\": 286,\n    \"value\": msg.payload.BatteryCharging ? (msg.payload.Pac_total_W * -1) : 0\n};\n\nmsg[\"payload\"] = tmp;\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 800,
+        "y": 420,
+        "wires": [
+            [
+                "bc21f62d.60c86"
+            ]
+        ]
+    },
+    {
+        "id": "89c94735.27a0a",
+        "type": "function",
+        "z": "b6b0940f.bee21",
+        "name": "BatteryState",
+        "func": "var tmp = {\n    \"id\": 287,\n    \"value\": msg.payload.USOC\n};\n\nmsg[\"payload\"] = tmp;\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 790,
+        "y": 460,
+        "wires": [
+            [
+                "375dd95.2d8d326"
+            ]
+        ]
+    },
+    {
+        "id": "37327fdd.c0ca88",
+        "type": "rbe",
+        "z": "b6b0940f.bee21",
+        "name": "Wert",
+        "func": "deadbandEq",
+        "gap": "10%",
+        "start": "",
+        "inout": "out",
+        "property": "payload.value",
+        "x": 1010,
+        "y": 500,
+        "wires": [
+            [
+                "fc0e9704.8faa2"
+            ]
+        ]
+    },
+    {
+        "id": "375dd95.2d8d326",
+        "type": "rbe",
+        "z": "b6b0940f.bee21",
+        "name": "Wert",
+        "func": "deadbandEq",
+        "gap": "1%",
+        "start": "",
+        "inout": "out",
+        "property": "payload.value",
+        "x": 1010,
+        "y": 460,
+        "wires": [
+            [
+                "fc0e9704.8faa2"
+            ]
+        ]
+    },
+    {
+        "id": "bc21f62d.60c86",
+        "type": "rbe",
+        "z": "b6b0940f.bee21",
+        "name": "Wert",
+        "func": "deadbandEq",
+        "gap": "5%",
+        "start": "",
+        "inout": "out",
+        "property": "payload.value",
+        "x": 1010,
+        "y": 420,
+        "wires": [
+            [
+                "fc0e9704.8faa2"
+            ]
+        ]
+    },
+    {
+        "id": "718c121a.f36e34",
+        "type": "rbe",
+        "z": "b6b0940f.bee21",
+        "name": "Wert",
+        "func": "deadbandEq",
+        "gap": "5%",
+        "start": "",
+        "inout": "out",
+        "property": "payload.value",
+        "x": 1010,
+        "y": 380,
+        "wires": [
+            [
+                "fc0e9704.8faa2"
+            ]
+        ]
+    },
+    {
+        "id": "c155f133.6c147",
+        "type": "rbe",
+        "z": "b6b0940f.bee21",
+        "name": "Wert",
+        "func": "deadbandEq",
+        "gap": "10%",
+        "start": "",
+        "inout": "out",
+        "property": "payload.value",
+        "x": 1010,
+        "y": 340,
+        "wires": [
+            [
+                "fc0e9704.8faa2"
+            ]
+        ]
+    },
+    {
+        "id": "4243bdfc.78fa8c",
+        "type": "rbe",
+        "z": "b6b0940f.bee21",
+        "name": "Wert",
+        "func": "deadbandEq",
+        "gap": "10%",
+        "start": "",
+        "inout": "out",
+        "property": "payload.value",
+        "x": 1010,
+        "y": 300,
+        "wires": [
+            [
+                "fc0e9704.8faa2"
+            ]
+        ]
+    },
+    {
+        "id": "dcb1ff88.6e462",
+        "type": "rbe",
+        "z": "b6b0940f.bee21",
+        "name": "Wert",
+        "func": "deadbandEq",
+        "gap": "12%",
+        "start": "",
+        "inout": "out",
+        "property": "payload.value",
+        "x": 1010,
+        "y": 260,
+        "wires": [
+            [
+                "fc0e9704.8faa2"
+            ]
+        ]
+    }
+]
