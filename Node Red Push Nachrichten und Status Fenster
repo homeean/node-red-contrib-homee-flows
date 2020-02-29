@@ -15,23 +15,7 @@
         "y": 200,
         "wires": [
             [
-                "61cf9905.26af18"
-            ]
-        ]
-    },
-    {
-        "id": "61cf9905.26af18",
-        "type": "function",
-        "z": "76b6d694.226ff8",
-        "name": "Abfrage Fenster",
-        "func": "if ((msg.payload.homeegram && msg.payload.homeegram.id === 29 && msg.payload.homeegram.state === 2)||msg.payload === true){\nconst attributes = global.get('homee.attributes');\nconst nodes = global.get('homee.nodes');\nvar ausgabe = \"\";\nvar test = attributes.filter(attribute => ((attribute.type === 10)||(attribute.type === 14)) && ((attribute.current_value ===1)||(attribute.current_value === 2)) )//.map(a => a.current_value).reduce((a,c) => a+c);\ntest.forEach(function(id){\n    if(id.id === 122){return}// hier kommt die Attribut ID hin die gefiltert werden soll  \n    switch (id.current_value){\n    case 0 : variable = \"geschlossen\";\n    break;\n    case 1 : variable = \"geöffnet \";\n    break;\n    case 2 : variable = \"gekippt\";\n    break\n}\nvar nodename = nodes.filter(node => node.id === id.node_id ).map(a => a.name)\n   komponente = \" \"+decodeURIComponent(nodename) +\" ist \"+ variable+\" \";\nif(ausgabe.length > 1 ){ausgabe =ausgabe + \"und\"}\nausgabe = ausgabe+komponente \n    });\nnode.send({payload: ausgabe})    \nvar test2 = attributes.filter(attribute => (attribute.type === 10)||(attribute.type === 14)).map(a => a.current_value).reduce((a,c) => a+c);\nif (test2===0){return}\nreturn }\nreturn \n",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 440,
-        "y": 160,
-        "wires": [
-            [
-                "6ac383fe.8e4c2c"
+                "fbc74f2a.25e5d"
             ]
         ]
     },
@@ -47,7 +31,7 @@
         "y": 160,
         "wires": [
             [
-                "61cf9905.26af18"
+                "fbc74f2a.25e5d"
             ]
         ]
     },
@@ -81,5 +65,21 @@
         "x": 775,
         "y": 160,
         "wires": []
+    },
+    {
+        "id": "fbc74f2a.25e5d",
+        "type": "function",
+        "z": "76b6d694.226ff8",
+        "name": "Abfrage Fenster",
+        "func": "if (msg.payload.homeegram && msg.payload.homeegram.id === 29 && msg.payload.homeegram.play === 0){flow.set(\"state\", 0)}\nvar state = flow.get(\"state\")||0;\nif ((msg.payload.homeegram && msg.payload.homeegram.id === 29 && msg.payload.homeegram.play === 1 && state === 0)||msg.payload === true){\n    flow.set(\"state\",1);\nconst attributes = global.get('homee.attributes');\nconst nodes = global.get('homee.nodes');\nvar ausgabe = \"\";\nvar test = attributes.filter(attribute => ((attribute.type === 10)||(attribute.type === 14)) && ((attribute.current_value ===1)||(attribute.current_value === 2)) )//.map(a => a.current_value).reduce((a,c) => a+c);\ntest.forEach(function(id){\n    if(id.id === 0){return}// hier kommt die Attribut ID hin die gefiltert werden soll\n    switch (id.current_value){\n    case 0 : variable = \"geschlossen\";\n    break;\n    case 1 : variable = \"geöffnet \";\n    break;\n    case 2 : variable = \"gekippt\";\n    break\n}\nvar nodename = nodes.filter(node => node.id === id.node_id ).map(a => a.name)\n   komponente = \" \"+decodeURIComponent(nodename) +\" ist \"+ variable+\" \";\nif(ausgabe.length > 1 ){ausgabe =ausgabe + \"und\"}\nausgabe = ausgabe+komponente \n    });\nnode.send({payload: ausgabe})    \nvar test2 = attributes.filter(attribute => (attribute.type === 10)||(attribute.type === 14)).map(a => a.current_value).reduce((a,c) => a+c);\nif (test2===0){return}\nreturn }\nreturn \n",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 440,
+        "y": 160,
+        "wires": [
+            [
+                "6ac383fe.8e4c2c"
+            ]
+        ]
     }
-]  
+]
