@@ -1,0 +1,375 @@
+[
+    {
+        "id": "9781cf61.7683f",
+        "type": "homeeDevice",
+        "z": "76b6d694.226ff8",
+        "virtual-homee": "",
+        "name": "random2",
+        "nodeId": "510",
+        "profile": "18",
+        "icon": "default",
+        "attributes": "[{\"id\":5100,\"node_id\":510,\"instance\":0,\"minimum\":0,\"maximum\":1,\"current_value\":0,\"target_value\":0,\"last_value\":0,\"unit\":\"Auslöser\",\"step_value\":1,\"editable\":1,\"type\":1,\"state\":1,\"last_changed\":1574494369,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":1,\"data\":\"\"},{\"id\":5101,\"node_id\":510,\"instance\":1,\"minimum\":0,\"maximum\":1,\"current_value\":0,\"target_value\":0,\"last_value\":0,\"unit\":\"Random einschalten\",\"step_value\":1,\"editable\":1,\"type\":1,\"state\":1,\"last_changed\":1574494369,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":1,\"data\":\"\"},{\"id\":5102,\"node_id\":510,\"instance\":0,\"minimum\":0,\"maximum\":3600,\"current_value\":0,\"target_value\":0,\"last_value\":0,\"unit\":\"Verzögerung in Sekunden\",\"step_value\":1,\"editable\":1,\"type\":2,\"state\":1,\"last_changed\":1574494369,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":1,\"data\":\"\"},{\"id\":5103,\"node_id\":510,\"instance\":1,\"minimum\":0,\"maximum\":3600,\"current_value\":0,\"target_value\":0,\"last_value\":0,\"unit\":\"tatsächliche Verzögerung in S\",\"step_value\":1,\"editable\":1,\"type\":2,\"state\":1,\"last_changed\":1574494369,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":1,\"data\":\"\"},{\"id\":5104,\"node_id\":510,\"instance\":2,\"minimum\":0,\"maximum\":3600,\"current_value\":0,\"target_value\":0,\"last_value\":0,\"unit\":\"Mindestanschaltdauer in S\",\"step_value\":1,\"editable\":1,\"type\":2,\"state\":1,\"last_changed\":1574494369,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":1,\"data\":\"\"},{\"id\":5105,\"node_id\":510,\"instance\":3,\"minimum\":0,\"maximum\":3600,\"current_value\":0,\"target_value\":0,\"last_value\":0,\"unit\":\"Random ausschalten\",\"step_value\":1,\"editable\":1,\"type\":2,\"state\":1,\"last_changed\":1574494369,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":1,\"data\":\"\"},{\"id\":5106,\"node_id\":510,\"instance\":4,\"minimum\":0,\"maximum\":3600,\"current_value\":0,\"target_value\":0,\"last_value\":0,\"unit\":\"tatsächliche Auschaltzeit\",\"step_value\":1,\"editable\":1,\"type\":2,\"state\":1,\"last_changed\":1574494369,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":1,\"data\":\"\"}]",
+        "x": 380,
+        "y": 1120,
+        "wires": [
+            [
+                "35fd86af.ff788a",
+                "ea61ee90.518ae",
+                "dda5d519.8114b8",
+                "c4661d65.6a127"
+            ]
+        ]
+    },
+    {
+        "id": "35fd86af.ff788a",
+        "type": "switch",
+        "z": "76b6d694.226ff8",
+        "name": "Auslöser",
+        "property": "payload.attributeId",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "5100",
+                "vt": "num"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 560,
+        "y": 1120,
+        "wires": [
+            [
+                "d82223cd.aab72"
+            ]
+        ]
+    },
+    {
+        "id": "ea61ee90.518ae",
+        "type": "switch",
+        "z": "76b6d694.226ff8",
+        "name": "Random",
+        "property": "payload.attributeId",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "5102",
+                "vt": "num"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 560,
+        "y": 1160,
+        "wires": [
+            [
+                "2008c8d5.712da8"
+            ]
+        ]
+    },
+    {
+        "id": "10b8459f.37cc5a",
+        "type": "template",
+        "z": "76b6d694.226ff8",
+        "name": "Ist Random",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "json",
+        "syntax": "mustache",
+        "template": "{\"id\":5103 ,\"value\": {{payload}}}",
+        "output": "json",
+        "x": 190,
+        "y": 1120,
+        "wires": [
+            [
+                "9781cf61.7683f"
+            ]
+        ]
+    },
+    {
+        "id": "5af83340.e8d20c",
+        "type": "template",
+        "z": "76b6d694.226ff8",
+        "name": "Switch Random on",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "json",
+        "syntax": "mustache",
+        "template": "{\"id\":5101 ,\"value\": 1}",
+        "output": "json",
+        "x": 210,
+        "y": 1180,
+        "wires": [
+            [
+                "9781cf61.7683f",
+                "183714c3.d1529b"
+            ]
+        ]
+    },
+    {
+        "id": "2008c8d5.712da8",
+        "type": "change",
+        "z": "76b6d694.226ff8",
+        "name": "",
+        "rules": [
+            {
+                "t": "move",
+                "p": "payload.targetValue",
+                "pt": "msg",
+                "to": "randomsw2",
+                "tot": "flow"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 780,
+        "y": 1160,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "1eeb98c9.17d0b7",
+        "type": "delay",
+        "z": "76b6d694.226ff8",
+        "name": "",
+        "pauseType": "delayv",
+        "timeout": "1",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 860,
+        "y": 1120,
+        "wires": [
+            [
+                "5af83340.e8d20c"
+            ]
+        ]
+    },
+    {
+        "id": "d82223cd.aab72",
+        "type": "function",
+        "z": "76b6d694.226ff8",
+        "name": "Random",
+        "func": "var max = flow.get(\"randomsw2\")*1000;\nfunction getRandomInt() {\n  return Math.floor(Math.random() * Math.floor(max));\n}\nausgabe = getRandomInt();\nreturn {delay: ausgabe,payload: ausgabe/1000}",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 720,
+        "y": 1120,
+        "wires": [
+            [
+                "1eeb98c9.17d0b7",
+                "10b8459f.37cc5a"
+            ]
+        ]
+    },
+    {
+        "id": "7e7ffb71.edc644",
+        "type": "template",
+        "z": "76b6d694.226ff8",
+        "name": "Switch Random off",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "json",
+        "syntax": "mustache",
+        "template": "{\"id\":5101 ,\"value\": 0}",
+        "output": "json",
+        "x": 210,
+        "y": 1300,
+        "wires": [
+            [
+                "9781cf61.7683f",
+                "fb8e5a1.72192a8"
+            ]
+        ]
+    },
+    {
+        "id": "fb8e5a1.72192a8",
+        "type": "template",
+        "z": "76b6d694.226ff8",
+        "name": "Switch Random off",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "json",
+        "syntax": "mustache",
+        "template": "{\"id\":5100 ,\"value\": 0}",
+        "output": "json",
+        "x": 210,
+        "y": 1340,
+        "wires": [
+            [
+                "9781cf61.7683f"
+            ]
+        ]
+    },
+    {
+        "id": "dda5d519.8114b8",
+        "type": "switch",
+        "z": "76b6d694.226ff8",
+        "name": "Mindest Anschaltdauer",
+        "property": "payload.attributeId",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "5104",
+                "vt": "num"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 600,
+        "y": 1200,
+        "wires": [
+            [
+                "11ef0867.9f4f98"
+            ]
+        ]
+    },
+    {
+        "id": "11ef0867.9f4f98",
+        "type": "change",
+        "z": "76b6d694.226ff8",
+        "name": "",
+        "rules": [
+            {
+                "t": "move",
+                "p": "payload.targetValue",
+                "pt": "msg",
+                "to": "mindestanschaltdauer",
+                "tot": "flow"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 860,
+        "y": 1200,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "c4661d65.6a127",
+        "type": "switch",
+        "z": "76b6d694.226ff8",
+        "name": "Random 2 Switch off",
+        "property": "payload.attributeId",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "5105",
+                "vt": "num"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 600,
+        "y": 1240,
+        "wires": [
+            [
+                "54df4ad0.9c9fa4"
+            ]
+        ]
+    },
+    {
+        "id": "54df4ad0.9c9fa4",
+        "type": "change",
+        "z": "76b6d694.226ff8",
+        "name": "",
+        "rules": [
+            {
+                "t": "move",
+                "p": "payload.targetValue",
+                "pt": "msg",
+                "to": "random2",
+                "tot": "flow"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 860,
+        "y": 1240,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "f0924736.ed5f18",
+        "type": "delay",
+        "z": "76b6d694.226ff8",
+        "name": "",
+        "pauseType": "delayv",
+        "timeout": "1",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 260,
+        "y": 1240,
+        "wires": [
+            [
+                "7e7ffb71.edc644"
+            ]
+        ]
+    },
+    {
+        "id": "183714c3.d1529b",
+        "type": "function",
+        "z": "76b6d694.226ff8",
+        "name": "Random",
+        "func": "var max = flow.get(\"random2\")*1000;\nvar min = flow.get (\"mindestanschaltdauer\")*1000\nfunction getRandomInt() {\n  return Math.floor(Math.random() * Math.floor(max));\n}\nausgabe = getRandomInt();\nreturn {delay: ausgabe+min,payload: (ausgabe+min)/1000}",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 120,
+        "y": 1240,
+        "wires": [
+            [
+                "f0924736.ed5f18",
+                "bba7b90f.29b2b8"
+            ]
+        ]
+    },
+    {
+        "id": "bba7b90f.29b2b8",
+        "type": "template",
+        "z": "76b6d694.226ff8",
+        "name": "Ist Random",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "json",
+        "syntax": "mustache",
+        "template": "{\"id\":5106 ,\"value\": {{payload}}}",
+        "output": "json",
+        "x": 190,
+        "y": 1380,
+        "wires": [
+            [
+                "9781cf61.7683f"
+            ]
+        ]
+    }
+]
