@@ -15,7 +15,7 @@
         "nodeId": "10",
         "profile": "3006",
         "icon": "nodeicon_heatingsystem",
-        "attributes": "[{\"id\":100,\"node_id\":10,\"instance\":0,\"minimum\":0,\"maximum\":200,\"current_value\":0,\"target_value\":0,\"last_value\":0,\"unit\":\"\",\"step_value\":1,\"editable\":0,\"type\":44,\"state\":1,\"last_changed\":1543522914,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":1,\"data\":\"0\"},{\"id\":102,\"node_id\":10,\"instance\":0,\"minimum\":0,\"maximum\":100,\"current_value\":95,\"target_value\":95,\"last_value\":95,\"unit\":\"%25\",\"step_value\":1,\"editable\":0,\"type\":8,\"state\":1,\"last_changed\":1573711842,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":1,\"data\":\"\"},{\"id\":103,\"node_id\":10,\"instance\":0,\"minimum\":-50,\"maximum\":125,\"current_value\":21.2,\"target_value\":21.2,\"last_value\":21.17,\"unit\":\"%C2%B0C\",\"step_value\":1,\"editable\":0,\"type\":5,\"state\":1,\"last_changed\":1573711842,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":1,\"data\":\"\"},{\"id\":104,\"node_id\":10,\"instance\":0,\"minimum\":7,\"maximum\":28,\"current_value\":21,\"target_value\":21,\"last_value\":21,\"unit\":\"%C2%B0C\",\"step_value\":0.5,\"editable\":1,\"type\":6,\"state\":1,\"last_changed\":1573711842,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":1,\"data\":\"\"},{\"id\":105,\"node_id\":10,\"instance\":0,\"minimum\":0,\"maximum\":4,\"current_value\":4,\"target_value\":4,\"last_value\":3,\"unit\":\"n%Fa\",\"step_value\":1,\"editable\":0,\"type\":33,\"state\":1,\"last_changed\":1581697259,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":4,\"data\":\"\"},{\"id\":106,\"node_id\":10,\"instance\":0,\"minimum\":7,\"maximum\":28,\"current_value\":17,\"target_value\":17,\"last_value\":17,\"unit\":\"%C2%B0C\",\"step_value\":0.5,\"editable\":0,\"type\":149,\"state\":1,\"last_changed\":1581697259,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":1,\"data\":\"\"}]",
+        "attributes": "[{\"id\":100,\"node_id\":10,\"instance\":0,\"minimum\":0,\"maximum\":200,\"current_value\":0,\"target_value\":0,\"last_value\":0,\"unit\":\"\",\"step_value\":1,\"editable\":0,\"type\":44,\"state\":1,\"last_changed\":1543522914,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":1,\"data\":\"0\"},{\"id\":102,\"node_id\":10,\"instance\":0,\"minimum\":0,\"maximum\":100,\"current_value\":95,\"target_value\":95,\"last_value\":95,\"unit\":\"%25\",\"step_value\":1,\"editable\":0,\"type\":8,\"state\":1,\"last_changed\":1573711842,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":1,\"data\":\"\"},{\"id\":103,\"node_id\":10,\"instance\":0,\"minimum\":-50,\"maximum\":125,\"current_value\":21.2,\"target_value\":21.2,\"last_value\":21.17,\"unit\":\"%C2%B0C\",\"step_value\":1,\"editable\":0,\"type\":5,\"state\":1,\"last_changed\":1573711842,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":1,\"data\":\"\"},{\"id\":104,\"node_id\":10,\"instance\":0,\"minimum\":7,\"maximum\":28,\"current_value\":21,\"target_value\":21,\"last_value\":21,\"unit\":\"%C2%B0C\",\"step_value\":0.5,\"editable\":1,\"type\":6,\"state\":1,\"last_changed\":1573711842,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":1,\"data\":\"\"},{\"id\":105,\"node_id\":10,\"instance\":0,\"minimum\":0,\"maximum\":4,\"current_value\":4,\"target_value\":4,\"last_value\":3,\"unit\":\"n%Fa\",\"step_value\":1,\"editable\":0,\"type\":33,\"state\":1,\"last_changed\":1581697259,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":4,\"data\":\"\"},{\"id\":106,\"node_id\":10,\"instance\":0,\"minimum\":7,\"maximum\":28,\"current_value\":17,\"target_value\":17,\"last_value\":17,\"unit\":\"%C2%B0C\",\"step_value\":0.5,\"editable\":0,\"type\":149,\"state\":1,\"last_changed\":1581697259,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":1,\"data\":\"\"},{\"id\":107,\"node_id\":10,\"instance\":0,\"minimum\":0,\"maximum\":720,\"current_value\":120,\"target_value\":120,\"last_value\":0,\"unit\":\"Manueller Sollwert in Minuten\",\"step_value\":1,\"editable\":1,\"type\":2,\"state\":1,\"last_changed\":1574494369,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":1,\"data\":\"\"}]",
         "x": 850,
         "y": 380,
         "wires": [
@@ -46,7 +46,7 @@
         "z": "706af0c2.ca62a",
         "name": "Thermostat Status",
         "auth": "2beec2ad.b79efe",
-        "home_id": "HOME_ID",
+        "home_id": "592591df743c363a778b484e",
         "device_types": "NATherm1",
         "x": 390,
         "y": 320,
@@ -178,7 +178,7 @@
         "type": "function",
         "z": "706af0c2.ca62a",
         "name": "Übergabe soll",
-        "func": "if (msg.payload.attributeId === 104){\n    var temp = msg.payload.targetValue;\nnode.send({\n    payload: {\n              temp\n             }\n          })\n}",
+        "func": "if (msg.payload.attributeId === 107){\n    endtime = msg.payload.targetValue;\n}\n\nif (msg.payload.attributeId === 104){\n    var temp = msg.payload.targetValue;\nnode.send({\n    payload: {\n              temp:temp,\n              endtime:endtime\n             }\n          });\n}",
         "outputs": 1,
         "noerr": 0,
         "x": 1040,
@@ -250,7 +250,7 @@
         "nodeId": "20",
         "profile": "10",
         "icon": "nodeicon_radiator",
-        "attributes": "[{\"id\":200,\"node_id\":20,\"instance\":0,\"minimum\":0,\"maximum\":1,\"current_value\":1,\"target_value\":1,\"last_value\":1,\"unit\":\"\",\"step_value\":1,\"editable\":1,\"type\":1,\"state\":1,\"last_changed\":1543522914,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":1,\"data\":\"\"}]",
+        "attributes": "[{\"id\":200,\"node_id\":20,\"instance\":0,\"minimum\":0,\"maximum\":1,\"current_value\":1,\"target_value\":1,\"last_value\":1,\"unit\":\"\",\"step_value\":1,\"editable\":1,\"type\":1,\"state\":1,\"last_changed\":1543522914,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":1,\"data\":\"\"},{\"id\":201,\"node_id\":20,\"instance\":0,\"minimum\":0,\"maximum\":672,\"current_value\":24,\"target_value\":24,\"last_value\":0,\"unit\":\"Spartemperatur in Stunden\",\"step_value\":1,\"editable\":1,\"type\":2,\"state\":1,\"last_changed\":1574494369,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":1,\"data\":\"\"}]",
         "x": 840,
         "y": 680,
         "wires": [
@@ -264,7 +264,7 @@
         "type": "function",
         "z": "706af0c2.ca62a",
         "name": "Übergabe Therm Mode",
-        "func": "var schedule = \"schedule\";\nif (msg.payload.attributeId === 200 && msg.payload.targetValue === 1){\n    schedule = \"schedule\";\nnode.send({\n    payload: {\n              mode: schedule\n             }\n          })\n}\nif (msg.payload.attributeId === 200 && msg.payload.targetValue === 0){\n    schedule = \"away\";\nnode.send({\n    payload: {\n              mode: schedule\n             }\n          })\n}",
+        "func": "var schedule = \"schedule\";\n\nif (msg.payload.attributeId === 201){\n    awaytime = 60 * msg.payload.targetValue;\n}\n\nif (msg.payload.attributeId === 200 && msg.payload.targetValue === 1){\n    schedule = \"schedule\";\nnode.send({\n    payload: {\n              mode: 'schedule'\n             }\n          })\n}\nif (msg.payload.attributeId === 200 && msg.payload.targetValue === 0){\n    schedule = \"away\";\nnode.send({\n    payload: {\n               mode:'away',\n               endtime:awaytime\n             }\n          })\n}",
         "outputs": 1,
         "noerr": 0,
         "x": 1070,
@@ -283,9 +283,9 @@
         "auth": "2beec2ad.b79efe",
         "home_id": "592591df743c363a778b484e",
         "mode": "schedule",
-        "endtime": "180",
+        "endtime": "120",
         "x": 1050,
-        "y": 740,
+        "y": 760,
         "wires": [
             []
         ]
@@ -304,20 +304,6 @@
             [
                 "4b51eacc.ed0344"
             ]
-        ]
-    },
-    {
-        "id": "142f48e4.a32247",
-        "type": "function",
-        "z": "706af0c2.ca62a",
-        "name": "Battery Level",
-        "func": "if (msg.payload.home.modules[1].battery_level <= 6000)\n    {\n    node.send({\n        payload: {\n                \"id\": 102,\n                  \"value\": 100\n                 }\n              });\n    }\nelse if (msg.payload.home.modules[1].battery_level <= 3600)\n    {\n    node.send({\n        payload: {\n                \"id\": 102,\n                  \"value\": 70\n                 }\n              });\n    }\nelse if (msg.payload.home.modules[1].battery_level <= 3300)\n    {\n    node.send({\n        payload: {\n                \"id\": 102,\n                  \"value\": 40\n                 }\n              });\n    }\nelse if (msg.payload.home.modules[1].battery_level <= 3000)\n    {\n    node.send({\n        payload: {\n                \"id\": 102,\n                  \"value\": 20\n                 }\n              });\n}\nelse if (msg.payload.home.modules[1].battery_level <= 2800)\n    {\n    node.send({\n        payload: {\n                \"id\": 102,\n                  \"value\": 5\n                 }\n              });\n}",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 730,
-        "y": 100,
-        "wires": [
-            []
         ]
     },
     {
@@ -344,9 +330,9 @@
         "id": "6e8af5bc.f9df3c",
         "type": "comment",
         "z": "706af0c2.ca62a",
-        "name": "tested with node-red-contrib-homee@0.3.0-beta.7",
+        "name": "tested with node-red-contrib-homee@0.3.1",
         "info": "",
-        "x": 250,
+        "x": 230,
         "y": 80,
         "wires": []
     },
@@ -356,7 +342,7 @@
         "z": "",
         "client_id": "CLIENT_ID",
         "client_secret": "CLIENT_SECRET",
-        "username": "USERNAME",
+        "username": "USER_NAME",
         "password": "PASSWORD"
     }
 ]
