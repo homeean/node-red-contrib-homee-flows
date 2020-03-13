@@ -13,9 +13,7 @@
         "y": 1580,
         "wires": [
             [
-                "2c969656.f84b7a",
-                "76d4907.70db27",
-                "94674cdd.f5a61"
+                "2c969656.f84b7a"
             ]
         ]
     },
@@ -58,106 +56,6 @@
             [
                 "3750afa2.9fb9a"
             ]
-        ]
-    },
-    {
-        "id": "76d4907.70db27",
-        "type": "switch",
-        "z": "76b6d694.226ff8",
-        "name": "Random Dimmer",
-        "property": "payload.attributeId",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "eq",
-                "v": "71",
-                "vt": "num"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 1,
-        "x": 670,
-        "y": 1620,
-        "wires": [
-            [
-                "fdcf7e06.57de2"
-            ]
-        ]
-    },
-    {
-        "id": "fdcf7e06.57de2",
-        "type": "change",
-        "z": "76b6d694.226ff8",
-        "name": "",
-        "rules": [
-            {
-                "t": "move",
-                "p": "payload.targetValue",
-                "pt": "msg",
-                "to": "randomdimmer",
-                "tot": "flow"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 940,
-        "y": 1620,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "94674cdd.f5a61",
-        "type": "switch",
-        "z": "76b6d694.226ff8",
-        "name": "Random Color",
-        "property": "payload.attributeId",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "eq",
-                "v": "73",
-                "vt": "num"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 1,
-        "x": 660,
-        "y": 1660,
-        "wires": [
-            [
-                "d997f560.a64e98"
-            ]
-        ]
-    },
-    {
-        "id": "d997f560.a64e98",
-        "type": "change",
-        "z": "76b6d694.226ff8",
-        "name": "",
-        "rules": [
-            {
-                "t": "move",
-                "p": "payload.targetValue",
-                "pt": "msg",
-                "to": "randomcolor",
-                "tot": "flow"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 940,
-        "y": 1660,
-        "wires": [
-            []
         ]
     }
 ]
