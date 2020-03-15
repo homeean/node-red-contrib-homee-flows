@@ -1,0 +1,633 @@
+[
+    {
+        "id": "23f89069.d23c2",
+        "type": "tab",
+        "label": "IKEA Blinds",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "1cf7b8db.ce10b7",
+        "type": "homeeDevice",
+        "z": "23f89069.d23c2",
+        "virtual-homee": "",
+        "name": "Rollo Schlafzimmer",
+        "nodeId": "2050",
+        "profile": "2002",
+        "icon": "nodeicon_shutter",
+        "attributes": "[{\"id\":2052,\"node_id\":2050,\"instance\":0,\"minimum\":0,\"maximum\":100,\"current_value\":100,\"target_value\":100,\"last_value\":100,\"unit\":\"%25\",\"step_value\":1,\"editable\":1,\"type\":15,\"state\":1,\"last_changed\":1573237874,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":1,\"data\":\"\"},{\"id\":2053,\"node_id\":2050,\"instance\":0,\"minimum\":0,\"maximum\":100,\"current_value\":95,\"target_value\":95,\"last_value\":95,\"unit\":\"%25\",\"step_value\":1,\"editable\":0,\"type\":8,\"state\":1,\"last_changed\":1573711842,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":1,\"data\":\"\"},{\"id\":2054,\"node_id\":2050,\"instance\":0,\"minimum\":0,\"maximum\":4,\"current_value\":1,\"target_value\":1,\"last_value\":0,\"unit\":\"n%2Fa\",\"step_value\":1,\"editable\":1,\"type\":135,\"state\":1,\"last_changed\":1573237874,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":1,\"data\":\"\"},{\"id\":2055,\"node_id\":2050,\"instance\":0,\"minimum\":0,\"maximum\":4,\"current_value\":4,\"target_value\":4,\"last_value\":3,\"unit\":\"n%Fa\",\"step_value\":1,\"editable\":0,\"type\":33,\"state\":1,\"last_changed\":1581697259,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":4,\"data\":\"\"},{\"id\":2056,\"node_id\":2050,\"instance\":0,\"minimum\":0,\"maximum\":0,\"current_value\":0,\"target_value\":0,\"last_value\":0,\"unit\":\"text\",\"step_value\":1,\"editable\":0,\"type\":45,\"state\":1,\"last_changed\":1573065500,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":1,\"data\":\"IKEA blind by chiroptera\"}]",
+        "x": 770,
+        "y": 300,
+        "wires": [
+            [
+                "423dcc4d.cdadd4",
+                "ff57215c.9c70d"
+            ]
+        ]
+    },
+    {
+        "id": "4ded52e6.76de4c",
+        "type": "ioBroker out",
+        "z": "23f89069.d23c2",
+        "name": "IKEA Blind position",
+        "topic": "zigbee.0.ccccccfffeafdbbb.position",
+        "ack": "false",
+        "autoCreate": "false",
+        "x": 1210,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "ff57215c.9c70d",
+        "type": "function",
+        "z": "23f89069.d23c2",
+        "name": "Position",
+        "func": "var attri = msg.payload.attributeId;\nvar tava  = msg.payload.targetValue;\nif (attri === 2054 && tava === 0){node.send({payload:100})}\nif (attri === 2054 && tava === 1){node.send({payload:0})}\nif (attri === 2052 && tava <= 100){node.send({payload:parseFloat((JSON.stringify(tava -100)).replace(\"-\",\"\"))})}\nif (attri === 2052 && tava >= 100){node.send({payload:parseFloat((JSON.stringify(tava -100)).replace(\"-\",\"\"))})}",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1000,
+        "y": 300,
+        "wires": [
+            [
+                "4ded52e6.76de4c"
+            ]
+        ]
+    },
+    {
+        "id": "ac21be3d.8b08",
+        "type": "function",
+        "z": "23f89069.d23c2",
+        "name": "invert Position",
+        "func": "var val = parseFloat((JSON.stringify(msg.payload -100)).replace(\"-\",\"\"));\nnode.send({\n            payload:{\n                        \"attribute\":{\n                                    \"id\":2052,\n                                    \"value\": Number(val)\n                                    }\n                    }\n})",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 520,
+        "y": 240,
+        "wires": [
+            [
+                "1cf7b8db.ce10b7"
+            ]
+        ]
+    },
+    {
+        "id": "7a264a53.27d2f4",
+        "type": "comment",
+        "z": "23f89069.d23c2",
+        "name": "Node 2050",
+        "info": "",
+        "x": 760,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "b2a1e2c9.9a599",
+        "type": "function",
+        "z": "23f89069.d23c2",
+        "name": "Battery",
+        "func": "var batlevelr = parseInt(msg.payload);\nmsg.payload = {\"attribute\":{\"id\":2053, \"value\": batlevelr}};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 420,
+        "y": 380,
+        "wires": [
+            [
+                "1cf7b8db.ce10b7"
+            ]
+        ]
+    },
+    {
+        "id": "86438c9e.023d4",
+        "type": "function",
+        "z": "23f89069.d23c2",
+        "name": "Link Quality",
+        "func": "var siglevelr = parseInt(msg.payload);\n\n// Verbindungsqualität umrechnen\nif (siglevelr < 10) {\n   siglevelr = 0\n}\nelse if (siglevelr < 20) {\n    siglevelr = 1\n}\nelse if (siglevelr < 40) {\n    siglevelr = 2\n}\nelse if (siglevelr < 60) {\n    siglevelr = 3\n}\nelse {\n    siglevelr = 4\n}\nmsg.payload = {\"attribute\":{\"id\":2055, \"value\": siglevelr}};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 630,
+        "y": 440,
+        "wires": [
+            [
+                "1cf7b8db.ce10b7"
+            ]
+        ]
+    },
+    {
+        "id": "9b85395f.331578",
+        "type": "ioBroker in",
+        "z": "23f89069.d23c2",
+        "name": "Blind position",
+        "topic": "zigbee.0.ccccccfffeafdbbb.position",
+        "payloadType": "value",
+        "onlyack": "",
+        "func": "rbe",
+        "gap": "",
+        "x": 190,
+        "y": 300,
+        "wires": [
+            [
+                "ac21be3d.8b08",
+                "10e6f5d9.a2ce3a",
+                "32604ffe.2f4b6",
+                "bd7f05df.85ec18"
+            ]
+        ]
+    },
+    {
+        "id": "4dc810a0.cf8f3",
+        "type": "ioBroker in",
+        "z": "23f89069.d23c2",
+        "name": "Blind battery",
+        "topic": "zigbee.0.ccccccfffeafdbbb.battery",
+        "payloadType": "value",
+        "onlyack": "",
+        "func": "rbe",
+        "gap": "",
+        "x": 190,
+        "y": 380,
+        "wires": [
+            [
+                "b2a1e2c9.9a599"
+            ]
+        ]
+    },
+    {
+        "id": "a7fa94e3.c7b1b8",
+        "type": "ioBroker in",
+        "z": "23f89069.d23c2",
+        "name": "Blind link quality",
+        "topic": "zigbee.0.ccccccfffeafdbbb.link_quality",
+        "payloadType": "value",
+        "onlyack": "",
+        "func": "rbe",
+        "gap": "",
+        "x": 200,
+        "y": 440,
+        "wires": [
+            [
+                "be829d7e.5755b"
+            ]
+        ]
+    },
+    {
+        "id": "a426c29c.84411",
+        "type": "ioBroker in",
+        "z": "23f89069.d23c2",
+        "name": "Remote battery",
+        "topic": "zigbee.0.ec1bbdfffeb8b84d.battery",
+        "payloadType": "value",
+        "onlyack": "",
+        "func": "rbe",
+        "gap": "",
+        "x": 200,
+        "y": 640,
+        "wires": [
+            [
+                "50e35fdb.b8ac2"
+            ]
+        ]
+    },
+    {
+        "id": "19410436.21660c",
+        "type": "ioBroker in",
+        "z": "23f89069.d23c2",
+        "name": "Remote link quality",
+        "topic": "zigbee.0.ec1bbdfffeb8b84d.link_quality",
+        "payloadType": "value",
+        "onlyack": "",
+        "func": "rbe",
+        "gap": "",
+        "x": 210,
+        "y": 720,
+        "wires": [
+            [
+                "62698a58.358164"
+            ]
+        ]
+    },
+    {
+        "id": "50e35fdb.b8ac2",
+        "type": "function",
+        "z": "23f89069.d23c2",
+        "name": "Battery",
+        "func": "var batlevel = parseInt(msg.payload);\nmsg.payload = {\"attribute\":{\"id\":2064, \"value\": batlevel}};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 420,
+        "y": 640,
+        "wires": [
+            [
+                "9123f8b5.ae8ea8"
+            ]
+        ]
+    },
+    {
+        "id": "62698a58.358164",
+        "type": "function",
+        "z": "23f89069.d23c2",
+        "name": "Link Quality",
+        "func": "var siglevel = parseInt(msg.payload);\n\n// Verbindungsqualität umrechnen\nif (siglevel < 10) {\n   siglevel = 0\n}\nelse if (siglevel < 20) {\n    level = 1\n}\nelse if (siglevel < 40) {\n    level = 2\n}\nelse if (siglevel < 60) {\n    siglevel = 3\n}\nelse {\n    siglevel = 4\n}\nmsg.payload = {\"attribute\":{\"id\":2060, \"value\": siglevel}};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 430,
+        "y": 720,
+        "wires": [
+            [
+                "9123f8b5.ae8ea8"
+            ]
+        ]
+    },
+    {
+        "id": "8e9d3b78.a15218",
+        "type": "ioBroker in",
+        "z": "23f89069.d23c2",
+        "name": "remote Close event",
+        "topic": "zigbee.0.ec1bbdfffeb8b84d.cover_close",
+        "payloadType": "value",
+        "onlyack": "",
+        "func": "rbe",
+        "gap": "",
+        "x": 210,
+        "y": 520,
+        "wires": [
+            [
+                "cce56058.39723"
+            ]
+        ]
+    },
+    {
+        "id": "45217f54.664ec",
+        "type": "ioBroker in",
+        "z": "23f89069.d23c2",
+        "name": "remote Open event",
+        "topic": "zigbee.0.ec1bbdfffeb8b84d.cover_open",
+        "payloadType": "value",
+        "onlyack": "",
+        "func": "rbe",
+        "gap": "",
+        "x": 210,
+        "y": 580,
+        "wires": [
+            [
+                "d9d5f8ca.1034f8"
+            ]
+        ]
+    },
+    {
+        "id": "9123f8b5.ae8ea8",
+        "type": "homeeDevice",
+        "z": "23f89069.d23c2",
+        "virtual-homee": "",
+        "name": "Remote Rollo Schlafzimmer",
+        "nodeId": "2060",
+        "profile": "24",
+        "icon": "default",
+        "attributes": "[{\"id\":2060,\"node_id\":2060,\"instance\":0,\"minimum\":0,\"maximum\":4,\"current_value\":2,\"target_value\":2,\"last_value\":2,\"unit\":\"n%2Fa\",\"step_value\":1,\"editable\":0,\"type\":33,\"state\":1,\"last_changed\":1573065521,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":1,\"data\":\"\"},{\"id\":2061,\"node_id\":2060,\"instance\":0,\"minimum\":0,\"maximum\":0,\"current_value\":0,\"target_value\":0,\"last_value\":0,\"unit\":\"text\",\"step_value\":1,\"editable\":0,\"type\":45,\"state\":1,\"last_changed\":1573065500,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":1,\"data\":\"IKEA remote by chiroptera\"},{\"id\":2062,\"node_id\":2060,\"instance\":0,\"minimum\":1,\"maximum\":2,\"current_value\":2,\"target_value\":2,\"last_value\":1,\"unit\":\"n%2Fa\",\"step_value\":1,\"editable\":0,\"type\":40,\"state\":1,\"last_changed\":1573065520,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":1,\"data\":\"\"},{\"id\":2063,\"node_id\":2060,\"instance\":1,\"minimum\":1,\"maximum\":2,\"current_value\":2,\"target_value\":2,\"last_value\":1,\"unit\":\"n%2Fa\",\"step_value\":1,\"editable\":0,\"type\":40,\"state\":1,\"last_changed\":1573065521,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":1,\"data\":\"\"},{\"id\":2064,\"node_id\":2060,\"instance\":0,\"minimum\":0,\"maximum\":100,\"current_value\":100,\"target_value\":100,\"last_value\":100,\"unit\":\"%25\",\"step_value\":1,\"editable\":0,\"type\":8,\"state\":1,\"last_changed\":1573065517,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":1,\"data\":\"\"}]",
+        "x": 920,
+        "y": 680,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "71c5c34c.1c974c",
+        "type": "comment",
+        "z": "23f89069.d23c2",
+        "name": "Node 2060",
+        "info": "",
+        "x": 920,
+        "y": 640,
+        "wires": []
+    },
+    {
+        "id": "cce56058.39723",
+        "type": "change",
+        "z": "23f89069.d23c2",
+        "name": "close true",
+        "rules": [
+            {
+                "t": "change",
+                "p": "payload",
+                "pt": "msg",
+                "from": "true",
+                "fromt": "bool",
+                "to": "1",
+                "tot": "num"
+            },
+            {
+                "t": "change",
+                "p": "payload",
+                "pt": "msg",
+                "from": "false",
+                "fromt": "bool",
+                "to": "2",
+                "tot": "num"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 420,
+        "y": 520,
+        "wires": [
+            [
+                "2422cc63.0099e4"
+            ]
+        ]
+    },
+    {
+        "id": "d9d5f8ca.1034f8",
+        "type": "change",
+        "z": "23f89069.d23c2",
+        "name": "open true",
+        "rules": [
+            {
+                "t": "change",
+                "p": "payload",
+                "pt": "msg",
+                "from": "true",
+                "fromt": "bool",
+                "to": "1",
+                "tot": "num"
+            },
+            {
+                "t": "change",
+                "p": "payload",
+                "pt": "msg",
+                "from": "false",
+                "fromt": "bool",
+                "to": "2",
+                "tot": "num"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 420,
+        "y": 580,
+        "wires": [
+            [
+                "a9691ea9.9340c"
+            ]
+        ]
+    },
+    {
+        "id": "2422cc63.0099e4",
+        "type": "function",
+        "z": "23f89069.d23c2",
+        "name": "close button pressed",
+        "func": "node.send({\n            payload:{\n                        \"attribute\":{\n                                    \"id\":2063,\n                                    \"value\": msg.payload\n                                    }\n                    }\n})",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 620,
+        "y": 520,
+        "wires": [
+            [
+                "9123f8b5.ae8ea8",
+                "8247ec1e.96a8c"
+            ]
+        ]
+    },
+    {
+        "id": "a9691ea9.9340c",
+        "type": "function",
+        "z": "23f89069.d23c2",
+        "name": "open button pressed",
+        "func": "node.send({\n            payload:{\n                        \"attribute\":{\n                                    \"id\":2062,\n                                    \"value\": msg.payload\n                                    }\n                    }\n})",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 620,
+        "y": 580,
+        "wires": [
+            [
+                "9123f8b5.ae8ea8",
+                "270fb619.1b927a"
+            ]
+        ]
+    },
+    {
+        "id": "8247ec1e.96a8c",
+        "type": "function",
+        "z": "23f89069.d23c2",
+        "name": "close",
+        "func": "var speicher = flow.get(\"speicher\");\nvar speicher1 = flow.get(\"speicher1\");\nif (speicher === speicher1){infahrt = false} else infahrt = true;\nif (msg.payload.attribute.value === 1 && infahrt === false ){node.send({payload:0})}else{node.send({payload:speicher})}",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 990,
+        "y": 520,
+        "wires": [
+            [
+                "4ded52e6.76de4c"
+            ]
+        ]
+    },
+    {
+        "id": "270fb619.1b927a",
+        "type": "function",
+        "z": "23f89069.d23c2",
+        "name": "open",
+        "func": "var speicher = flow.get(\"speicher\");\nvar speicher1 = flow.get(\"speicher1\");\nif (speicher === speicher1){infahrt = false} else infahrt = true;\nif (msg.payload.attribute.value === 1 && infahrt === false ){node.send({payload:100})}else{node.send({payload:speicher})}",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 990,
+        "y": 580,
+        "wires": [
+            [
+                "4ded52e6.76de4c"
+            ]
+        ]
+    },
+    {
+        "id": "43b5bdce.b7b504",
+        "type": "ioBroker out",
+        "z": "23f89069.d23c2",
+        "name": "IKEA Blind stop",
+        "topic": "zigbee.0.ccccccfffeafdbbb.stop",
+        "ack": "false",
+        "autoCreate": "true",
+        "x": 1200,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "423dcc4d.cdadd4",
+        "type": "function",
+        "z": "23f89069.d23c2",
+        "name": "Stop",
+        "func": "var attri = msg.payload.attributeId;\nvar tava  = msg.payload.targetValue;\nif (attri === 2054 && tava === 2){node.send({payload:'true'})}",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 990,
+        "y": 360,
+        "wires": [
+            [
+                "43b5bdce.b7b504",
+                "fc478d3f.d6ad9"
+            ]
+        ]
+    },
+    {
+        "id": "be829d7e.5755b",
+        "type": "rbe",
+        "z": "23f89069.d23c2",
+        "name": "too fast update blocker",
+        "func": "deadbandEq",
+        "gap": "5",
+        "start": "",
+        "inout": "in",
+        "property": "payload",
+        "x": 420,
+        "y": 440,
+        "wires": [
+            [
+                "86438c9e.023d4"
+            ]
+        ]
+    },
+    {
+        "id": "10e6f5d9.a2ce3a",
+        "type": "function",
+        "z": "23f89069.d23c2",
+        "name": "open/close",
+        "func": "var val = parseFloat((JSON.stringify(msg.payload -100)).replace(\"-\",\"\"));\nif (val >= 90){node.send({\n                            payload:{\n                                    \"attribute\":{\n                                                \"id\":2054,\n                                                \"value\": 1\n                                                }\n                                    }\n                        })\n}\nif (val <= 90){node.send({\n                            payload:{\n                                    \"attribute\":{\n                                                \"id\":2054,\n                                                \"value\": 0\n                                                }\n                                    }\n                        })\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 350,
+        "y": 300,
+        "wires": [
+            [
+                "734833ba.e4d01c"
+            ]
+        ]
+    },
+    {
+        "id": "734833ba.e4d01c",
+        "type": "rbe",
+        "z": "23f89069.d23c2",
+        "name": "too fast update blocker",
+        "func": "rbei",
+        "gap": "3",
+        "start": "",
+        "inout": "out",
+        "property": "payload",
+        "x": 540,
+        "y": 300,
+        "wires": [
+            [
+                "1cf7b8db.ce10b7"
+            ]
+        ]
+    },
+    {
+        "id": "fc478d3f.d6ad9",
+        "type": "ioBroker get",
+        "z": "23f89069.d23c2",
+        "name": "Current Blind Position",
+        "topic": "zigbee.0.ccccccfffeafdbbb.position",
+        "attrname": "payload",
+        "payloadType": "value",
+        "x": 1220,
+        "y": 420,
+        "wires": [
+            [
+                "4ded52e6.76de4c"
+            ]
+        ]
+    },
+    {
+        "id": "30977180.00790e",
+        "type": "comment",
+        "z": "23f89069.d23c2",
+        "name": "tested with node-red-contrib-homee@0.4.0",
+        "info": "",
+        "x": 280,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "32604ffe.2f4b6",
+        "type": "change",
+        "z": "23f89069.d23c2",
+        "name": "",
+        "rules": [
+            {
+                "t": "move",
+                "p": "payload",
+                "pt": "msg",
+                "to": "speicher",
+                "tot": "flow"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 540,
+        "y": 200,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "60bed6c5.331388",
+        "type": "change",
+        "z": "23f89069.d23c2",
+        "name": "",
+        "rules": [
+            {
+                "t": "move",
+                "p": "payload",
+                "pt": "msg",
+                "to": "speicher1",
+                "tot": "flow"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 540,
+        "y": 160,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "bd7f05df.85ec18",
+        "type": "delay",
+        "z": "23f89069.d23c2",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "800",
+        "timeoutUnits": "milliseconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 320,
+        "y": 160,
+        "wires": [
+            [
+                "60bed6c5.331388"
+            ]
+        ]
+    },
+    {
+        "id": "737bf53a.33925c",
+        "type": "comment",
+        "z": "23f89069.d23c2",
+        "name": "ioBroker Zigbee Adapter 1.0.3 required",
+        "info": "",
+        "x": 270,
+        "y": 100,
+        "wires": []
+    }
+]
