@@ -1,262 +1,269 @@
 [
     {
-        "id": "8ffc09bf.c63098",
+        "id": "dc932268.e7dd8",
+        "type": "tab",
+        "label": "Roborock",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "f0d6b239.cc7ce",
         "type": "homeeDevice",
-        "z": "a3e8df92.c228c",
+        "z": "dc932268.e7dd8",
         "virtual-homee": "",
         "name": "Staubsauger EG",
         "nodeId": "55",
         "profile": "19",
         "icon": "nodeicon_ventilationsystem",
         "attributes": "[{\"id\":550,\"node_id\":55,\"instance\":0,\"minimum\":0,\"maximum\":1,\"current_value\":0,\"target_value\":0,\"last_value\":0,\"unit\":\"\",\"step_value\":1,\"editable\":1,\"type\":1,\"state\":1,\"last_changed\":12345555,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":1,\"data\":\"\"},{\"id\":551,\"node_id\":55,\"instance\":2,\"minimum\":0,\"maximum\":1,\"current_value\":1,\"target_value\":1,\"last_value\":1,\"unit\":\"Laden\",\"step_value\":1,\"editable\":0,\"type\":1,\"state\":1,\"last_changed\":12345555,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":1,\"data\":\"\"},{\"id\":552,\"node_id\":55,\"instance\":1,\"minimum\":0,\"maximum\":100,\"current_value\":60,\"target_value\":60,\"last_value\":60,\"unit\":\"%25 Saugen\",\"step_value\":1,\"editable\":1,\"type\":2,\"state\":1,\"last_changed\":1573711842,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":1,\"data\":\"\"},{\"id\":553,\"node_id\":55,\"instance\":2,\"minimum\":0,\"maximum\":10,\"current_value\":0,\"target_value\":0,\"last_value\":0,\"unit\":\"Zone\",\"step_value\":1,\"editable\":1,\"type\":2,\"state\":1,\"last_changed\":1573711842,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":1,\"data\":\"\"},{\"id\":554,\"node_id\":55,\"instance\":1,\"minimum\":0,\"maximum\":100,\"current_value\":0,\"target_value\":0,\"last_value\":0,\"unit\":\"m%C2%B2\",\"step_value\":1,\"editable\":0,\"type\":3,\"state\":1,\"last_changed\":1572807225,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":1,\"data\":\"\"},{\"id\":555,\"node_id\":55,\"instance\":2,\"minimum\":0,\"maximum\":60,\"current_value\":0,\"target_value\":0,\"last_value\":0,\"unit\":\"%27\",\"step_value\":1,\"editable\":0,\"type\":3,\"state\":1,\"last_changed\":1572807225,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":1,\"data\":\"\"},{\"id\":556,\"node_id\":55,\"instance\":1,\"minimum\":0,\"maximum\":100,\"current_value\":0,\"target_value\":0,\"last_value\":0,\"unit\":\"%25 Filter (150h)\",\"step_value\":1,\"editable\":0,\"type\":4,\"state\":1,\"last_changed\":1572807225,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":1,\"data\":\"\"},{\"id\":557,\"node_id\":55,\"instance\":2,\"minimum\":0,\"maximum\":100,\"current_value\":0,\"target_value\":0,\"last_value\":0,\"unit\":\"%25 Seitenb%C3%BCrste (200h)\",\"step_value\":1,\"editable\":0,\"type\":4,\"state\":1,\"last_changed\":1572807225,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":1,\"data\":\"\"},{\"id\":558,\"node_id\":55,\"instance\":3,\"minimum\":0,\"maximum\":100,\"current_value\":0,\"target_value\":0,\"last_value\":0,\"unit\":\"%25 Hauptb%C3%BCrste (300h)\",\"step_value\":1,\"editable\":0,\"type\":4,\"state\":1,\"last_changed\":1572807225,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":1,\"data\":\"\"},{\"id\":559,\"node_id\":55,\"instance\":4,\"minimum\":0,\"maximum\":100,\"current_value\":0,\"target_value\":0,\"last_value\":0,\"unit\":\"%25 Sensoren (30h)\",\"step_value\":1,\"editable\":0,\"type\":4,\"state\":1,\"last_changed\":1572807225,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":1,\"data\":\"\"},{\"id\":560,\"node_id\":55,\"instance\":0,\"minimum\":0,\"maximum\":100,\"current_value\":100,\"target_value\":100,\"last_value\":100,\"unit\":\"%25\",\"step_value\":1,\"editable\":0,\"type\":8,\"state\":1,\"last_changed\":1573711842,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":1,\"data\":\"\"},{\"id\":561,\"node_id\":55,\"instance\":0,\"minimum\":0,\"maximum\":4,\"current_value\":3,\"target_value\":3,\"last_value\":4,\"unit\":\"n%2Fa\",\"step_value\":1,\"editable\":0,\"type\":33,\"state\":1,\"last_changed\":1572634009,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":4,\"data\":\"\",\"node\":\"[Circular ~.node]\"},{\"id\":562,\"node_id\":55,\"instance\":0,\"minimum\":0,\"maximum\":10000,\"current_value\":0,\"target_value\":0,\"last_value\":0,\"unit\":\"\",\"step_value\":0.001,\"editable\":0,\"type\":45,\"state\":1,\"last_changed\":1573711842,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":1,\"data\":\"\"}]",
-        "x": 550,
-        "y": 200,
+        "x": 650,
+        "y": 280,
         "wires": [
             [
-                "8fb7e16d.3283e8"
+                "adebfd65.d770f"
             ]
         ]
     },
     {
-        "id": "3a08d28d.0f7956",
+        "id": "170dd277.799a9e",
         "type": "ioBroker in",
-        "z": "a3e8df92.c228c",
+        "z": "dc932268.e7dd8",
         "name": "Battery status",
         "topic": "mihome-vacuum.0.info.battery",
         "payloadType": "value",
         "onlyack": "",
         "func": "rbe",
         "gap": "",
-        "x": 90,
-        "y": 200,
+        "x": 190,
+        "y": 280,
         "wires": [
             [
-                "72fc46e7.e3a6d"
+                "b792b749.529d18"
             ]
         ]
     },
     {
-        "id": "25950b1d.30c3f4",
+        "id": "6e83dc3.5f74824",
         "type": "ioBroker in",
-        "z": "a3e8df92.c228c",
+        "z": "dc932268.e7dd8",
         "name": "Firmware",
         "topic": "mihome-vacuum.0.info.device_fw",
         "payloadType": "value",
         "onlyack": "",
         "func": "rbe",
         "gap": "",
-        "x": 80,
-        "y": 320,
+        "x": 180,
+        "y": 400,
         "wires": [
             [
-                "6f92c236.883794"
+                "45c147c8.7ed008"
             ]
         ]
     },
     {
-        "id": "330da387.3dd3a4",
+        "id": "b7f80b4c.83e008",
         "type": "ioBroker in",
-        "z": "a3e8df92.c228c",
+        "z": "dc932268.e7dd8",
         "name": "Suction power",
         "topic": "mihome-vacuum.0.control.fan_power",
         "payloadType": "value",
         "onlyack": "",
         "func": "rbe",
         "gap": "",
-        "x": 90,
-        "y": 140,
+        "x": 190,
+        "y": 220,
         "wires": [
             [
-                "fd54c446.aa48a"
+                "3dcd6197.f6d06e"
             ]
         ]
     },
     {
-        "id": "83a4d87c.3a48e8",
+        "id": "55c927ca.5cca98",
         "type": "ioBroker in",
-        "z": "a3e8df92.c228c",
+        "z": "dc932268.e7dd8",
         "name": "Wifi RSSI",
         "topic": "mihome-vacuum.0.info.wifi_signal",
         "payloadType": "value",
         "onlyack": "",
         "func": "rbe",
         "gap": "",
-        "x": 80,
-        "y": 260,
+        "x": 180,
+        "y": 340,
         "wires": [
             [
-                "5a1b09db.8f3918"
+                "11b1eb38.cb3fe5"
             ]
         ]
     },
     {
-        "id": "d39f2eb2.d36a3",
+        "id": "a4e93e8e.0bdcc",
         "type": "ioBroker in",
-        "z": "a3e8df92.c228c",
+        "z": "dc932268.e7dd8",
         "name": "Cleaned area",
         "topic": "mihome-vacuum.0.info.cleanedarea",
         "payloadType": "value",
         "onlyack": "",
         "func": "rbe",
         "gap": "",
-        "x": 90,
-        "y": 380,
+        "x": 190,
+        "y": 460,
         "wires": [
             [
-                "64712f87.51ce4"
+                "3582138a.0f62cc"
             ]
         ]
     },
     {
-        "id": "64712f87.51ce4",
+        "id": "3582138a.0f62cc",
         "type": "function",
-        "z": "a3e8df92.c228c",
+        "z": "dc932268.e7dd8",
         "name": "Set Cleaned Area",
-        "func": "var level=parseInt(msg.payload);\nmsg.payload = { \"id\":554, \"value\": level};\nreturn msg;",
+        "func": "var level = parseInt(msg.payload);\nmsg.payload = {\"attribute\":{ \"id\":554, \"value\": level}};\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 290,
-        "y": 380,
+        "x": 390,
+        "y": 460,
         "wires": [
             [
-                "8ffc09bf.c63098"
+                "f0d6b239.cc7ce"
             ]
         ]
     },
     {
-        "id": "fb161640.7d988",
+        "id": "4bf799b5.ee0078",
         "type": "function",
-        "z": "a3e8df92.c228c",
+        "z": "dc932268.e7dd8",
         "name": "Set Status",
-        "func": "var value=0;\nswitch(msg.payload) {\n  case \"5\":\n  case \"6\":\n  case \"7\":\n  case \"11\":\n  case \"15\":\n  case \"16\":\n  case \"17\":\n  case \"18\":\n    value = 1;\n    break;\n  default:\n    value = 0;\n}\nmsg.payload = { \"id\":550, \"value\": value};\nreturn msg;",
+        "func": "var value=0;\nswitch(msg.payload) {\n  case \"5\":\n  case \"6\":\n  case \"7\":\n  case \"11\":\n  case \"15\":\n  case \"16\":\n  case \"17\":\n  case \"18\":\n    value = 1;\n    break;\n  default:\n    value = 0;\n}\nmsg.payload = {\"attribute\":{ \"id\":550, \"value\": value}};\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 270,
-        "y": 40,
+        "x": 370,
+        "y": 120,
         "wires": [
             [
-                "8ffc09bf.c63098"
+                "f0d6b239.cc7ce"
             ]
         ]
     },
     {
-        "id": "dad9475f.25bb98",
+        "id": "daeccd49.5803e",
         "type": "function",
-        "z": "a3e8df92.c228c",
+        "z": "dc932268.e7dd8",
         "name": "Set Loading",
-        "func": "var value=0;\nswitch(msg.payload) {\n  case \"8\":\n    value = 1;\n    break;\n  default:\n    value = 0;\n}\nmsg.payload = { \"id\":551, \"value\": value};\nreturn msg;",
+        "func": "var value=0;\nswitch(msg.payload) {\n  case \"8\":\n    value = 1;\n    break;\n  default:\n    value = 0;\n}\nmsg.payload = {\"attribute\":{ \"id\":551, \"value\": value}};\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 270,
-        "y": 80,
+        "x": 370,
+        "y": 160,
         "wires": [
             [
-                "8ffc09bf.c63098"
+                "f0d6b239.cc7ce"
             ]
         ]
     },
     {
-        "id": "fd54c446.aa48a",
+        "id": "3dcd6197.f6d06e",
         "type": "function",
-        "z": "a3e8df92.c228c",
+        "z": "dc932268.e7dd8",
         "name": "Set Fan Power",
-        "func": "var level=parseInt(msg.payload);\nmsg.payload = { \"id\":552, \"value\": level};\nreturn msg;",
+        "func": "var level = parseInt(msg.payload);\nmsg.payload = {\"attribute\":{ \"id\":552, \"value\": level}};\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 280,
-        "y": 140,
+        "x": 380,
+        "y": 220,
         "wires": [
             [
-                "8ffc09bf.c63098"
+                "f0d6b239.cc7ce"
             ]
         ]
     },
     {
-        "id": "72fc46e7.e3a6d",
+        "id": "b792b749.529d18",
         "type": "function",
-        "z": "a3e8df92.c228c",
+        "z": "dc932268.e7dd8",
         "name": "Set Battery level",
-        "func": "var level=parseInt(msg.payload);\nmsg.payload = { \"id\":560, \"value\": level};\nreturn msg;",
+        "func": "var level = parseInt(msg.payload);\nmsg.payload = {\"attribute\":{ \"id\": 560, \"value\": level}};\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 280,
-        "y": 200,
+        "x": 380,
+        "y": 280,
         "wires": [
             [
-                "8ffc09bf.c63098"
+                "f0d6b239.cc7ce"
             ]
         ]
     },
     {
-        "id": "5a1b09db.8f3918",
+        "id": "11b1eb38.cb3fe5",
         "type": "function",
-        "z": "a3e8df92.c228c",
+        "z": "dc932268.e7dd8",
         "name": "Set Link Quality",
-        "func": "var level=parseInt(msg.payload);\n\n// Verbindungsqualität von dbm in 0-4 umrechnen\nif (level < -90) {\n   level = 0\n}\nelse if (level < -80) {\n    level = 1\n}\nelse if (level < -60) {\n    level = 2\n}\nelse if (level < -40) {\n    level = 3\n}\nelse {\n    level = 4\n}\nmsg.payload = { \"id\":561, \"value\": level};\nreturn msg;",
+        "func": "var level=parseInt(msg.payload);\n\n// Verbindungsqualität von dbm in 0-4 umrechnen\nif (level < -90) {\n   level = 0\n}\nelse if (level < -80) {\n    level = 1\n}\nelse if (level < -60) {\n    level = 2\n}\nelse if (level < -40) {\n    level = 3\n}\nelse {\n    level = 4\n}\nmsg.payload = {\"attribute\":{ \"id\":561, \"value\": level}};\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 280,
-        "y": 260,
+        "x": 380,
+        "y": 340,
         "wires": [
             [
-                "8ffc09bf.c63098"
+                "f0d6b239.cc7ce"
             ]
         ]
     },
     {
-        "id": "6f92c236.883794",
+        "id": "45c147c8.7ed008",
         "type": "function",
-        "z": "a3e8df92.c228c",
+        "z": "dc932268.e7dd8",
         "name": "Set Firmware",
-        "func": "// var firmware=parseFloat(msg.payload);\nvar firmware=msg.payload;\nmsg.payload = { \"id\":562, \"value\": firmware};\nreturn msg;",
+        "func": "// var firmware=parseFloat(msg.payload);\nvar firmware = msg.payload;\nmsg.payload = {\"attribute\":{ \"id\":562, \"value\": firmware}};\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 280,
-        "y": 320,
+        "x": 380,
+        "y": 400,
         "wires": [
             [
-                "8ffc09bf.c63098"
+                "f0d6b239.cc7ce"
             ]
         ]
     },
     {
-        "id": "e9e13073.5df428",
+        "id": "4269a82c.eff438",
         "type": "ioBroker in",
-        "z": "a3e8df92.c228c",
+        "z": "dc932268.e7dd8",
         "name": "Cleaning time",
         "topic": "mihome-vacuum.0.info.cleanedtime",
         "payloadType": "value",
         "onlyack": "",
         "func": "rbe",
         "gap": "",
-        "x": 90,
-        "y": 420,
+        "x": 190,
+        "y": 500,
         "wires": [
             [
-                "87fdc492.ae6d5"
+                "5d40f4b6.72f03c"
             ]
         ]
     },
     {
-        "id": "87fdc492.ae6d5",
+        "id": "5d40f4b6.72f03c",
         "type": "function",
-        "z": "a3e8df92.c228c",
+        "z": "dc932268.e7dd8",
         "name": "Set Cleaned Time",
-        "func": "var level=parseInt(msg.payload);\nmsg.payload = { \"id\":555, \"value\": level};\nreturn msg;",
+        "func": "var level=parseInt(msg.payload);\nmsg.payload = {\"attribute\":{ \"id\":555, \"value\": level}};\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 290,
-        "y": 420,
+        "x": 390,
+        "y": 500,
         "wires": [
             [
-                "8ffc09bf.c63098"
+                "f0d6b239.cc7ce"
             ]
         ]
     },
     {
-        "id": "8fb7e16d.3283e8",
+        "id": "adebfd65.d770f",
         "type": "switch",
-        "z": "a3e8df92.c228c",
+        "z": "dc932268.e7dd8",
         "name": "ID?",
         "property": "payload.attributeId",
         "propertyType": "msg",
@@ -280,187 +287,187 @@
         "checkall": "true",
         "repair": false,
         "outputs": 3,
-        "x": 550,
-        "y": 300,
+        "x": 650,
+        "y": 380,
         "wires": [
             [
-                "104335ff.54aa22"
+                "13a0ceeb.f3a7e1"
             ],
             [
-                "774f40b9.359bc"
+                "1a6b0487.9cf08b"
             ],
             []
         ]
     },
     {
-        "id": "c13bed55.282d28",
+        "id": "51fa1343.50cbbc",
         "type": "ioBroker in",
-        "z": "a3e8df92.c228c",
+        "z": "dc932268.e7dd8",
         "name": "Filter lifetime",
         "topic": "mihome-vacuum.0.consumable.filter",
         "payloadType": "value",
         "onlyack": "",
         "func": "rbe",
         "gap": "",
-        "x": 90,
-        "y": 480,
+        "x": 190,
+        "y": 560,
         "wires": [
             [
-                "16c18ad3.782545"
+                "a1bfb790.56de68"
             ]
         ]
     },
     {
-        "id": "fccb6250.c0343",
+        "id": "ee069024.3ff9a",
         "type": "ioBroker in",
-        "z": "a3e8df92.c228c",
+        "z": "dc932268.e7dd8",
         "name": "Main brush lifetime",
         "topic": "mihome-vacuum.0.consumable.main_brush",
         "payloadType": "value",
         "onlyack": "",
         "func": "rbe",
         "gap": "",
-        "x": 110,
-        "y": 560,
+        "x": 210,
+        "y": 640,
         "wires": [
             [
-                "879048ca.27269"
+                "916015e7.2c9558"
             ]
         ]
     },
     {
-        "id": "a256c40d.dc679",
+        "id": "f9acc48c.a68388",
         "type": "ioBroker in",
-        "z": "a3e8df92.c228c",
+        "z": "dc932268.e7dd8",
         "name": "sensor lifetime",
         "topic": "mihome-vacuum.0.consumable.sensors",
         "payloadType": "value",
         "onlyack": "",
         "func": "rbe",
         "gap": "",
-        "x": 100,
-        "y": 600,
+        "x": 190,
+        "y": 680,
         "wires": [
             [
-                "2b6b590e.6280be"
+                "f92bb157.9c9c8"
             ]
         ]
     },
     {
-        "id": "c122787f.87b0e",
+        "id": "9fef0f10.eab19",
         "type": "ioBroker in",
-        "z": "a3e8df92.c228c",
+        "z": "dc932268.e7dd8",
         "name": "Side brush lifetime",
         "topic": "mihome-vacuum.0.consumable.side_brush",
         "payloadType": "value",
         "onlyack": "",
         "func": "rbe",
         "gap": "",
-        "x": 110,
-        "y": 520,
-        "wires": [
-            [
-                "1600c676.ac88da"
-            ]
-        ]
-    },
-    {
-        "id": "16c18ad3.782545",
-        "type": "function",
-        "z": "a3e8df92.c228c",
-        "name": "Set Filter Lifetime",
-        "func": "if (parseInt(msg.payload) < 0){\n    var level = 0;\n} else {\n    level = 100 - parseInt(msg.payload);\n}\nif (level < 0) {\n    level = 0;\n}\nmsg.payload = { \"id\":556, \"value\": level};\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 310,
-        "y": 480,
-        "wires": [
-            [
-                "8ffc09bf.c63098"
-            ]
-        ]
-    },
-    {
-        "id": "1600c676.ac88da",
-        "type": "function",
-        "z": "a3e8df92.c228c",
-        "name": "Set Sidebrush Lifetime",
-        "func": "if (parseInt(msg.payload) < 0){\n    var level = 0;\n} else {\n    level = 100 - parseInt(msg.payload);\n}\nif (level < 0) {\n    level = 0;\n}\nmsg.payload = { \"id\":557, \"value\": level};\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 320,
-        "y": 520,
-        "wires": [
-            [
-                "8ffc09bf.c63098"
-            ]
-        ]
-    },
-    {
-        "id": "879048ca.27269",
-        "type": "function",
-        "z": "a3e8df92.c228c",
-        "name": "Set Mainbrush Lifetime",
-        "func": "if (parseInt(msg.payload) < 0){\n    var level = 0;\n} else {\n    level = 100 - parseInt(msg.payload);\n}\nif (level < 0) {\n    level = 0;\n}\nmsg.payload = { \"id\":558, \"value\": level};\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 330,
-        "y": 560,
-        "wires": [
-            [
-                "8ffc09bf.c63098"
-            ]
-        ]
-    },
-    {
-        "id": "2b6b590e.6280be",
-        "type": "function",
-        "z": "a3e8df92.c228c",
-        "name": "Set Sensor Lifetime",
-        "func": "if (parseInt(msg.payload) < 0){\n    var level = 0;\n} else {\n    level = 100 - parseInt(msg.payload);\n}\nif (level < 0) {\n    level = 0;\n}\nmsg.payload = { \"id\":559, \"value\": level};\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 320,
+        "x": 210,
         "y": 600,
         "wires": [
             [
-                "8ffc09bf.c63098"
+                "c38169fb.e01b58"
             ]
         ]
     },
     {
-        "id": "892fb68.173f048",
+        "id": "a1bfb790.56de68",
+        "type": "function",
+        "z": "dc932268.e7dd8",
+        "name": "Set Filter Lifetime",
+        "func": "if (parseInt(msg.payload) < 0){\n    var level = 0;\n} else {\n    level = 100 - parseInt(msg.payload);\n}\nif (level < 0) {\n    level = 0;\n}\nmsg.payload = {\"attribute\":{ \"id\":556, \"value\": level}};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 410,
+        "y": 560,
+        "wires": [
+            [
+                "f0d6b239.cc7ce"
+            ]
+        ]
+    },
+    {
+        "id": "c38169fb.e01b58",
+        "type": "function",
+        "z": "dc932268.e7dd8",
+        "name": "Set Sidebrush Lifetime",
+        "func": "if (parseInt(msg.payload) < 0){\n    var level = 0;\n} else {\n    level = 100 - parseInt(msg.payload);\n}\nif (level < 0) {\n    level = 0;\n}\nmsg.payload = {\"attribute\":{ \"id\":557, \"value\": level}};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 420,
+        "y": 600,
+        "wires": [
+            [
+                "f0d6b239.cc7ce"
+            ]
+        ]
+    },
+    {
+        "id": "916015e7.2c9558",
+        "type": "function",
+        "z": "dc932268.e7dd8",
+        "name": "Set Mainbrush Lifetime",
+        "func": "if (parseInt(msg.payload) < 0){\n    var level = 0;\n} else {\n    level = 100 - parseInt(msg.payload);\n}\nif (level < 0) {\n    level = 0;\n}\nmsg.payload = {\"attribute\":{ \"id\":558, \"value\": level}};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 430,
+        "y": 640,
+        "wires": [
+            [
+                "f0d6b239.cc7ce"
+            ]
+        ]
+    },
+    {
+        "id": "f92bb157.9c9c8",
+        "type": "function",
+        "z": "dc932268.e7dd8",
+        "name": "Set Sensor Lifetime",
+        "func": "if (parseInt(msg.payload) < 0){\n    var level = 0;\n} else {\n    level = 100 - parseInt(msg.payload);\n}\nif (level < 0) {\n    level = 0;\n}\nmsg.payload = {\"attribute\":{ \"id\":559, \"value\": level}};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 420,
+        "y": 680,
+        "wires": [
+            [
+                "f0d6b239.cc7ce"
+            ]
+        ]
+    },
+    {
+        "id": "2cb3128a.c4512e",
         "type": "ioBroker in",
-        "z": "a3e8df92.c228c",
+        "z": "dc932268.e7dd8",
         "name": "Vacuum state",
         "topic": "mihome-vacuum.0.info.state",
         "payloadType": "value",
         "onlyack": "",
         "func": "rbe",
         "gap": "",
-        "x": 90,
-        "y": 40,
+        "x": 190,
+        "y": 120,
         "wires": [
             [
-                "fb161640.7d988",
-                "dad9475f.25bb98"
+                "4bf799b5.ee0078",
+                "daeccd49.5803e"
             ]
         ]
     },
     {
-        "id": "62df8cad.614854",
+        "id": "4a904b3e.c673f4",
         "type": "comment",
-        "z": "a3e8df92.c228c",
+        "z": "dc932268.e7dd8",
         "name": "Node 55",
         "info": "",
-        "x": 490,
-        "y": 40,
+        "x": 620,
+        "y": 240,
         "wires": []
     },
     {
-        "id": "104335ff.54aa22",
+        "id": "13a0ceeb.f3a7e1",
         "type": "switch",
-        "z": "a3e8df92.c228c",
+        "z": "dc932268.e7dd8",
         "name": "Control Cleaner",
         "property": "payload.targetValue",
         "propertyType": "msg",
@@ -479,74 +486,74 @@
         "checkall": "true",
         "repair": false,
         "outputs": 2,
-        "x": 720,
-        "y": 280,
+        "x": 820,
+        "y": 360,
         "wires": [
             [
-                "6044db8c.250b0c",
-                "edfc44cd.fca33"
+                "8b08082b.277818",
+                "9ddb453f.68c2d8"
             ],
             [
-                "514c31cd.684fc"
+                "89500308.eaba"
             ]
         ]
     },
     {
-        "id": "774f40b9.359bc",
+        "id": "1a6b0487.9cf08b",
         "type": "function",
-        "z": "a3e8df92.c228c",
+        "z": "dc932268.e7dd8",
         "name": "Set Fan Speed",
-        "func": "var level=msg.payload.targetValue;\nmsg.payload=level.toString();\nreturn msg;",
+        "func": "var level = msg.payload.targetValue;\nmsg.payload = level.toString();\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 720,
-        "y": 320,
+        "x": 820,
+        "y": 400,
         "wires": [
             [
-                "5b9d6eea.1026"
+                "1701043e.7e945c"
             ]
         ]
     },
     {
-        "id": "5b9d6eea.1026",
+        "id": "1701043e.7e945c",
         "type": "ioBroker out",
-        "z": "a3e8df92.c228c",
+        "z": "dc932268.e7dd8",
         "name": "Suction power",
         "topic": "mihome-vacuum.0.control.fan_power",
         "ack": "false",
         "autoCreate": "false",
-        "x": 920,
-        "y": 320,
+        "x": 1040,
+        "y": 400,
         "wires": []
     },
     {
-        "id": "514c31cd.684fc",
+        "id": "89500308.eaba",
         "type": "ioBroker out",
-        "z": "a3e8df92.c228c",
+        "z": "dc932268.e7dd8",
         "name": "Start vacuum",
         "topic": "mihome-vacuum.0.control.start",
         "ack": "false",
         "autoCreate": "false",
-        "x": 920,
-        "y": 280,
+        "x": 1030,
+        "y": 360,
         "wires": []
     },
     {
-        "id": "6044db8c.250b0c",
+        "id": "8b08082b.277818",
         "type": "ioBroker out",
-        "z": "a3e8df92.c228c",
+        "z": "dc932268.e7dd8",
         "name": "Pause vacuum",
         "topic": "mihome-vacuum.0.control.pause",
         "ack": "false",
         "autoCreate": "false",
-        "x": 940,
-        "y": 200,
+        "x": 1040,
+        "y": 280,
         "wires": []
     },
     {
-        "id": "edfc44cd.fca33",
+        "id": "9ddb453f.68c2d8",
         "type": "delay",
-        "z": "a3e8df92.c228c",
+        "z": "dc932268.e7dd8",
         "name": "",
         "pauseType": "delay",
         "timeout": "2",
@@ -558,24 +565,24 @@
         "randomLast": "5",
         "randomUnits": "seconds",
         "drop": false,
-        "x": 980,
-        "y": 240,
+        "x": 1080,
+        "y": 320,
         "wires": [
             [
-                "d14d6f2a.dd265"
+                "87fdb722.d5e538"
             ]
         ]
     },
     {
-        "id": "d14d6f2a.dd265",
+        "id": "87fdb722.d5e538",
         "type": "ioBroker out",
-        "z": "a3e8df92.c228c",
+        "z": "dc932268.e7dd8",
         "name": "Go home",
         "topic": "mihome-vacuum.0.control.home",
         "ack": "false",
         "autoCreate": "false",
-        "x": 1160,
-        "y": 240,
+        "x": 1260,
+        "y": 320,
         "wires": []
     }
 ]
