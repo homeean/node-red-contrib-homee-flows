@@ -1,0 +1,564 @@
+[
+    {
+        "id": "f62252da.8fb58",
+        "type": "tab",
+        "label": "Landroid",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "80cf43fd.3045a",
+        "type": "homeeDevice",
+        "z": "f62252da.8fb58",
+        "virtual-homee": "",
+        "name": "Mähroboter",
+        "nodeId": "65",
+        "profile": "19",
+        "icon": "nodeicon_ventilationsystem",
+        "attributes": "[{\"id\":650,\"node_id\":65,\"instance\":0,\"minimum\":0,\"maximum\":1,\"current_value\":0,\"target_value\":0,\"last_value\":0,\"unit\":\"m%C3%A4hen\",\"step_value\":1,\"editable\":1,\"type\":1,\"state\":1,\"last_changed\":12345555,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":1,\"data\":\"\"},{\"id\":651,\"node_id\":65,\"instance\":2,\"minimum\":0,\"maximum\":1,\"current_value\":1,\"target_value\":1,\"last_value\":1,\"unit\":\"Laden\",\"step_value\":1,\"editable\":0,\"type\":1,\"state\":1,\"last_changed\":12345555,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":1,\"data\":\"\"},{\"id\":652,\"node_id\":65,\"instance\":1,\"minimum\":-100,\"maximum\":100,\"current_value\":0,\"target_value\":0,\"last_value\":0,\"unit\":\"%25%20%2B%20m%C3%A4hen\",\"step_value\":10,\"editable\":1,\"type\":2,\"state\":1,\"last_changed\":1573711842,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":1,\"data\":\"\"},{\"id\":653,\"node_id\":65,\"instance\":2,\"minimum\":30,\"maximum\":750,\"current_value\":0,\"target_value\":0,\"last_value\":0,\"unit\":\"%27%20Regenverz%C3%B6gerung\",\"step_value\":30,\"editable\":1,\"type\":2,\"state\":1,\"last_changed\":1573711842,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":1,\"data\":\"\"},{\"id\":654,\"node_id\":65,\"instance\":1,\"minimum\":0,\"maximum\":10000,\"current_value\":0,\"target_value\":0,\"last_value\":0,\"unit\":\"km gefahren\",\"step_value\":1,\"editable\":0,\"type\":3,\"state\":1,\"last_changed\":1572807225,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":1,\"data\":\"\"},{\"id\":655,\"node_id\":65,\"instance\":2,\"minimum\":0,\"maximum\":10000,\"current_value\":0,\"target_value\":0,\"last_value\":0,\"unit\":\"h M%C3%A4hzeit\",\"step_value\":1,\"editable\":0,\"type\":3,\"state\":1,\"last_changed\":1572807225,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":1,\"data\":\"\"},{\"id\":656,\"node_id\":65,\"instance\":0,\"minimum\":-10,\"maximum\":100,\"current_value\":20,\"target_value\":20,\"last_value\":20,\"unit\":\"%C2%B0C%20Akku\",\"step_value\":0.1,\"editable\":0,\"type\":5,\"state\":1,\"last_changed\":1573711842,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":1,\"data\":\"\"},{\"id\":657,\"node_id\":65,\"instance\":3,\"minimum\":0,\"maximum\":100000,\"current_value\":0,\"target_value\":0,\"last_value\":0,\"unit\":\"x%20geladen\",\"step_value\":1,\"editable\":0,\"type\":3,\"state\":1,\"last_changed\":1572807225,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":1,\"data\":\"\"},{\"id\":658,\"node_id\":65,\"instance\":1,\"minimum\":0,\"maximum\":1,\"current_value\":0,\"target_value\":0,\"last_value\":0,\"unit\":\"Kante\",\"step_value\":1,\"editable\":1,\"type\":1,\"state\":1,\"last_changed\":12345555,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":1,\"data\":\"\"},{\"id\":660,\"node_id\":65,\"instance\":0,\"minimum\":0,\"maximum\":100,\"current_value\":100,\"target_value\":100,\"last_value\":100,\"unit\":\"%25\",\"step_value\":1,\"editable\":0,\"type\":8,\"state\":1,\"last_changed\":1573711842,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":1,\"data\":\"\"},{\"id\":661,\"node_id\":65,\"instance\":0,\"minimum\":0,\"maximum\":4,\"current_value\":3,\"target_value\":3,\"last_value\":4,\"unit\":\"n%2Fa\",\"step_value\":1,\"editable\":0,\"type\":33,\"state\":1,\"last_changed\":1572634009,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":4,\"data\":\"\",\"node\":\"[Circular ~.node]\"},{\"id\":662,\"node_id\":65,\"instance\":0,\"minimum\":0,\"maximum\":10000,\"current_value\":0,\"target_value\":0,\"last_value\":0,\"unit\":\"\",\"step_value\":0.001,\"editable\":0,\"type\":45,\"state\":1,\"last_changed\":1573711842,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":1,\"data\":\"\"}]",
+        "x": 670,
+        "y": 380,
+        "wires": [
+            [
+                "c7d76e26.cde7c"
+            ]
+        ]
+    },
+    {
+        "id": "a0fc2cc8.2f02d",
+        "type": "ioBroker in",
+        "z": "f62252da.8fb58",
+        "name": "Landroid battery state",
+        "topic": "worx.0.30173502161230020276.mower.batteryState",
+        "payloadType": "value",
+        "onlyack": "",
+        "func": "rbe",
+        "gap": "",
+        "x": 200,
+        "y": 280,
+        "wires": [
+            [
+                "8a77f0e3.de616"
+            ]
+        ]
+    },
+    {
+        "id": "cfa50ddf.5d409",
+        "type": "ioBroker in",
+        "z": "f62252da.8fb58",
+        "name": "Firmware Version",
+        "topic": "worx.0.30173502161230020276.mower.firmware",
+        "payloadType": "value",
+        "onlyack": "",
+        "func": "all",
+        "gap": "",
+        "x": 180,
+        "y": 400,
+        "wires": [
+            [
+                "624f4564.02a17c"
+            ]
+        ]
+    },
+    {
+        "id": "a9285b8d.3971b8",
+        "type": "ioBroker in",
+        "z": "f62252da.8fb58",
+        "name": "Mowing times exceed",
+        "topic": "worx.0.30173502161230020276.mower.mowTimeExtend",
+        "payloadType": "value",
+        "onlyack": "",
+        "func": "rbe",
+        "gap": "",
+        "x": 200,
+        "y": 220,
+        "wires": [
+            [
+                "d4d4baa6.5d6768"
+            ]
+        ]
+    },
+    {
+        "id": "485e5e5e.5e186",
+        "type": "ioBroker in",
+        "z": "f62252da.8fb58",
+        "name": "Wifi quality",
+        "topic": "worx.0.30173502161230020276.mower.wifiQuality",
+        "payloadType": "value",
+        "onlyack": "",
+        "func": "rbe",
+        "gap": "",
+        "x": 160,
+        "y": 340,
+        "wires": [
+            [
+                "598aa40e.f9f7cc"
+            ]
+        ]
+    },
+    {
+        "id": "815996c0.de6dd8",
+        "type": "ioBroker in",
+        "z": "f62252da.8fb58",
+        "name": "Total mower distance",
+        "topic": "worx.0.30173502161230020276.mower.totalDistance",
+        "payloadType": "value",
+        "onlyack": "",
+        "func": "rbe",
+        "gap": "",
+        "x": 200,
+        "y": 460,
+        "wires": [
+            [
+                "185489a3.8df6a6"
+            ]
+        ]
+    },
+    {
+        "id": "185489a3.8df6a6",
+        "type": "function",
+        "z": "f62252da.8fb58",
+        "name": "Set total mower distance",
+        "func": "var level = parseInt(msg.payload);\nmsg.payload = {\"attribute\":{ \"id\":654, \"value\": level}};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 430,
+        "y": 460,
+        "wires": [
+            [
+                "80cf43fd.3045a"
+            ]
+        ]
+    },
+    {
+        "id": "2f175b40.0355c4",
+        "type": "function",
+        "z": "f62252da.8fb58",
+        "name": "Set Loading",
+        "func": "var value = msg.payload;\nif (value === \"false\") {\n   value = 0\n}\nelse if (value === \"true\") {\n    value = 1\n}\nmsg.payload = {\"attribute\":{ \"id\":651, \"value\": value}};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 390,
+        "y": 100,
+        "wires": [
+            [
+                "80cf43fd.3045a"
+            ]
+        ]
+    },
+    {
+        "id": "d4d4baa6.5d6768",
+        "type": "function",
+        "z": "f62252da.8fb58",
+        "name": "Set additional mowing time",
+        "func": "var level = parseInt(msg.payload);\nmsg.payload = {\"attribute\":{ \"id\":652, \"value\": level}};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 440,
+        "y": 220,
+        "wires": [
+            [
+                "80cf43fd.3045a"
+            ]
+        ]
+    },
+    {
+        "id": "8a77f0e3.de616",
+        "type": "function",
+        "z": "f62252da.8fb58",
+        "name": "Set Battery level",
+        "func": "var level = parseInt(msg.payload);\nmsg.payload = {\"attribute\":{ \"id\": 660, \"value\": level}};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 400,
+        "y": 280,
+        "wires": [
+            [
+                "80cf43fd.3045a"
+            ]
+        ]
+    },
+    {
+        "id": "598aa40e.f9f7cc",
+        "type": "function",
+        "z": "f62252da.8fb58",
+        "name": "Set Link Quality",
+        "func": "var level=parseInt(msg.payload);\n\n// Verbindungsqualität von dbm in 0-4 umrechnen\nif (level < -90) {\n   level = 0\n}\nelse if (level < -80) {\n    level = 1\n}\nelse if (level < -60) {\n    level = 2\n}\nelse if (level < -40) {\n    level = 3\n}\nelse {\n    level = 4\n}\nmsg.payload = {\"attribute\":{ \"id\":661, \"value\": level}};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 400,
+        "y": 340,
+        "wires": [
+            [
+                "80cf43fd.3045a"
+            ]
+        ]
+    },
+    {
+        "id": "624f4564.02a17c",
+        "type": "function",
+        "z": "f62252da.8fb58",
+        "name": "Set Software",
+        "func": "var firmware = parseFloat(msg.payload);\nmsg.payload = {\"attribute\":{ \"id\":662, \"value\": firmware}};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 390,
+        "y": 400,
+        "wires": [
+            [
+                "80cf43fd.3045a"
+            ]
+        ]
+    },
+    {
+        "id": "624108b3.a7a738",
+        "type": "ioBroker in",
+        "z": "f62252da.8fb58",
+        "name": "Total mower time",
+        "topic": "worx.0.30173502161230020276.mower.totalTime",
+        "payloadType": "value",
+        "onlyack": "",
+        "func": "rbe",
+        "gap": "",
+        "x": 180,
+        "y": 520,
+        "wires": [
+            [
+                "b6dcd36d.ee607"
+            ]
+        ]
+    },
+    {
+        "id": "b6dcd36d.ee607",
+        "type": "function",
+        "z": "f62252da.8fb58",
+        "name": "Set total mowing time",
+        "func": "var level = parseInt(msg.payload);\nmsg.payload = {\"attribute\":{ \"id\":655, \"value\": level}};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 420,
+        "y": 520,
+        "wires": [
+            [
+                "80cf43fd.3045a"
+            ]
+        ]
+    },
+    {
+        "id": "c7d76e26.cde7c",
+        "type": "switch",
+        "z": "f62252da.8fb58",
+        "name": "ID?",
+        "property": "payload.attributeId",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "650",
+                "vt": "num"
+            },
+            {
+                "t": "eq",
+                "v": "652",
+                "vt": "num"
+            },
+            {
+                "t": "eq",
+                "v": "653",
+                "vt": "num"
+            },
+            {
+                "t": "eq",
+                "v": "658",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 4,
+        "x": 810,
+        "y": 380,
+        "wires": [
+            [
+                "3300c58d.e68c1a"
+            ],
+            [
+                "b59082a3.32d76"
+            ],
+            [
+                "c6725674.1c3ea8"
+            ],
+            [
+                "c3bad317.72d36"
+            ]
+        ]
+    },
+    {
+        "id": "568fed26.d4c094",
+        "type": "ioBroker in",
+        "z": "f62252da.8fb58",
+        "name": "Battery charger state",
+        "topic": "worx.0.30173502161230020276.mower.batteryCharging",
+        "payloadType": "value",
+        "onlyack": "",
+        "func": "rbe",
+        "gap": "",
+        "x": 190,
+        "y": 100,
+        "wires": [
+            [
+                "2f175b40.0355c4"
+            ]
+        ]
+    },
+    {
+        "id": "ac820c58.1a59d",
+        "type": "comment",
+        "z": "f62252da.8fb58",
+        "name": "Node 65",
+        "info": "",
+        "x": 660,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "b59082a3.32d76",
+        "type": "function",
+        "z": "f62252da.8fb58",
+        "name": "Set additional mowing time",
+        "func": "var level = msg.payload.targetValue;\nmsg.payload = level.toString();\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1020,
+        "y": 360,
+        "wires": [
+            [
+                "3322479e.75c6c8"
+            ]
+        ]
+    },
+    {
+        "id": "3322479e.75c6c8",
+        "type": "ioBroker out",
+        "z": "f62252da.8fb58",
+        "name": "Mowing times exceed",
+        "topic": "worx.0.30173502161230020276.mower.mowTimeExtend",
+        "ack": "false",
+        "autoCreate": "false",
+        "x": 1280,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "2d419358.b8e8dc",
+        "type": "ioBroker out",
+        "z": "f62252da.8fb58",
+        "name": "Start/Stop",
+        "topic": "worx.0.30173502161230020276.mower.state",
+        "ack": "false",
+        "autoCreate": "false",
+        "x": 1240,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "cd39ee44.8422d",
+        "type": "ioBroker out",
+        "z": "f62252da.8fb58",
+        "name": "Edge cut",
+        "topic": "worx.0.30173502161230020276.mower.edgecut",
+        "ack": "false",
+        "autoCreate": "false",
+        "x": 1240,
+        "y": 480,
+        "wires": []
+    },
+    {
+        "id": "3300c58d.e68c1a",
+        "type": "function",
+        "z": "f62252da.8fb58",
+        "name": "Control mower",
+        "func": "var startstop = msg.payload.targetValue;\nif (startstop === 0) {\n   startstop = false\n}\nelse if (startstop === 1) {\n    startstop = true\n}\nmsg.payload = startstop;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 980,
+        "y": 300,
+        "wires": [
+            [
+                "2d419358.b8e8dc",
+                "f3a25c6e.785ca"
+            ]
+        ]
+    },
+    {
+        "id": "8c35afac.8a761",
+        "type": "ioBroker in",
+        "z": "f62252da.8fb58",
+        "name": "Wait after rain",
+        "topic": "worx.0.30173502161230020276.mower.waitRain",
+        "payloadType": "value",
+        "onlyack": "",
+        "func": "rbe",
+        "gap": "",
+        "x": 170,
+        "y": 640,
+        "wires": [
+            [
+                "b0150a23.297498"
+            ]
+        ]
+    },
+    {
+        "id": "b0150a23.297498",
+        "type": "function",
+        "z": "f62252da.8fb58",
+        "name": "Wait after rain time",
+        "func": "var waitrain = parseInt(msg.payload);\nmsg.payload = {\"attribute\":{ \"id\":653, \"value\": waitrain}};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 410,
+        "y": 640,
+        "wires": [
+            [
+                "80cf43fd.3045a"
+            ]
+        ]
+    },
+    {
+        "id": "c6725674.1c3ea8",
+        "type": "function",
+        "z": "f62252da.8fb58",
+        "name": "Set after rain time",
+        "func": "var level = msg.payload.targetValue;\nmsg.payload = level.toString();\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 990,
+        "y": 420,
+        "wires": [
+            [
+                "41b01453.0a8b3c"
+            ]
+        ]
+    },
+    {
+        "id": "41b01453.0a8b3c",
+        "type": "ioBroker out",
+        "z": "f62252da.8fb58",
+        "name": "Wait after rain",
+        "topic": "worx.0.30173502161230020276.mower.waitRain",
+        "ack": "false",
+        "autoCreate": "false",
+        "x": 1260,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "ed66895d.a29438",
+        "type": "ioBroker in",
+        "z": "f62252da.8fb58",
+        "name": "Battery temperature",
+        "topic": "worx.0.30173502161230020276.mower.batteryTemperature",
+        "payloadType": "value",
+        "onlyack": "",
+        "func": "rbe",
+        "gap": "",
+        "x": 190,
+        "y": 160,
+        "wires": [
+            [
+                "4ee52ead.5a41"
+            ]
+        ]
+    },
+    {
+        "id": "4ee52ead.5a41",
+        "type": "function",
+        "z": "f62252da.8fb58",
+        "name": "Set Battery temperature",
+        "func": "var level = parseFloat(msg.payload);\nmsg.payload = {\"attribute\":{ \"id\": 656, \"value\": level}};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 430,
+        "y": 160,
+        "wires": [
+            [
+                "80cf43fd.3045a"
+            ]
+        ]
+    },
+    {
+        "id": "98a13e4c.9a527",
+        "type": "ioBroker in",
+        "z": "f62252da.8fb58",
+        "name": "Battery charge cycle",
+        "topic": "worx.0.30173502161230020276.mower.batteryChargeCycle",
+        "payloadType": "value",
+        "onlyack": "",
+        "func": "rbe",
+        "gap": "",
+        "x": 190,
+        "y": 580,
+        "wires": [
+            [
+                "c4a8ccc0.7daec"
+            ]
+        ]
+    },
+    {
+        "id": "c4a8ccc0.7daec",
+        "type": "function",
+        "z": "f62252da.8fb58",
+        "name": "Set charge cycles",
+        "func": "var level=parseInt(msg.payload);\n//level = parseFloat(level).toFixed(0)\nmsg.payload = {\"attribute\":{ \"id\":657, \"value\": level}};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 410,
+        "y": 580,
+        "wires": [
+            [
+                "80cf43fd.3045a"
+            ]
+        ]
+    },
+    {
+        "id": "7d1b15a1.dab76c",
+        "type": "comment",
+        "z": "f62252da.8fb58",
+        "name": "tested with node-red-contrib-homee@0.4.0",
+        "info": "",
+        "x": 260,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "f3a25c6e.785ca",
+        "type": "debug",
+        "z": "f62252da.8fb58",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 1220,
+        "y": 620,
+        "wires": []
+    },
+    {
+        "id": "c3bad317.72d36",
+        "type": "function",
+        "z": "f62252da.8fb58",
+        "name": "Edge Cut",
+        "func": "var edge = msg.payload.targetValue;\nif (edge === 0) {\n   edge = false\n}\nelse if (edge === 1) {\n    edge = true\n}\nmsg.payload = edge;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 960,
+        "y": 480,
+        "wires": [
+            [
+                "f3a25c6e.785ca",
+                "cd39ee44.8422d"
+            ]
+        ]
+    }
+]
