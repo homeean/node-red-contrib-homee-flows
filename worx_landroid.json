@@ -15,7 +15,7 @@
         "nodeId": "65",
         "profile": "19",
         "icon": "nodeicon_ventilationsystem",
-        "attributes": "[{\"id\":650,\"node_id\":65,\"instance\":0,\"minimum\":0,\"maximum\":1,\"current_value\":0,\"target_value\":0,\"last_value\":0,\"unit\":\"m%C3%A4hen\",\"step_value\":1,\"editable\":1,\"type\":1,\"state\":1,\"last_changed\":12345555,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":1,\"data\":\"\"},{\"id\":651,\"node_id\":65,\"instance\":2,\"minimum\":0,\"maximum\":1,\"current_value\":1,\"target_value\":1,\"last_value\":1,\"unit\":\"Laden\",\"step_value\":1,\"editable\":0,\"type\":1,\"state\":1,\"last_changed\":12345555,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":1,\"data\":\"\"},{\"id\":652,\"node_id\":65,\"instance\":1,\"minimum\":-100,\"maximum\":100,\"current_value\":0,\"target_value\":0,\"last_value\":0,\"unit\":\"%25%20%2B%20m%C3%A4hen\",\"step_value\":10,\"editable\":1,\"type\":2,\"state\":1,\"last_changed\":1573711842,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":1,\"data\":\"\"},{\"id\":653,\"node_id\":65,\"instance\":2,\"minimum\":30,\"maximum\":750,\"current_value\":0,\"target_value\":0,\"last_value\":0,\"unit\":\"%27%20Regenverz%C3%B6gerung\",\"step_value\":30,\"editable\":1,\"type\":2,\"state\":1,\"last_changed\":1573711842,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":1,\"data\":\"\"},{\"id\":654,\"node_id\":65,\"instance\":1,\"minimum\":0,\"maximum\":10000,\"current_value\":0,\"target_value\":0,\"last_value\":0,\"unit\":\"km gefahren\",\"step_value\":1,\"editable\":0,\"type\":3,\"state\":1,\"last_changed\":1572807225,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":1,\"data\":\"\"},{\"id\":655,\"node_id\":65,\"instance\":2,\"minimum\":0,\"maximum\":10000,\"current_value\":0,\"target_value\":0,\"last_value\":0,\"unit\":\"h M%C3%A4hzeit\",\"step_value\":1,\"editable\":0,\"type\":3,\"state\":1,\"last_changed\":1572807225,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":1,\"data\":\"\"},{\"id\":656,\"node_id\":65,\"instance\":0,\"minimum\":-10,\"maximum\":100,\"current_value\":20,\"target_value\":20,\"last_value\":20,\"unit\":\"%C2%B0C%20Akku\",\"step_value\":0.1,\"editable\":0,\"type\":5,\"state\":1,\"last_changed\":1573711842,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":1,\"data\":\"\"},{\"id\":657,\"node_id\":65,\"instance\":3,\"minimum\":0,\"maximum\":100000,\"current_value\":0,\"target_value\":0,\"last_value\":0,\"unit\":\"x%20geladen\",\"step_value\":1,\"editable\":0,\"type\":3,\"state\":1,\"last_changed\":1572807225,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":1,\"data\":\"\"},{\"id\":658,\"node_id\":65,\"instance\":1,\"minimum\":0,\"maximum\":1,\"current_value\":0,\"target_value\":0,\"last_value\":0,\"unit\":\"Kante\",\"step_value\":1,\"editable\":1,\"type\":1,\"state\":1,\"last_changed\":12345555,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":1,\"data\":\"\"},{\"id\":660,\"node_id\":65,\"instance\":0,\"minimum\":0,\"maximum\":100,\"current_value\":100,\"target_value\":100,\"last_value\":100,\"unit\":\"%25\",\"step_value\":1,\"editable\":0,\"type\":8,\"state\":1,\"last_changed\":1573711842,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":1,\"data\":\"\"},{\"id\":661,\"node_id\":65,\"instance\":0,\"minimum\":0,\"maximum\":4,\"current_value\":3,\"target_value\":3,\"last_value\":4,\"unit\":\"n%2Fa\",\"step_value\":1,\"editable\":0,\"type\":33,\"state\":1,\"last_changed\":1572634009,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":4,\"data\":\"\",\"node\":\"[Circular ~.node]\"},{\"id\":662,\"node_id\":65,\"instance\":0,\"minimum\":0,\"maximum\":10000,\"current_value\":0,\"target_value\":0,\"last_value\":0,\"unit\":\"\",\"step_value\":0.001,\"editable\":0,\"type\":45,\"state\":1,\"last_changed\":1573711842,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":1,\"data\":\"\"}]",
+        "attributes": "[{\"id\":650,\"node_id\":65,\"instance\":0,\"minimum\":0,\"maximum\":1,\"current_value\":0,\"target_value\":0,\"last_value\":0,\"unit\":\"m%C3%A4hen\",\"step_value\":1,\"editable\":1,\"type\":1,\"state\":1,\"last_changed\":12345555,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":1,\"data\":\"\"},{\"id\":651,\"node_id\":65,\"instance\":2,\"minimum\":0,\"maximum\":1,\"current_value\":1,\"target_value\":1,\"last_value\":1,\"unit\":\"Laden\",\"step_value\":1,\"editable\":0,\"type\":1,\"state\":1,\"last_changed\":12345555,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":1,\"data\":\"\"},{\"id\":652,\"node_id\":65,\"instance\":1,\"minimum\":-100,\"maximum\":100,\"current_value\":0,\"target_value\":0,\"last_value\":0,\"unit\":\"%25%20%2B\",\"step_value\":10,\"editable\":1,\"type\":2,\"state\":1,\"last_changed\":1573711842,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":1,\"data\":\"\"},{\"id\":653,\"node_id\":65,\"instance\":2,\"minimum\":30,\"maximum\":750,\"current_value\":0,\"target_value\":0,\"last_value\":0,\"unit\":\"%27%20Regen\",\"step_value\":30,\"editable\":1,\"type\":2,\"state\":1,\"last_changed\":1573711842,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":1,\"data\":\"\"},{\"id\":654,\"node_id\":65,\"instance\":1,\"minimum\":0,\"maximum\":10000,\"current_value\":0,\"target_value\":0,\"last_value\":0,\"unit\":\"km gefahren\",\"step_value\":1,\"editable\":0,\"type\":3,\"state\":1,\"last_changed\":1572807225,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":1,\"data\":\"\"},{\"id\":655,\"node_id\":65,\"instance\":2,\"minimum\":0,\"maximum\":10000,\"current_value\":0,\"target_value\":0,\"last_value\":0,\"unit\":\"h M%C3%A4hzeit\",\"step_value\":1,\"editable\":0,\"type\":3,\"state\":1,\"last_changed\":1572807225,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":1,\"data\":\"\"},{\"id\":656,\"node_id\":65,\"instance\":0,\"minimum\":-10,\"maximum\":100,\"current_value\":20,\"target_value\":20,\"last_value\":20,\"unit\":\"%C2%B0C%20Akku\",\"step_value\":0.1,\"editable\":0,\"type\":5,\"state\":1,\"last_changed\":1573711842,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":1,\"data\":\"\"},{\"id\":657,\"node_id\":65,\"instance\":3,\"minimum\":0,\"maximum\":100000,\"current_value\":0,\"target_value\":0,\"last_value\":0,\"unit\":\"x%20geladen\",\"step_value\":1,\"editable\":0,\"type\":3,\"state\":1,\"last_changed\":1572807225,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":1,\"data\":\"\"},{\"id\":658,\"node_id\":65,\"instance\":1,\"minimum\":0,\"maximum\":1,\"current_value\":0,\"target_value\":0,\"last_value\":0,\"unit\":\"Kante\",\"step_value\":1,\"editable\":1,\"type\":1,\"state\":1,\"last_changed\":12345555,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":1,\"data\":\"\"},{\"id\":660,\"node_id\":65,\"instance\":0,\"minimum\":0,\"maximum\":100,\"current_value\":100,\"target_value\":100,\"last_value\":100,\"unit\":\"%25\",\"step_value\":1,\"editable\":0,\"type\":8,\"state\":1,\"last_changed\":1573711842,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":1,\"data\":\"\"},{\"id\":661,\"node_id\":65,\"instance\":0,\"minimum\":0,\"maximum\":4,\"current_value\":3,\"target_value\":3,\"last_value\":4,\"unit\":\"n%2Fa\",\"step_value\":1,\"editable\":0,\"type\":33,\"state\":1,\"last_changed\":1572634009,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":4,\"data\":\"\",\"node\":\"[Circular ~.node]\"},{\"id\":662,\"node_id\":65,\"instance\":0,\"minimum\":0,\"maximum\":10000,\"current_value\":0,\"target_value\":0,\"last_value\":0,\"unit\":\"\",\"step_value\":0.001,\"editable\":0,\"type\":45,\"state\":1,\"last_changed\":1573711842,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":1,\"data\":\"\"}]",
         "x": 670,
         "y": 380,
         "wires": [
@@ -385,8 +385,7 @@
         "y": 300,
         "wires": [
             [
-                "2d419358.b8e8dc",
-                "f3a25c6e.785ca"
+                "2d419358.b8e8dc"
             ]
         ]
     },
@@ -526,22 +525,8 @@
         "z": "f62252da.8fb58",
         "name": "tested with node-red-contrib-homee@0.4.0",
         "info": "",
-        "x": 260,
-        "y": 40,
-        "wires": []
-    },
-    {
-        "id": "f3a25c6e.785ca",
-        "type": "debug",
-        "z": "f62252da.8fb58",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "x": 1220,
-        "y": 620,
+        "x": 860,
+        "y": 140,
         "wires": []
     },
     {
@@ -556,8 +541,95 @@
         "y": 480,
         "wires": [
             [
-                "f3a25c6e.785ca",
                 "cd39ee44.8422d"
+            ]
+        ]
+    },
+    {
+        "id": "2b89df6d.0ae57",
+        "type": "ioBroker in",
+        "z": "f62252da.8fb58",
+        "name": "Error code",
+        "topic": "worx.0.30173502161230020276.mower.error",
+        "payloadType": "value",
+        "onlyack": "",
+        "func": "rbe",
+        "gap": "",
+        "x": 160,
+        "y": 700,
+        "wires": [
+            [
+                "3ac63f1f.5f105"
+            ]
+        ]
+    },
+    {
+        "id": "3ac63f1f.5f105",
+        "type": "function",
+        "z": "f62252da.8fb58",
+        "name": "Error",
+        "func": "var error = msg.payload;\nif (error !== 0) {\nnode.send ({payload:{\"attribute\":{\"id\":650,\"value\":0}}});\nnode.send ({payload:{\"attribute\":{\"id\":658,\"value\":0}}});\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 370,
+        "y": 700,
+        "wires": [
+            [
+                "80cf43fd.3045a"
+            ]
+        ]
+    },
+    {
+        "id": "a742ba14.17fcf8",
+        "type": "ioBroker in",
+        "z": "f62252da.8fb58",
+        "name": "Landroid status",
+        "topic": "worx.0.30173502161230020276.mower.status",
+        "payloadType": "value",
+        "onlyack": "",
+        "func": "rbe",
+        "gap": "",
+        "x": 180,
+        "y": 780,
+        "wires": [
+            [
+                "3c6e4e80.a54b12"
+            ]
+        ]
+    },
+    {
+        "id": "335499dc.359936",
+        "type": "comment",
+        "z": "f62252da.8fb58",
+        "name": "Status",
+        "info": "{\n  \"0\": \"IDLE\",\n  \"1\": \"Home\",\n  \"2\": \"Start sequence\",\n  \"3\": \"Leaving home\",\n  \"4\": \"Follow wire\",\n  \"5\": \"Searching home\",\n  \"6\": \"Searching wire\",\n  \"7\": \"Mowing\",\n  \"8\": \"Lifted\",\n  \"9\": \"Trapped\",\n  \"10\": \"Blade blocked\",\n  \"11\": \"Debug\",\n  \"12\": \"Remote control\",\n  \"30\": \"Going home\",\n  \"31\": \"Zone training\",\n  \"32\": \"Border Cut\",\n  \"33\": \"Searching zone\",\n  \"34\": \"Pause\"\n}",
+        "x": 190,
+        "y": 820,
+        "wires": []
+    },
+    {
+        "id": "31415797.1a8a08",
+        "type": "comment",
+        "z": "f62252da.8fb58",
+        "name": "Errors",
+        "info": "{\n  \"0\": \"No error\",\n  \"1\": \"Trapped\",\n  \"2\": \"Lifted\",\n  \"3\": \"Wire missing\",\n  \"4\": \"Outside wire\",\n  \"5\": \"Raining\",\n  \"6\": \"Close door to mow\",\n  \"7\": \"Close door to go home\",\n  \"8\": \"Blade motor blocked\",\n  \"9\": \"Wheel motor blocked\",\n  \"10\": \"Trapped timeout\",\n  \"11\": \"Upside down\",\n  \"12\": \"Battery low\",\n  \"13\": \"Reverse wire\",\n  \"14\": \"Charge error\",\n  \"15\": \"Timeout finding home\",\n  \"16\": \"Mower locked\",\n  \"17\": \"Battery over temperature\"\n}",
+        "x": 190,
+        "y": 740,
+        "wires": []
+    },
+    {
+        "id": "3c6e4e80.a54b12",
+        "type": "function",
+        "z": "f62252da.8fb58",
+        "name": "Status",
+        "func": "var status = msg.payload;\nif (status === 32) {\n   node.send ({payload:{\"attribute\":{\"id\":650,\"value\":1}}});\n}\nelse if (status === 7) {\n   node.send ({payload:{\"attribute\":{\"id\":658,\"value\":1}}});\n}\n// beide auf 0 setzen\nelse if (status === (0 || 1 || 34)) {\n    node.send ({payload:{\"attribute\":{\"id\":650,\"value\":0}}});\n    node.send ({payload:{\"attribute\":{\"id\":658,\"value\":0}}});\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 370,
+        "y": 780,
+        "wires": [
+            [
+                "80cf43fd.3045a"
             ]
         ]
     }
