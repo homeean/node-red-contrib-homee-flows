@@ -1,0 +1,128 @@
+[
+    {
+        "id": "5d26e963.8d2bf8",
+        "type": "template",
+        "z": "46066a7b.b92564",
+        "name": "",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "put:/homeegrams/29/actions/37?message={{payload}}",
+        "output": "str",
+        "x": 860,
+        "y": 440,
+        "wires": [
+            [
+                "d062f7f3.fe2a18"
+            ]
+        ]
+    },
+    {
+        "id": "d062f7f3.fe2a18",
+        "type": "link out",
+        "z": "46066a7b.b92564",
+        "name": "",
+        "links": [
+            "e204158a.3c9808"
+        ],
+        "x": 975,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "ed3ca8c1.04a4d8",
+        "type": "delay",
+        "z": "46066a7b.b92564",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "2",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 700,
+        "y": 400,
+        "wires": [
+            [
+                "ad568b20.643e78"
+            ]
+        ]
+    },
+    {
+        "id": "ad568b20.643e78",
+        "type": "template",
+        "z": "46066a7b.b92564",
+        "name": "",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "put:/homeegrams/29?play=1",
+        "output": "str",
+        "x": 860,
+        "y": 400,
+        "wires": [
+            [
+                "d062f7f3.fe2a18"
+            ]
+        ]
+    },
+    {
+        "id": "fbe45777.20c4b8",
+        "type": "link in",
+        "z": "46066a7b.b92564",
+        "name": "",
+        "links": [
+            "2d175cfc.54ee54"
+        ],
+        "x": 155,
+        "y": 400,
+        "wires": [
+            [
+                "af062ff3.baab5"
+            ]
+        ]
+    },
+    {
+        "id": "af062ff3.baab5",
+        "type": "function",
+        "z": "46066a7b.b92564",
+        "name": "nicht Verfügbar",
+        "func": "const nodes = global.get('homee.nodes');\nvar zaehlerein = 0;\nvar zaehleraus = 0;\nvar zaehler3=0;\nvar nichterreichbar=\"\";\nvar aktualisiert = \"\";\ntest =nodes;\nif((msg.payload.node && ((msg.payload.node.state === 2)||(msg.payload.node.state ===12)))||msg.payload === true){\ntest.forEach(function(id){\n            name = id.name;\n            komponente = decodeURIComponent(name);\n            test1 = id.state;\nif(test1 === 1 ) {zaehlerein++}\nif(test1 === 2 ) {if(nichterreichbar.length > 1 ){nichterreichbar =nichterreichbar + \"und\"}nichterreichbar = nichterreichbar +\" \"+ komponente+\" \";zaehleraus++}\nif(test1 === 12 ){if(aktualisiert.length > 1 ){aktualisiert =aktualisiert + \"und\"}aktualisiert = aktualisiert +\" \"+ komponente+\" \";zaehler3++}\n    \n})\nnode.status({fill:\"green\",shape:\"ring\",text:`Verfügbar: ${zaehlerein}  nicht Verfügbar:${zaehleraus} werden aktualisiert ${zaehler3}`})\nif(zaehleraus === 1){erreichger = \"Gerät ist nicht erreichbar\"} else erreichger = \"Geräte sind nicht erreichbar\";\nif(zaehler3 === 1){aktualger = \"Gerät wird aktualisiert\"} else aktualger = \"Geräte werden aktualisiert\";\nreturn{\"payload\":`${zaehleraus} ${erreichger} - ${nichterreichbar} und ${zaehler3} ${aktualger} - ${aktualisiert}`,\"Nicht Verfügbar\":{\"Anzahl\":zaehleraus,\"Geraete\":nichterreichbar}}\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 380,
+        "y": 400,
+        "wires": [
+            [
+                "ed3ca8c1.04a4d8",
+                "5d26e963.8d2bf8"
+            ]
+        ]
+    },
+    {
+        "id": "3202ecce.8f7934",
+        "type": "inject",
+        "z": "46066a7b.b92564",
+        "name": "",
+        "topic": "",
+        "payload": "true",
+        "payloadType": "bool",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 190,
+        "y": 460,
+        "wires": [
+            [
+                "af062ff3.baab5"
+            ]
+        ]
+    }
+]
