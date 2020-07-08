@@ -1,0 +1,208 @@
+[
+    {
+        "id": "10c02b05.d1cead",
+        "type": "tab",
+        "label": "Sonoff Basic 2",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "d8e599f8.e78d3",
+        "type": "ioBroker out",
+        "z": "10c02b05.d1cead",
+        "name": "Sonoff Switch 2",
+        "topic": "sonoff.0.sonoff-switch-2.POWER1",
+        "ack": "false",
+        "autoCreate": "false",
+        "stateName": "",
+        "role": "",
+        "stateUnit": "",
+        "stateMin": "",
+        "stateMax": "",
+        "x": 980,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "9fe3f4d5.f43d2",
+        "type": "function",
+        "z": "10c02b05.d1cead",
+        "name": "",
+        "func": "if(msg.payload.attributeId ===120 && msg.payload.targetValue ===1){\nreturn {payload:true}}\nelse if(msg.payload.attributeId ===120 && msg.payload.targetValue ===0){\nreturn{payload:false}}\n",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 820,
+        "y": 240,
+        "wires": [
+            [
+                "d8e599f8.e78d3"
+            ]
+        ]
+    },
+    {
+        "id": "c98c53f4.3dc6d",
+        "type": "change",
+        "z": "10c02b05.d1cead",
+        "name": "",
+        "rules": [
+            {
+                "t": "change",
+                "p": "payload",
+                "pt": "msg",
+                "from": "true",
+                "fromt": "str",
+                "to": "{\"attribute\":{\"id\":120,\"value\":1}}",
+                "tot": "json"
+            },
+            {
+                "t": "change",
+                "p": "payload",
+                "pt": "msg",
+                "from": "false",
+                "fromt": "str",
+                "to": "{\"attribute\":{\"id\":120,\"value\":0}}",
+                "tot": "json"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 400,
+        "y": 240,
+        "wires": [
+            [
+                "30c6d848.c1696"
+            ]
+        ]
+    },
+    {
+        "id": "43195200.d92224",
+        "type": "ioBroker in",
+        "z": "10c02b05.d1cead",
+        "name": "Sonoff Switch 2",
+        "topic": "sonoff.0.sonoff-switch-2.POWER1",
+        "payloadType": "value",
+        "onlyack": true,
+        "func": "all",
+        "gap": "",
+        "x": 220,
+        "y": 240,
+        "wires": [
+            [
+                "c98c53f4.3dc6d"
+            ]
+        ]
+    },
+    {
+        "id": "30c6d848.c1696",
+        "type": "homeeDevice",
+        "z": "10c02b05.d1cead",
+        "virtual-homee": "",
+        "name": "Sonoff Basic2",
+        "nodeId": "120",
+        "showNodeId": false,
+        "profile": "10",
+        "icon": "nodeicon_plug",
+        "attributes": "[{\"id\":120,\"node_id\":120,\"instance\":0,\"minimum\":0,\"maximum\":1,\"current_value\":0,\"target_value\":0,\"last_value\":0,\"unit\":\"\",\"step_value\":1,\"editable\":1,\"type\":1,\"state\":1,\"last_changed\":1572944008,\"changed_by\":0,\"changed_by_id\":0,\"based_on\":1,\"data\":\"On/Off\"},{\"id\":121,\"node_id\":120,\"instance\":0,\"minimum\":0,\"maximum\":0,\"current_value\":0,\"target_value\":0,\"last_value\":0,\"unit\":\"text\",\"step_value\":1,\"editable\":0,\"type\":44,\"state\":1,\"last_changed\":1573711842,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":1,\"data\":\"\"},{\"id\":122,\"node_id\":120,\"instance\":0,\"minimum\":0,\"maximum\":4,\"current_value\":3,\"target_value\":3,\"last_value\":3,\"unit\":\"n%2Fa\",\"step_value\":1,\"editable\":0,\"type\":33,\"state\":1,\"last_changed\":1572634009,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":4,\"data\":\"RSSI\"}]",
+        "x": 660,
+        "y": 240,
+        "wires": [
+            [
+                "9fe3f4d5.f43d2"
+            ]
+        ]
+    },
+    {
+        "id": "4590633e.535c84",
+        "type": "ioBroker in",
+        "z": "10c02b05.d1cead",
+        "name": "Version",
+        "topic": "sonoff.0.sonoff-switch-2.INFO.Version",
+        "payloadType": "value",
+        "onlyack": false,
+        "func": "all",
+        "gap": "",
+        "fireOnStart": "true",
+        "x": 190,
+        "y": 300,
+        "wires": [
+            [
+                "ec181337.6f9068"
+            ]
+        ]
+    },
+    {
+        "id": "ce4ba7cd.4e01b",
+        "type": "ioBroker in",
+        "z": "10c02b05.d1cead",
+        "name": "RSSI",
+        "topic": "sonoff.0.sonoff-switch-2.Wifi_RSSI",
+        "payloadType": "value",
+        "onlyack": false,
+        "func": "rbe",
+        "gap": "",
+        "x": 190,
+        "y": 360,
+        "wires": [
+            [
+                "3a7c72fb.91d7e6"
+            ]
+        ]
+    },
+    {
+        "id": "3a7c72fb.91d7e6",
+        "type": "function",
+        "z": "10c02b05.d1cead",
+        "name": "Set RSSI Quality",
+        "func": "var level=parseInt(msg.payload);\n\n// Verbindungsqualität von dbm in 0-4 umrechnen\nif (level > 90) {\n   level = 0\n}\nelse if (level > 80) {\n    level = 1\n}\nelse if (level > 60) {\n    level = 2\n}\nelse if (level > 40) {\n    level = 3\n}\nelse {\n    level = 4\n}\nmsg.payload = {\"attribute\":{ \"id\":122, \"value\": level}};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 430,
+        "y": 360,
+        "wires": [
+            [
+                "30c6d848.c1696"
+            ]
+        ]
+    },
+    {
+        "id": "ec181337.6f9068",
+        "type": "function",
+        "z": "10c02b05.d1cead",
+        "name": "Convert Version String",
+        "func": "var firmware = msg.payload;\n\nreturn {\n    payload: {\"attribute\": {\"id\": 121, \"value\": 0, \"data\": firmware}}\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 420,
+        "y": 300,
+        "wires": [
+            [
+                "30c6d848.c1696"
+            ]
+        ]
+    },
+    {
+        "id": "fa1fb739.8cf5f8",
+        "type": "comment",
+        "z": "10c02b05.d1cead",
+        "name": "node-red-contrib-homee ≥ 0.6.0",
+        "info": "",
+        "x": 270,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "33fac86a.7bfc5",
+        "type": "comment",
+        "z": "10c02b05.d1cead",
+        "name": "ioB Sonoff Adapter ≥ 2.3.3",
+        "info": "",
+        "x": 550,
+        "y": 120,
+        "wires": []
+    }
+]
