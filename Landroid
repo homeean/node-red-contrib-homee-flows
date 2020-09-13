@@ -1,0 +1,249 @@
+[
+    {
+        "id": "b08b77bd.f95898",
+        "type": "homeeDevice",
+        "z": "76b6d694.226ff8",
+        "virtual-homee": "",
+        "name": "Landroid",
+        "nodeId": "1",
+        "showNodeId": false,
+        "profile": "1008",
+        "icon": "nodeicon_star",
+        "attributes": [
+            {
+                "instance": 0,
+                "minimum": 0,
+                "maximum": 10,
+                "current_value": 0,
+                "target_value": 0,
+                "last_value": 0,
+                "unit": "text",
+                "step_value": 1,
+                "editable": 1,
+                "state": 1,
+                "last_changed": 1574494369,
+                "changed_by": 1,
+                "changed_by_id": 0,
+                "based_on": 1,
+                "data": "unbekannt",
+                "id": 101,
+                "type": 2,
+                "node_id": 1
+            },
+            {
+                "state": 1,
+                "instance": 0,
+                "minimum": 0,
+                "maximum": 100,
+                "current_value": 0,
+                "target_value": 0,
+                "last_value": 0,
+                "data": "",
+                "unit": "%25",
+                "step_value": 1,
+                "editable": 0,
+                "last_changed": 1599939844,
+                "changed_by": 1,
+                "changed_by_id": 0,
+                "based_on": 1,
+                "options": [],
+                "id": 102,
+                "type": 8,
+                "node_id": 1
+            },
+            {
+                "state": 1,
+                "instance": 0,
+                "minimum": 0,
+                "maximum": 100000,
+                "current_value": 0,
+                "target_value": 0,
+                "last_value": 0,
+                "data": "",
+                "unit": "h",
+                "step_value": 1,
+                "editable": 0,
+                "last_changed": 1599986794,
+                "changed_by": 1,
+                "changed_by_id": 0,
+                "based_on": 1,
+                "options": [],
+                "id": 103,
+                "type": 104,
+                "node_id": 1
+            },
+            {
+                "state": 1,
+                "instance": 0,
+                "minimum": -50,
+                "maximum": 125,
+                "current_value": 0,
+                "target_value": 0,
+                "last_value": 0,
+                "data": "",
+                "unit": "%C2%B0C",
+                "step_value": 0.5,
+                "editable": 0,
+                "last_changed": 1600002069,
+                "changed_by": 1,
+                "changed_by_id": 0,
+                "based_on": 1,
+                "options": [],
+                "id": 104,
+                "type": 5,
+                "node_id": 1
+            }
+        ],
+        "statusTemplate": "",
+        "x": 740,
+        "y": 1800,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "23529fd5.86e7",
+        "type": "ioBroker in",
+        "z": "76b6d694.226ff8",
+        "name": "",
+        "topic": "worx.0.20193019840101394312.mower.status",
+        "payloadType": "value",
+        "onlyack": "",
+        "func": "all",
+        "gap": "",
+        "x": 250,
+        "y": 1800,
+        "wires": [
+            [
+                "cc69d17.d2ac73"
+            ]
+        ]
+    },
+    {
+        "id": "cc69d17.d2ac73",
+        "type": "function",
+        "z": "76b6d694.226ff8",
+        "name": "",
+        "func": "switch (msg.payload){\n    case\"0\":test=\"IDLE\";\n    break;\n    case\"1\":test=\"Home\";\n    break;\n    case\"2\":test=\"Start sequence\";\n    break;\n    case\"3\":test=\"Leaving home\";\n    break;\n    case\"4\":test=\"Follow wire\";\n    break;\n    case\"5\":test=\"Searching home\";\n    break;\n    case\"6\":test=\"Searching wire\";\n    break;\n    case\"7\":test=\"Mowing\";\n    break;\n    case\"8\":test=\"Lifted\";\n    break;\n    case\"9\":test=\"Trapped\";\n    break;\n    case\"10\":test=\"Blade blocked\";\n    break;\n    case\"11\":test=\"Debug\";\n    break;\n    case\"12\":test=\"Remote control\";\n    break;\n    case\"30\":test=\"Going home\";\n    break;\n    case\"31\":test=\"Zone training\";\n    break;\n    case\"32\":test=\"Border Cut\";\n    break;\n    case\"33\":test=\"Searching zone\";\n    break;\n    case\"34\":test=\"Pause\";\n    break;}\nnode.send ({payload:{\n    \"attribute\": {\n        \"id\": 101,\n        \"value\": 0,\n        \"data\": test\n    },\n    \"state\": 1\n}})\n",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 510,
+        "y": 1800,
+        "wires": [
+            [
+                "b08b77bd.f95898"
+            ]
+        ]
+    },
+    {
+        "id": "b9c05b8d.aab8a8",
+        "type": "template",
+        "z": "76b6d694.226ff8",
+        "name": "",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "{\n    \"attribute\": {\n        \"id\": 102,\n        \"value\": {{payload.val}}\n    }\n}",
+        "output": "json",
+        "x": 520,
+        "y": 1880,
+        "wires": [
+            [
+                "b08b77bd.f95898"
+            ]
+        ]
+    },
+    {
+        "id": "5e7d1b1f.6fbdb4",
+        "type": "ioBroker in",
+        "z": "76b6d694.226ff8",
+        "name": "",
+        "topic": "worx.0.20193019840101394312.mower.batteryState",
+        "payloadType": "object",
+        "onlyack": "",
+        "func": "all",
+        "gap": "",
+        "x": 230,
+        "y": 1880,
+        "wires": [
+            [
+                "b9c05b8d.aab8a8"
+            ]
+        ]
+    },
+    {
+        "id": "ea43219d.7187c",
+        "type": "template",
+        "z": "76b6d694.226ff8",
+        "name": "",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "{\n    \"attribute\": {\n        \"id\": 103,\n        \"value\": {{payload.val}}\n    }\n}",
+        "output": "json",
+        "x": 520,
+        "y": 1940,
+        "wires": [
+            [
+                "b08b77bd.f95898"
+            ]
+        ]
+    },
+    {
+        "id": "ea174c6d.64984",
+        "type": "template",
+        "z": "76b6d694.226ff8",
+        "name": "",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "{\n    \"attribute\": {\n        \"id\": 104,\n        \"value\": {{payload.val}}\n    }\n}",
+        "output": "json",
+        "x": 520,
+        "y": 2000,
+        "wires": [
+            [
+                "b08b77bd.f95898"
+            ]
+        ]
+    },
+    {
+        "id": "5b50b172.e6098",
+        "type": "ioBroker in",
+        "z": "76b6d694.226ff8",
+        "name": "",
+        "topic": "worx.0.20193019840101394312.mower.totalBladeTime",
+        "payloadType": "object",
+        "onlyack": "",
+        "func": "all",
+        "gap": "",
+        "x": 240,
+        "y": 1940,
+        "wires": [
+            [
+                "ea43219d.7187c"
+            ]
+        ]
+    },
+    {
+        "id": "8684740b.b7a2d8",
+        "type": "ioBroker in",
+        "z": "76b6d694.226ff8",
+        "name": "",
+        "topic": "worx.0.20193019840101394312.mower.batteryTemperature",
+        "payloadType": "object",
+        "onlyack": "",
+        "func": "all",
+        "gap": "",
+        "x": 220,
+        "y": 2000,
+        "wires": [
+            [
+                "ea174c6d.64984"
+            ]
+        ]
+    }
+]
