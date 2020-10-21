@@ -1,0 +1,379 @@
+[
+    {
+        "id": "8442164d.97a36",
+        "type": "homeeDevice",
+        "z": "2e236af5.ac981e",
+        "virtual-homee": "",
+        "name": "BMW",
+        "nodeId": "320",
+        "showNodeId": false,
+        "profile": "2007",
+        "icon": "default",
+        "attributes": [
+            {
+                "state": 1,
+                "instance": 0,
+                "minimum": 0,
+                "maximum": 4,
+                "current_value": 0,
+                "target_value": 0,
+                "last_value": 0,
+                "data": "",
+                "unit": "",
+                "step_value": 1,
+                "editable": 1,
+                "last_changed": 1602945667,
+                "changed_by": 1,
+                "changed_by_id": 0,
+                "based_on": 1,
+                "options": [],
+                "id": 321,
+                "type": 232,
+                "node_id": 320
+            }
+        ],
+        "statusTemplate": "",
+        "x": 850,
+        "y": 260,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "4e63115b.901f",
+        "type": "inject",
+        "z": "2e236af5.ac981e",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "60",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 190,
+        "y": 360,
+        "wires": [
+            [
+                "a9861bef.3e5498"
+            ]
+        ]
+    },
+    {
+        "id": "d4628a4f.b6daa8",
+        "type": "debug",
+        "z": "2e236af5.ac981e",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": true,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "payload",
+        "statusType": "auto",
+        "x": 650,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "51bac7c3.4fcd18",
+        "type": "function",
+        "z": "2e236af5.ac981e",
+        "name": "",
+        "func": "if(msg.payload.attributesMap.door_lock_state ==\"UNLOCKED\" || msg.payload.attributesMap.door_lock_state ==\"SELECTIVELOCKED\"){\n    return {payload:{\"attribute\":{\"id\":321,\"value\":0}}}\n}\nelse \nreturn {payload:{\"attribute\":{\"id\":321,\"value\":1}}}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 640,
+        "y": 200,
+        "wires": [
+            [
+                "9c6d310d.636fe",
+                "8442164d.97a36"
+            ]
+        ]
+    },
+    {
+        "id": "9c6d310d.636fe",
+        "type": "debug",
+        "z": "2e236af5.ac981e",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": true,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "payload",
+        "statusType": "auto",
+        "x": 860,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "a9861bef.3e5498",
+        "type": "car-bmw-get",
+        "z": "2e236af5.ac981e",
+        "account": "e9fe4f97.01e2a8",
+        "name": "BMW 320d",
+        "datatype": "dynamic",
+        "x": 380,
+        "y": 360,
+        "wires": [
+            [
+                "d4628a4f.b6daa8",
+                "51bac7c3.4fcd18",
+                "4f493cdc.808544",
+                "b076df07.83548",
+                "4a61bc85.344c64"
+            ]
+        ]
+    },
+    {
+        "id": "4f493cdc.808544",
+        "type": "function",
+        "z": "2e236af5.ac981e",
+        "name": "",
+        "func": "if(msg.payload.attributesMap.trunk_state ==\"CLOSED\"){\n    return {payload:{\"attribute\":{\"id\":331,\"value\":0}}}\n}\nelse \nreturn {payload:{\"attribute\":{\"id\":331,\"value\":1}}}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 640,
+        "y": 480,
+        "wires": [
+            [
+                "75d2e482.84fe7c",
+                "41ee05a7.7a4e6c"
+            ]
+        ]
+    },
+    {
+        "id": "75d2e482.84fe7c",
+        "type": "debug",
+        "z": "2e236af5.ac981e",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": true,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "payload",
+        "statusType": "auto",
+        "x": 860,
+        "y": 480,
+        "wires": []
+    },
+    {
+        "id": "41ee05a7.7a4e6c",
+        "type": "homeeDevice",
+        "z": "2e236af5.ac981e",
+        "virtual-homee": "",
+        "name": "BMW Kofferraum",
+        "nodeId": "330",
+        "showNodeId": false,
+        "profile": "2000",
+        "icon": "nodeicon_doorsensor",
+        "attributes": [
+            {
+                "state": 1,
+                "instance": 0,
+                "minimum": 0,
+                "maximum": 1,
+                "current_value": 0,
+                "target_value": 0,
+                "last_value": 0,
+                "data": "",
+                "unit": "",
+                "step_value": 1,
+                "editable": 0,
+                "last_changed": 1602945449,
+                "changed_by": 1,
+                "changed_by_id": 0,
+                "based_on": 1,
+                "options": [],
+                "id": 331,
+                "type": 14,
+                "node_id": 330
+            }
+        ],
+        "statusTemplate": "",
+        "x": 890,
+        "y": 540,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "b076df07.83548",
+        "type": "function",
+        "z": "2e236af5.ac981e",
+        "name": "",
+        "func": "if(msg.payload.attributesMap.window_driver_front ==\"CLOSED\" && msg.payload.attributesMap.window_passenger_front ==\"CLOSED\" && msg.payload.attributesMap.window_driver_rear ==\"CLOSED\" && msg.payload.attributesMap.window_passenger_rear ==\"CLOSED\"){\n    return {payload:{\"attribute\":{\"id\":341,\"value\":0}}}\n}\nelse \nreturn {payload:{\"attribute\":{\"id\":341,\"value\":1}}}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 640,
+        "y": 340,
+        "wires": [
+            [
+                "6e02bb96.36ea24",
+                "3c69a3c4.fee73c"
+            ]
+        ]
+    },
+    {
+        "id": "6e02bb96.36ea24",
+        "type": "debug",
+        "z": "2e236af5.ac981e",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": true,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "payload",
+        "statusType": "auto",
+        "x": 860,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "3c69a3c4.fee73c",
+        "type": "homeeDevice",
+        "z": "2e236af5.ac981e",
+        "virtual-homee": "",
+        "name": "BMW Fenster",
+        "nodeId": "340",
+        "showNodeId": false,
+        "profile": "2000",
+        "icon": "nodeicon_doorsensor",
+        "attributes": [
+            {
+                "state": 1,
+                "instance": 0,
+                "minimum": 0,
+                "maximum": 1,
+                "current_value": 0,
+                "target_value": 0,
+                "last_value": 0,
+                "data": "",
+                "unit": "",
+                "step_value": 1,
+                "editable": 0,
+                "last_changed": 1602945449,
+                "changed_by": 1,
+                "changed_by_id": 0,
+                "based_on": 1,
+                "options": [],
+                "id": 341,
+                "type": 14,
+                "node_id": 340
+            }
+        ],
+        "statusTemplate": "",
+        "x": 880,
+        "y": 400,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "4a61bc85.344c64",
+        "type": "function",
+        "z": "2e236af5.ac981e",
+        "name": "",
+        "func": "if(msg.payload.attributesMap.door_driver_front ==\"CLOSED\" || msg.payload.attributesMap.door_passenger_front ==\"CLOSED\" || msg.payload.attributesMap.door_driver_rear ==\"CLOSED\" || msg.payload.attributesMap.door_passenger_front ==\"CLOSED\"){\n    return {payload:{\"attribute\":{\"id\":351,\"value\":0}}}\n}\nelse \nreturn {payload:{\"attribute\":{\"id\":351,\"value\":1}}}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 640,
+        "y": 620,
+        "wires": [
+            [
+                "28f5e4c1.0abb0c",
+                "92cfdbe1.2495e8"
+            ]
+        ]
+    },
+    {
+        "id": "28f5e4c1.0abb0c",
+        "type": "debug",
+        "z": "2e236af5.ac981e",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": true,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "payload",
+        "statusType": "auto",
+        "x": 860,
+        "y": 620,
+        "wires": []
+    },
+    {
+        "id": "92cfdbe1.2495e8",
+        "type": "homeeDevice",
+        "z": "2e236af5.ac981e",
+        "virtual-homee": "",
+        "name": "BMW Türen",
+        "nodeId": "350",
+        "showNodeId": false,
+        "profile": "2000",
+        "icon": "nodeicon_doorsensor",
+        "attributes": [
+            {
+                "state": 1,
+                "instance": 0,
+                "minimum": 0,
+                "maximum": 1,
+                "current_value": 0,
+                "target_value": 0,
+                "last_value": 0,
+                "data": "",
+                "unit": "",
+                "step_value": 1,
+                "editable": 0,
+                "last_changed": 1602945449,
+                "changed_by": 1,
+                "changed_by_id": 0,
+                "based_on": 1,
+                "options": [],
+                "id": 351,
+                "type": 14,
+                "node_id": 350
+            }
+        ],
+        "statusTemplate": "",
+        "x": 870,
+        "y": 680,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "e9fe4f97.01e2a8",
+        "type": "car-bmw",
+        "z": "",
+        "name": "",
+        "server": "www.bmw-connecteddrive.com",
+        "debug": true
+    }
+]
