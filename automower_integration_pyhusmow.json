@@ -1,0 +1,151 @@
+[
+    {
+        "id": "2a6e1684.bff3ca",
+        "type": "tab",
+        "label": "Automower",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "e0ba3698.f3c7e8",
+        "type": "http request",
+        "z": "2a6e1684.bff3ca",
+        "name": "",
+        "method": "GET",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "http://192.168.178.50:2345/status",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "x": 430,
+        "y": 200,
+        "wires": [
+            [
+                "866a355b.2135d8"
+            ]
+        ]
+    },
+    {
+        "id": "cb83c662.a07628",
+        "type": "inject",
+        "z": "2a6e1684.bff3ca",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "10",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 220,
+        "y": 200,
+        "wires": [
+            [
+                "e0ba3698.f3c7e8"
+            ]
+        ]
+    },
+    {
+        "id": "866a355b.2135d8",
+        "type": "function",
+        "z": "2a6e1684.bff3ca",
+        "name": "",
+        "func": "if(msg.payload.mowerStatus ===\"OK_CUTTING\" || msg.payload.mowerStatus ===\"OK_SEARCHING\" || msg.payload.mowerStatus ===\"OK_LEAVING\"){return {payload:{\"attribute\":{\"id\":194,\"value\":1}}}}\nelse \nreturn {payload:{\"attribute\":{\"id\":194,\"value\":0}}}\n\n\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 620,
+        "y": 200,
+        "wires": [
+            [
+                "210d84da.a794dc"
+            ]
+        ]
+    },
+    {
+        "id": "210d84da.a794dc",
+        "type": "homeeDevice",
+        "z": "2a6e1684.bff3ca",
+        "virtual-homee": "",
+        "name": "Automower",
+        "nodeId": "194",
+        "showNodeId": false,
+        "profile": "10",
+        "icon": "default",
+        "attributes": [
+            {
+                "instance": 0,
+                "minimum": 0,
+                "maximum": 1,
+                "current_value": 0,
+                "target_value": 0,
+                "last_value": 0,
+                "unit": "n/a",
+                "step_value": 1,
+                "editable": 1,
+                "state": 1,
+                "last_changed": 1573065521,
+                "changed_by": 1,
+                "changed_by_id": 0,
+                "based_on": 1,
+                "data": "",
+                "id": 194,
+                "type": 1,
+                "node_id": 194
+            }
+        ],
+        "statusTemplate": "",
+        "x": 800,
+        "y": 200,
+        "wires": [
+            [
+                "70051daf.55fa04"
+            ]
+        ]
+    },
+    {
+        "id": "70051daf.55fa04",
+        "type": "function",
+        "z": "2a6e1684.bff3ca",
+        "name": "",
+        "func": "if (msg.payload.targetValue === 1){return{url:\"http://192.168.178.50:2345/start\"}}\nelse if(msg.payload.targetValue ===0){return{url:\"http://192.168.178.50:2345/park\"}}\nelse\nreturn",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 980,
+        "y": 200,
+        "wires": [
+            [
+                "c7e5072e.138878"
+            ]
+        ]
+    },
+    {
+        "id": "c7e5072e.138878",
+        "type": "http request",
+        "z": "2a6e1684.bff3ca",
+        "name": "",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "x": 1170,
+        "y": 200,
+        "wires": [
+            []
+        ]
+    }
+]
