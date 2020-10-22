@@ -1,0 +1,45 @@
+[
+    {
+        "id": "deaf518.b4776b",
+        "type": "Sonoff device",
+        "z": "a1755145.48ed",
+        "mode": "0",
+        "broker": "73320efc.b9ffe",
+        "device": "tasmota-switch-3",
+        "name": "",
+        "onValue": "ON",
+        "offValue": "OFF",
+        "cmdPrefix": "cmnd",
+        "statPrefix": "stat",
+        "telePrefix": "tele",
+        "x": 670,
+        "y": 240,
+        "wires": [
+            [
+                "43a3c64d.9f4fc8"
+            ]
+        ]
+    },
+    {
+        "id": "73320efc.b9ffe",
+        "type": "mqtt-broker",
+        "z": "",
+        "name": "",
+        "broker": "192.168.178.50",
+        "port": "1883",
+        "clientid": "",
+        "usetls": false,
+        "compatmode": false,
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": ""
+    }
+]
