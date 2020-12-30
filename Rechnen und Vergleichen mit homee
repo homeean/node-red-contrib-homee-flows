@@ -202,7 +202,7 @@
         "type": "function",
         "z": "76b6d694.226ff8",
         "name": "",
-        "func": "var wert1 = flow.get(\"wert1\");\nvar wert2 = flow.get(\"wert2\");\nvar rechenart = flow.get(\"rechenart\");\nif (rechenart === 2){ergebniss = wert1-wert2}\nif (rechenart === 1){ergebniss = wert1+wert2}\nif (rechenart === 3){ergebniss = wert1/wert2}\nif (rechenart === 4){ergebniss = wert1*wert2}\nif (rechenart === 5){if(wert1 === wert2){return {payload:{id:45,value:1}}} else return {payload:{id:45,value:0}}}\nif (rechenart === 6){if(wert1 < wert2){return {payload:{id:45,value:1}}} else return {payload:{id:45,value:0}}}\nif (rechenart === 7){if(wert1 > wert2){return {payload:{id:45,value:1}}} else return {payload:{id:45,value:0}}}\nreturn {payload:{id:43,value:ergebniss}}\n\n\n",
+        "func": "var wert1 = flow.get(\"wert1\");\nvar wert2 = flow.get(\"wert2\");\nvar rechenart = flow.get(\"rechenart\");\nif (rechenart === 2){ergebniss = wert1-wert2}\nif (rechenart === 1){ergebniss = wert1+wert2}\nif (rechenart === 3){ergebniss = wert1/wert2}\nif (rechenart === 4){ergebniss = wert1*wert2}\nif (rechenart === 5){if(wert1 === wert2){return {payload:{attribute:{id:45,value:1}}}} else return {payload:{attribute:{id:45,value:0}}}}\nif (rechenart === 6){if(wert1 < wert2){return {payload:{attribute:{id:45,value:1}}}} else return {payload:{attribute:{id:45,value:0}}}}\nif (rechenart === 7){if(wert1 > wert2){return {payload:{attribute:{id:45,value:1}}}} else return {payload:{attribute:{id:45,value:0}}}}\nreturn {payload:{attribute:{id:43,value:ergebniss}}}\n\n\n",
         "outputs": 1,
         "noerr": 0,
         "x": 530,

@@ -23,7 +23,7 @@
         "type": "function",
         "z": "4678ddf1.941734",
         "name": "Funktion on off",
-        "func": "if (msg.payload === true)\n       return {payload:{\"id\":70,\"value\":1}};\nif (msg.payload === false)\n        return {payload:{\"id\":70,\"value\":0}};",
+        "func": "if (msg.payload === true)\n       return {payload:{attribute:{id:70,value:1}}};\nif (msg.payload === false)\n        return {payload:{attribute:{id:70,value:0}}};",
         "outputs": 1,
         "noerr": 0,
         "x": 260,

@@ -88,7 +88,7 @@
     "type": "function",
     "z": "5a869de6.3ee3ac",
     "name": "Rückkanal on off",
-    "func": "if (msg.payload === true){var status =1}\n    else var status =0;\n        node.send({payload:{\"id\":370,\"value\":status}})",
+    "func": "if (msg.payload === true){var status =1}\n    else var status =0;\n        node.send({payload:{attribute:{id:370,value:status}}})",
     "outputs": 1,
     "noerr": 0,
     "x": 830,

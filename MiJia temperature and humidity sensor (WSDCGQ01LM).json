@@ -20,7 +20,7 @@
         "type": "function",
         "z": "ac65d55a.b6bd58",
         "name": "Filter Sensor",
-        "func": "node.send({payload:{\"id\":400,\"value\":msg.payload.temperature}})\nnode.send({payload:{\"id\":401,\"value\":msg.payload.humidity}})\nnode.send({payload:{\"id\":402,\"value\":msg.payload.battery}})\nnode.send({payload:{\"id\":403,\"value\":msg.payload.linkquality}})",
+        "func": "node.send({payload:{attribute:{id:400,value:msg.payload.temperature}}})\nnode.send({payload:{attribute:{id:401,value:msg.payload.humidity}}})\nnode.send({payload:{attribute:{id:402,value:msg.payload.battery}}})\nnode.send({payload:{attribute:{id:403,value:msg.payload.linkquality}}})",
         "outputs": 1,
         "noerr": 0,
         "x": 410,

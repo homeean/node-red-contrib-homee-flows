@@ -74,7 +74,7 @@
         "type": "function",
         "z": "ac65d55a.b6bd58",
         "name": "Filter ON OFF",
-        "func": "var status = 0\nif (msg.payload.state === \"ON\"){status =1}\nnode.send({payload:{\"id\":481,\"value\":status}})\nnode.send({payload:{\"id\":480,\"value\":(msg.payload.linkquality/25)}})",
+        "func": "var status = 0\nif (msg.payload.state === \"ON\"){status =1}\nnode.send({payload:{attribute:{id:481,value:status}}})\nnode.send({payload:{\"id\":480,\"value\":(msg.payload.linkquality/25)}})",
         "outputs": 1,
         "noerr": 0,
         "x": 400,

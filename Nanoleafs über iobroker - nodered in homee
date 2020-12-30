@@ -353,7 +353,7 @@
         "type": "function",
         "z": "6e773581.af229c",
         "name": "Dimmwert",
-        "func": "node.send({payload:{\"id\":111,\"value\":msg.payload}})",
+        "func": "node.send({payload:{attribute:{id:111,value:msg.payload}}})",
         "outputs": 1,
         "noerr": 0,
         "x": 550,

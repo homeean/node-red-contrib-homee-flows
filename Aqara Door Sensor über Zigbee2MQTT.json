@@ -38,7 +38,7 @@
     "type": "function",
     "z": "fd6d95c1.d70ae8",
     "name": "Filter Sensor",
-    "func": "var con = msg.payload.contact\n\nnode.send({payload:{\"id\":431,\"value\":msg.payload.contact}})",
+    "func": "var con = msg.payload.contact\n\nnode.send({payload:{attribute:{id:431,value:msg.payload.contact}}})",
     "outputs": 1,
     "noerr": 0,
     "x": 810,

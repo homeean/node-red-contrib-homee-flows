@@ -75,7 +75,7 @@
         "type": "function",
         "z": "ac65d55a.b6bd58",
         "name": "Filter Sensor",
-        "func": "node.send({payload:{\"id\":421,\"value\":msg.payload.occupancy}})\nnode.send({payload:{\"id\":422,\"value\":msg.payload.battery}})\nnode.send({payload:{\"id\":423,\"value\":msg.payload.linkquality}})",
+        "func": "node.send({payload:{attribute:{id:421,value:msg.payload.occupancy}}})\nnode.send({payload:{attribute:{id:422,value:msg.payload.battery}}})\nnode.send({payload:{attribute:{id:423,value:msg.payload.linkquality}}})",
         "outputs": 1,
         "noerr": 0,
         "x": 410,

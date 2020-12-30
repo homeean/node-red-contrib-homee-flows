@@ -4,7 +4,7 @@
         "type": "function",
         "z": "d0bbe33a.4bc43",
         "name": "Rückkanal on off mit Hex",
-        "func": "if (msg.payload.on === true ){msg.payload.on =1}else msg.payload.on=0; \nnode.send({payload:{\"id\":60,\"value\":msg.payload.on}})\nnode.send({payload:{\"id\":61,\"value\":msg.payload.brightness}})\nnode.send({payload:{\"id\":62,\"value\":msg.payload.colorTemp}})\nnode.send({payload:{\"id\":64,\"value\":msg.payload.rgb[0]}})\nnode.send({payload:{\"id\":65,\"value\":msg.payload.rgb[1]}})\nnode.send({payload:{\"id\":66,\"value\":msg.payload.rgb[2]}})\n\n\nif( msg.payload.hex){\n\nnode.send({payload: {\"id\":63,\"value\": parseInt(msg.payload.hex,16)}})}\n",
+        "func": "if (msg.payload.on === true ){msg.payload.on =1}else msg.payload.on=0; \nnode.send({payload:{attribute:{id:60,value:msg.payload.on}}})\nnode.send({payload:{attribute:{id:61,value:msg.payload.brightness}}})\nnode.send({payload:{attribute:{id:62,value:msg.payload.colorTemp}}})\nnode.send({payload:{\"id\":64,\"value\":msg.payload.rgb[0]}})\nnode.send({payload:{\"id\":65,\"value\":msg.payload.rgb[1]}})\nnode.send({payload:{\"id\":66,\"value\":msg.payload.rgb[2]}})\n\n\nif( msg.payload.hex){\n\nnode.send({payload:{attribute:{id:63,value:parseInt(msg.payload.hex,16)}}})}\n",
         "outputs": 1,
         "noerr": 0,
         "x": 1150,
