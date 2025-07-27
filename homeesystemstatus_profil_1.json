@@ -1,52 +1,124 @@
 [
     {
+        "id": "0b673b088c8e0e16",
+        "type": "tab",
+        "label": "homee Systemstatus",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
         "id": "475617ba.5ce458",
         "type": "homeeDevice",
-        "z": "d174baed.50e358",
+        "z": "0b673b088c8e0e16",
         "virtual-homee": "",
         "name": "homee Systemstatus",
         "nodeId": "502",
+        "showNodeId": false,
         "profile": "1",
         "icon": "default",
-        "attributes": "[{\"id\":474,\"node_id\":502,\"instance\":0,\"minimum\":0,\"maximum\":5,\"current_value\":0,\"target_value\":0,\"last_value\":3,\"unit\":\"n%2Fa\",\"step_value\":1,\"editable\":1,\"type\":205,\"state\":1,\"last_changed\":1570085457,\"changed_by\":2,\"changed_by_id\":1,\"based_on\":1,\"data\":\"\"},{\"id\":2373,\"node_id\":502,\"instance\":0,\"minimum\":0,\"maximum\":100,\"current_value\":65.676,\"target_value\":65.676,\"last_value\":65.913,\"unit\":\"%25Ram\",\"step_value\":0.1,\"editable\":0,\"type\":311,\"state\":1,\"last_changed\":1573742341,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":1,\"data\":\"\"},{\"id\":2374,\"node_id\":502,\"instance\":0,\"minimum\":0,\"maximum\":100,\"current_value\":52.833,\"target_value\":52.833,\"last_value\":60.545,\"unit\":\"%25CPU\",\"step_value\":0.1,\"editable\":0,\"type\":312,\"state\":1,\"last_changed\":1573742341,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":1,\"data\":\"\"},{\"id\":2375,\"node_id\":502,\"instance\":0,\"minimum\":0,\"maximum\":100,\"current_value\":28.954,\"target_value\":28.954,\"last_value\":29.604,\"unit\":\"%25Mem\",\"step_value\":0.1,\"editable\":0,\"type\":313,\"state\":1,\"last_changed\":1573742341,\"changed_by\":1,\"changed_by_id\":0,\"based_on\":1,\"data\":\"\"}]",
-        "x": 634.0115356445312,
-        "y": 184.02777099609375,
+        "attributes": [
+            {
+                "instance": 0,
+                "minimum": 0,
+                "maximum": 5,
+                "current_value": 0,
+                "target_value": 0,
+                "last_value": 0,
+                "unit": "n%2Fa",
+                "step_value": 1,
+                "editable": 1,
+                "type": 205,
+                "state": 1,
+                "last_changed": 1570085457,
+                "changed_by": 2,
+                "changed_by_id": 1,
+                "based_on": 1,
+                "data": "",
+                "id": "474",
+                "node_id": "502"
+            },
+            {
+                "instance": 0,
+                "minimum": 0,
+                "maximum": 100,
+                "current_value": 0,
+                "target_value": 0,
+                "last_value": 0,
+                "unit": "%25Ram",
+                "step_value": 0.1,
+                "editable": 0,
+                "type": 311,
+                "state": 1,
+                "last_changed": 1573742341,
+                "changed_by": 1,
+                "changed_by_id": 0,
+                "based_on": 1,
+                "data": "",
+                "id": "2373",
+                "node_id": "502"
+            },
+            {
+                "instance": 0,
+                "minimum": 0,
+                "maximum": 100,
+                "current_value": 0,
+                "target_value": 0,
+                "last_value": 0,
+                "unit": "%25CPU",
+                "step_value": 0.1,
+                "editable": 0,
+                "type": 312,
+                "state": 1,
+                "last_changed": 1573742341,
+                "changed_by": 1,
+                "changed_by_id": 0,
+                "based_on": 1,
+                "data": "",
+                "id": "2374",
+                "node_id": "502"
+            },
+            {
+                "instance": 0,
+                "minimum": 0,
+                "maximum": 100,
+                "current_value": 0,
+                "target_value": 0,
+                "last_value": 0,
+                "unit": "%25Mem",
+                "step_value": 0.1,
+                "editable": 0,
+                "type": 313,
+                "state": 1,
+                "last_changed": 1573742341,
+                "changed_by": 1,
+                "changed_by_id": 0,
+                "based_on": 1,
+                "data": "",
+                "id": "2375",
+                "node_id": "502"
+            }
+        ],
+        "statusTemplate": "",
+        "x": 800,
+        "y": 240,
         "wires": [
             []
         ]
     },
     {
-        "id": "db2c009a.42a19",
-        "type": "template",
-        "z": "d174baed.50e358",
-        "name": "",
-        "field": "payload",
-        "fieldType": "msg",
-        "format": "handlebars",
-        "syntax": "mustache",
-        "template": "{\"id\":2373,\"value\":{{payload}}}",
-        "output": "json",
-        "x": 434.01153564453125,
-        "y": 184.02777099609375,
-        "wires": [
-            [
-                "475617ba.5ce458"
-            ]
-        ]
-    },
-    {
         "id": "f0aea8d9.b93538",
         "type": "template",
-        "z": "d174baed.50e358",
+        "z": "0b673b088c8e0e16",
         "name": "",
         "field": "payload",
         "fieldType": "msg",
         "format": "handlebars",
         "syntax": "mustache",
-        "template": "{\"id\":2374,\"value\":{{payload}}}",
+        "template": "{\"attribute\":{\"id\":2374,\"value\":{{payload}}}}",
         "output": "json",
-        "x": 434.01153564453125,
-        "y": 224.02777099609375,
+        "x": 520,
+        "y": 240,
         "wires": [
             [
                 "475617ba.5ce458"
@@ -56,16 +128,16 @@
     {
         "id": "3eb6902b.29a49",
         "type": "template",
-        "z": "d174baed.50e358",
+        "z": "0b673b088c8e0e16",
         "name": "",
         "field": "payload",
         "fieldType": "msg",
         "format": "handlebars",
         "syntax": "mustache",
-        "template": "{\"id\":2375,\"value\":{{payload}}}",
+        "template": "{\"attribute\":{\"id\":2375,\"value\":{{payload}}}}",
         "output": "json",
-        "x": 434.01153564453125,
-        "y": 264.02777099609375,
+        "x": 520,
+        "y": 280,
         "wires": [
             [
                 "475617ba.5ce458"
@@ -75,13 +147,17 @@
     {
         "id": "7cfc9298.90f1fc",
         "type": "function",
-        "z": "d174baed.50e358",
+        "z": "0b673b088c8e0e16",
         "name": "Mem",
         "func": "var attribute = msg.payload.attribute;\nif(attribute && attribute.type === 313 && attribute.node_id === -1){\nreturn {payload: attribute.current_value}}",
         "outputs": 1,
+        "timeout": "",
         "noerr": 0,
-        "x": 250,
-        "y": 260,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 330,
+        "y": 280,
         "wires": [
             [
                 "3eb6902b.29a49"
@@ -91,13 +167,17 @@
     {
         "id": "1dbf06df.00c1f9",
         "type": "function",
-        "z": "d174baed.50e358",
+        "z": "0b673b088c8e0e16",
         "name": "CPU",
         "func": "var attribute = msg.payload.attribute;\nif(attribute && attribute.type === 312 && attribute.node_id === -1){\nreturn {payload: attribute.current_value}}",
         "outputs": 1,
+        "timeout": "",
         "noerr": 0,
-        "x": 250,
-        "y": 220,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 330,
+        "y": 240,
         "wires": [
             [
                 "f0aea8d9.b93538"
@@ -107,31 +187,58 @@
     {
         "id": "8fcb4bdd.821328",
         "type": "function",
-        "z": "d174baed.50e358",
+        "z": "0b673b088c8e0e16",
         "name": "Ram",
         "func": "var attribute = msg.payload.attribute;\nif(attribute && attribute.type === 311 && attribute.node_id === -1){\nreturn {payload: attribute.current_value}}",
         "outputs": 1,
+        "timeout": "",
         "noerr": 0,
-        "x": 250,
-        "y": 180,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 330,
+        "y": 200,
         "wires": [
             [
-                "db2c009a.42a19"
+                "43333be9d1234dcf"
             ]
         ]
     },
     {
         "id": "7e5f64f9.ace7dc",
         "type": "homeeApi",
-        "z": "d174baed.50e358",
+        "z": "0b673b088c8e0e16",
         "homee": "",
-        "x": 80,
-        "y": 220,
+        "name": "",
+        "messageTypeFilter": [],
+        "nodeFilter": "",
+        "attributeFilter": "",
+        "x": 160,
+        "y": 240,
         "wires": [
             [
                 "8fcb4bdd.821328",
                 "1dbf06df.00c1f9",
                 "7cfc9298.90f1fc"
+            ]
+        ]
+    },
+    {
+        "id": "43333be9d1234dcf",
+        "type": "template",
+        "z": "0b673b088c8e0e16",
+        "name": "",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "{\"attribute\":{\"id\":2373,\"value\":{{payload}}}}",
+        "output": "json",
+        "x": 520,
+        "y": 200,
+        "wires": [
+            [
+                "475617ba.5ce458"
             ]
         ]
     }
